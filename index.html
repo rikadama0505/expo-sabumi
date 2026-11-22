@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expo SABUMI — SMP Negeri 3 Tutuyan | Sampah Berkah Untuk Bumi</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    :root {
+      --earth-deep: #072236;
+      --earth-ocean: #0E4F6E;
+      --earth-forest: #197A54;
+      --earth-leaf: #29B36E;
+      --earth-sun: #F5A623;
+      --earth-sand: #F7F4EC;
+      --earth-mist: #F2FAF5;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #0E2738;
+      background-color: var(--earth-mist);
+      overflow-x: hidden;
+    }
+
+    /* Cinematic Splash Entrance */
+    #splashScreen {
+      background-color: #051A2B;
+      background-image: radial-gradient(circle at 50% 42%, rgba(41, 179, 110, 0.38) 0%, rgba(14, 79, 110, 0.62) 44%, #051A2B 100%);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.85s ease;
+    }
+    #splashScreen.splash-exit {
+      opacity: 0;
+      transform: scale(1.07);
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .splash-glow {
+      box-shadow: 0 0 80px rgba(41, 179, 110, 0.35), 0 0 36px rgba(245, 166, 35, 0.25);
+    }
+
+    /* Living Aurora Earth Hero */
+    .earth-hero-bg {
+      background: radial-gradient(circle at 78% 36%, rgba(41, 179, 110, 0.36) 0%, transparent 48%),
+                  radial-gradient(circle at 18% 82%, rgba(245, 166, 35, 0.24) 0%, transparent 46%),
+                  radial-gradient(circle at 52% 10%, rgba(56, 189, 248, 0.22) 0%, transparent 44%),
+                  linear-gradient(135deg, #061D30 0%, #0C4563 48%, #136B5E 100%);
+    }
+    .scroll-progress-bar {
+      background: linear-gradient(90deg, #38BDF8 0%, #29B36E 52%, #F5A623 100%);
+      transition: width 0.1s linear;
+    }
+
+    /* Smooth Reveals & Natural Physics */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1), transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .natural-card {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .natural-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 42px -14px rgba(7, 34, 54, 0.24);
+      border-color: #29B36E;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #0B3B5B 0%, #197A54 100%);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px -6px rgba(11, 59, 91, 0.45);
+    }
+    .speed-btn.active {
+      background-color: #0B3B5B;
+      color: #ffffff;
+    }
+    .transform-tab.active {
+      background: linear-gradient(135deg, #F5A623 0%, #FDB913 100%);
+      color: #072236;
+      border-color: transparent;
+      box-shadow: 0 10px 22px -8px rgba(245, 166, 35, 0.6);
+    }
+
+    /* Horizontal Draggable Auto-Scrolling Ribbon */
+    .carousel-track {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-track.is-dragging { cursor: grabbing; }
+    .carousel-fade-wrap { position: relative; }
+    .carousel-fade-wrap::before,
+    .carousel-fade-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 52px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .carousel-fade-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--fade-bg, #ffffff) 0%, transparent 100%);
+    }
+    .carousel-fade-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--fade-bg, #ffffff) 0%, transparent 100%);
+    }
+
+    /* Earth & Botanical Motion */
+    @keyframes earthFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes orbitSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes orbitReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes leafSway {
+      0%, 100% { transform: rotate(-3.5deg) translateY(0px); }
+      50% { transform: rotate(4.5deg) translateY(-6px); }
+    }
+    @keyframes pulseHalo {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.06); }
+    }
+    @keyframes shimmerText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .earth-float { animation: earthFloat 6.5s ease-in-out infinite; }
+    .orbit-spin { transform-origin: center; animation: orbitSpin 34s linear infinite; }
+    .orbit-reverse { transform-origin: center; animation: orbitReverse 46s linear infinite; }
+    .leaf-sway { transform-origin: bottom center; animation: leafSway 5.2s ease-in-out infinite; }
+    .halo-pulse { transform-origin: center; animation: pulseHalo 4.8s ease-in-out infinite; }
+    .gold-shimmer {
+      background: linear-gradient(90deg, #FDB913, #FFF0A6, #F5A623, #4ADE80, #FDB913);
+      background-size: 260% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 6s ease infinite;
+    }
+    .tilt-stage {
+      transition: transform 0.25s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    /* Modal Smooth Transitions */
+    .modal-backdrop {
+      backdrop-filter: blur(10px);
+      transition: opacity 0.3s ease;
+    }
+    .modal-panel {
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+    .modal-closed {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .modal-closed .modal-panel {
+      transform: scale(0.93) translateY(16px);
+      opacity: 0;
+    }
+    .img-fade { transition: opacity 0.22s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .earth-float, .orbit-spin, .orbit-reverse, .leaf-sway, .halo-pulse, .gold-shimmer { animation: none !important; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-200 selection:text-slate-900">
+
+  <!-- =========================================================
+       CINEMATIC ENTRANCE SPLASH SCREEN
+       ========================================================= -->
+  <div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center px-6 text-white text-center overflow-hidden">
+    <canvas id="splashCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <div class="relative z-10 max-w-2xl w-full flex flex-col items-center">
+      <!-- 4 Official Logos Pill -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 bg-white/95 rounded-full px-5 py-2 shadow-xl mb-7">
+        <img src="assets/img_01.png" alt="Kabupaten Bolaang Mongondow Timur" class="h-8 sm:h-9 w-auto object-contain" />
+        <img src="assets/img_02.jpg" alt="SMP Negeri 3 Tutuyan" class="h-8 sm:h-9 w-auto object-contain rounded" />
+        <span class="h-6 w-px bg-slate-200 hidden sm:inline-block"></span>
+        <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-5 sm:h-6 w-auto object-contain" />
+        <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-5 sm:h-6 w-auto object-contain" />
+      </div>
+
+      <!-- Glowing Earth Emblem -->
+      <div class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full splash-glow mb-6 flex items-center justify-center earth-float">
+        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+          <g class="orbit-spin">
+            <circle cx="100" cy="100" r="92" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-dasharray="7 7"/>
+            <circle cx="100" cy="8" r="5" fill="#FDB913"/>
+            <circle cx="192" cy="100" r="4" fill="#4ADE80"/>
+          </g>
+          <defs>
+            <radialGradient id="spOcean" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#38BDF8"/>
+              <stop offset="55%" stop-color="#1479B8"/>
+              <stop offset="100%" stop-color="#072236"/>
+            </radialGradient>
+            <clipPath id="spClip"><circle cx="100" cy="100" r="68"/></clipPath>
+          </defs>
+          <circle cx="100" cy="100" r="68" fill="url(#spOcean)"/>
+          <g clip-path="url(#spClip)">
+            <path d="M48 74C60 56 88 54 100 68C110 78 96 96 86 102C76 108 82 128 70 138C56 148 38 128 42 104Z" fill="#29B36E"/>
+            <path d="M116 54C136 48 164 64 166 86C168 106 150 114 140 124C130 134 136 152 124 156C110 160 104 138 108 120C112 102 104 88 110 74Z" fill="#4ADE80"/>
+            <ellipse cx="76" cy="76" rx="18" ry="5" fill="rgba(255,255,255,0.45)"/>
+            <ellipse cx="128" cy="110" rx="20" ry="6" fill="rgba(255,255,255,0.38)"/>
+          </g>
+          <circle cx="100" cy="100" r="68" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <p class="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-emerald-300">Expo Kegiatan Kokurikuler • SMP Negeri 3 Tutuyan</p>
+      <h1 class="mt-2 text-5xl sm:text-7xl font-black tracking-tight leading-none">
+        SA<span class="gold-shimmer">BUMI</span>
+      </h1>
+      <p class="mt-2.5 text-lg sm:text-2xl font-bold text-sky-100">Sampah Berkah Untuk Bumi</p>
+      <p class="mt-3 text-xs sm:text-sm text-emerald-100/80 max-w-md">
+        Menampilkan 18 karya kreatif daur ulang dan 19 dokumentasi proses kolaborasi siswa untuk bumi yang lebih lestari.
+      </p>
+
+      <button id="enterExpoBtn" type="button" class="mt-8 group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-black text-sm sm:text-base shadow-2xl shadow-amber-500/30 transition hover:scale-105 active:scale-95">
+        Masuk ke Pameran Expo
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Official 4-Logo Header Bar -->
+  <div class="bg-white border-b border-emerald-900/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3 sm:gap-4">
+        <img src="assets/img_01.png" alt="Lambang Kabupaten Bolaang Mongondow Timur" class="h-10 sm:h-12 w-auto object-contain" />
+        <img src="assets/img_02.jpg" alt="Logo SMP Negeri 3 Tutuyan" class="h-10 sm:h-12 w-auto object-contain rounded-md" />
+        <div class="hidden sm:block pl-3 border-l border-emerald-900/15">
+          <p class="text-xs font-extrabold tracking-wide text-[#0B3B5B] uppercase">SMP Negeri 3 Tutuyan</p>
+          <p class="text-[11px] text-slate-500">Kabupaten Bolaang Mongondow Timur</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 sm:gap-5">
+        <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-7 sm:h-9 w-auto object-contain" />
+        <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-7 sm:h-9 w-auto object-contain" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <header class="sticky top-0 z-40 bg-white/92 backdrop-blur-md border-b border-emerald-900/10 shadow-sm">
+    <div class="h-1 w-full bg-emerald-50 overflow-hidden">
+      <div id="scrollProgress" class="h-full w-0 scroll-progress-bar"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#beranda" class="flex items-center gap-2.5 group">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white shadow-sm group-hover:scale-105 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
+            </svg>
+          </span>
+          <div class="leading-tight">
+            <span class="block text-base font-extrabold tracking-tight text-[#0B3B5B]">EXPO <span class="text-[#197A54]">SABUMI</span></span>
+            <span class="block text-[11px] font-medium text-slate-500">Sampah Berkah Untuk Bumi</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1" aria-label="Navigasi Utama">
+          <a href="#beranda" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Beranda</a>
+          <a href="#profil" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Profil Bumi</a>
+          <a href="#karya" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Galeri Karya</a>
+          <a href="#dokumentasi" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Dokumentasi</a>
+          <a href="#sambutan" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Kepala Sekolah</a>
+          <button id="replayIntroBtn" type="button" class="ml-2 px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Putar Intro</button>
+        </nav>
+
+        <button id="mobileMenuBtn" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-[#0B3B5B] hover:bg-emerald-50 focus:outline-none" aria-label="Buka menu navigasi" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1">
+      <a href="#beranda" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Beranda</a>
+      <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil Bumi</a>
+      <a href="#karya" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
+      <a href="#dokumentasi" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
+      <a href="#sambutan" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Kepala Sekolah</a>
+    </div>
+  </header>
+
+  <!-- Spectacular Living Earth Hero Section -->
+  <section id="beranda" class="relative overflow-hidden earth-hero-bg text-white pt-12 pb-24 sm:pt-16 sm:pb-28">
+    <!-- Interactive Floating Nature Particles Canvas -->
+    <canvas id="heroParticles" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <!-- Hero Left Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/12 border border-emerald-300/35 text-xs sm:text-sm font-bold tracking-wide text-emerald-100 backdrop-blur-md">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Expo Kegiatan Kokurikuler • SMP Negeri 3 Tutuyan
+          </div>
+
+          <div>
+            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
+              SA<span class="gold-shimmer">BUMI</span>
+            </h2>
+            <p class="mt-2.5 text-xl sm:text-2xl font-bold text-emerald-200 tracking-wide">
+              Sampah Berkah Untuk Bumi
+            </p>
+          </div>
+
+          <p class="text-base sm:text-lg text-sky-50/90 max-w-2xl leading-relaxed">
+            Dari kepedulian kecil untuk bumi, lahirlah <strong>18 karya daur ulang</strong> siswa SMP Negeri 3 Tutuyan. Setiap botol, tutup plastik, sendok bekas, kardus, kaleng, dan batok kelapa diberi kehidupan baru yang indah dan berdaya guna.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-1">
+            <a href="#karya" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-extrabold text-sm sm:text-base shadow-xl shadow-amber-900/25 transition hover:-translate-y-0.5">
+              Jelajahi Galeri Geser
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#transformasi" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/12 hover:bg-white/22 border border-white/30 text-white font-bold text-sm sm:text-base backdrop-blur-md transition hover:-translate-y-0.5">
+              Lihat Transformasi 3R
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-3 max-w-lg">
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
+              <p class="text-2xl sm:text-3xl font-black text-[#FDB913]" data-count="18" id="statWorks">18</p>
+              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Karya Daur Ulang</p>
+            </div>
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
+              <p class="text-2xl sm:text-3xl font-black text-emerald-300" data-count="19" id="statDocs">19</p>
+              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi</p>
+            </div>
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
+              <p class="text-2xl sm:text-3xl font-black text-sky-200">3R</p>
+              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Reduce • Reuse • Recycle</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right: 3D Tilt-Interactive Living Earth + Orbiting Real Craft Chips -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div id="earthTiltStage" class="tilt-stage relative w-full max-w-md aspect-square flex items-center justify-center earth-float">
+            <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-emerald-400/35 via-sky-300/25 to-amber-300/30 blur-3xl halo-pulse"></div>
+
+            <svg class="w-full h-full drop-shadow-2xl" viewBox="0 0 400 400" fill="none" aria-label="Ilustrasi Bumi SABUMI yang hidup dengan daun dan orbit daur ulang">
+              <g class="orbit-spin">
+                <circle cx="200" cy="200" r="176" stroke="rgba(255,255,255,0.24)" stroke-width="2" stroke-dasharray="10 10"/>
+                <circle cx="200" cy="24" r="7" fill="#FDB913"/>
+                <circle cx="376" cy="200" r="6" fill="#4ADE80"/>
+                <circle cx="24" cy="200" r="5" fill="#38BDF8"/>
+              </g>
+              <g class="orbit-reverse">
+                <circle cx="200" cy="200" r="150" stroke="rgba(74,222,128,0.38)" stroke-width="1.8" stroke-dasharray="18 12"/>
+              </g>
+
+              <defs>
+                <radialGradient id="oceanGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#38BDF8"/>
+                  <stop offset="55%" stop-color="#1479B8"/>
+                  <stop offset="100%" stop-color="#072236"/>
+                </radialGradient>
+                <linearGradient id="leafGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4ADE80"/>
+                  <stop offset="100%" stop-color="#197A54"/>
+                </linearGradient>
+                <linearGradient id="goldLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FDE047"/>
+                  <stop offset="100%" stop-color="#F5A623"/>
+                </linearGradient>
+                <clipPath id="earthClip"><circle cx="200" cy="200" r="120"/></clipPath>
+              </defs>
+
+              <circle cx="200" cy="200" r="120" fill="url(#oceanGrad)"/>
+              <g clip-path="url(#earthClip)">
+                <path d="M105 148C125 118 175 110 198 134C215 152 195 182 175 194C155 206 168 242 146 262C124 282 88 248 92 206C94 182 92 168 105 148Z" fill="#29B36E"/>
+                <path d="M228 112C264 102 315 130 322 168C328 202 294 218 274 236C256 252 268 286 244 294C218 302 206 264 212 232C218 198 204 176 214 148C220 132 216 116 228 112Z" fill="#4ADE80"/>
+                <path d="M168 282C190 272 222 280 232 302C240 318 210 332 182 328C162 325 154 288 168 282Z" fill="#229954"/>
+                <ellipse cx="152" cy="148" rx="34" ry="10" fill="rgba(255,255,255,0.45)"/>
+                <ellipse cx="255" cy="212" rx="38" ry="11" fill="rgba(255,255,255,0.38)"/>
+                <ellipse cx="195" cy="268" rx="28" ry="8" fill="rgba(255,255,255,0.32)"/>
+              </g>
+              <circle cx="200" cy="200" r="120" stroke="rgba(255,255,255,0.4)" stroke-width="2.5"/>
+
+              <g class="leaf-sway">
+                <path d="M200 326C148 324 98 290 84 240C128 244 174 272 200 326Z" fill="url(#leafGradL)"/>
+                <path d="M196 324C158 316 122 290 108 258C144 266 176 290 196 324Z" fill="url(#goldLeaf)" opacity="0.9"/>
+              </g>
+              <g class="leaf-sway" style="animation-delay: -2s;">
+                <path d="M200 326C252 324 302 290 316 240C272 244 226 272 200 326Z" fill="url(#leafGradL)"/>
+                <path d="M204 324C242 316 278 290 292 258C256 266 224 290 204 324Z" fill="url(#goldLeaf)" opacity="0.9"/>
+              </g>
+            </svg>
+
+            <!-- Floating Interactive Craft Badges Around the Globe -->
+            <button id="heroFeatureBtn" type="button" class="absolute -bottom-1 right-0 sm:right-2 bg-white/95 hover:bg-white text-[#0B3B5B] rounded-2xl p-2 pr-3.5 shadow-2xl border border-emerald-200 flex items-center gap-2.5 transition hover:scale-105">
+              <img src="assets/img_05.jpg" alt="Jam Dinding SABUMI" class="w-12 h-12 rounded-xl object-cover" />
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] font-extrabold uppercase tracking-wider text-[#197A54]">Karya Ikonik</span>
+                <span class="block text-xs font-black text-[#0B3B5B]">Jam Dinding SABUMI</span>
+              </div>
+            </button>
+
+            <button id="heroLampBtn" type="button" class="hidden sm:flex absolute top-3 -left-2 bg-white/95 hover:bg-white text-[#0B3B5B] rounded-2xl p-2 pr-3.5 shadow-2xl border border-amber-200 items-center gap-2.5 transition hover:scale-105">
+              <img src="assets/img_06.jpg" alt="Lampu Hias Botol Bekas" class="w-11 h-11 rounded-xl object-cover" />
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] font-extrabold uppercase tracking-wider text-[#D98A0C]">Favorit Expo</span>
+                <span class="block text-xs font-black text-[#0B3B5B]">Lampu Hias Botol</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Organic Layered Hill Wave Divider -->
+    <div class="absolute bottom-0 left-0 right-0 leading-none pointer-events-none">
+      <svg class="w-full h-14 sm:h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,74 C260,126 520,18 820,68 C1080,112 1280,58 1440,34 L1440,120 L0,120 Z" fill="rgba(41,179,110,0.32)"/>
+        <path d="M0,92 C340,32 680,122 1040,72 C1220,48 1340,78 1440,64 L1440,120 L0,120 Z" fill="#F2FAF5"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Section 1: Profil Bumi + Interactive Transformasi Sampah -> Berkah -->
+  <section id="profil" class="py-16 sm:py-20 bg-[#F2FAF5]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-extrabold uppercase tracking-wider">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+          Profil Kegiatan SABUMI
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#0B3B5B]">Merawat Bumi Lewat Kreativitas Siswa</h2>
+        <p class="mt-3 text-slate-600 text-base leading-relaxed">
+          Program kokurikuler <strong>SABUMI (Sampah Berkah Untuk Bumi)</strong> mengajak siswa SMP Negeri 3 Tutuyan mengolah limbah di sekitar kita menjadi karya nyata yang ramah lingkungan, fungsional, dan membanggakan.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 reveal">
+        <div class="rounded-3xl border border-emerald-900/10 bg-white p-6 shadow-sm natural-card">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#197A54] flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="text-lg font-extrabold text-[#0B3B5B]">Aksi Nyata 3R untuk Bumi</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Mengurangi timbulan sampah sekolah melalui prinsip <strong>Reduce, Reuse, Recycle</strong> pada plastik, kardus, kaleng susu, dan tempurung kelapa.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-emerald-900/10 bg-white p-6 shadow-sm natural-card">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-[#0E4F6E] flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="text-lg font-extrabold text-[#0B3B5B]">Inovasi &amp; Nilai Estetika</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Mengasah kepekaan desain sehingga limbah sehari-hari berubah menjadi lampu hias, jam dinding, kalender, vas bunga, kotak tisu, hingga rak tiga susun.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-emerald-900/10 bg-white p-6 shadow-sm natural-card">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#D98A0C] flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-extrabold text-[#0B3B5B]">Gotong Royong &amp; Berdaya Guna</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Dikerjakan bersama dalam tim antarsiswa sebagai cerminan budaya belajar kolaboratif yang selaras dengan <em>Pendidikan Bermutu untuk Semua</em>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Transformasi Sampah -> Berkah Showcase -->
+      <div id="transformasi" class="mt-12 reveal rounded-3xl bg-gradient-to-br from-[#072236] via-[#0E4F6E] to-[#197A54] p-6 sm:p-9 text-white shadow-2xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#FDB913]">Eksplorasi Interaktif 3R</span>
+            <h3 class="text-2xl sm:text-3xl font-black mt-1">Lihat Transformasi: Dari Limbah Jadi Berkah</h3>
+            <p class="text-xs sm:text-sm text-emerald-100/85 mt-1">Pilih jenis bahan bekas di bawah ini untuk melihat proses pengolahan dan karya nyata siswa.</p>
+          </div>
+          <div id="transformTabs" class="flex flex-wrap gap-2">
+            <button type="button" data-mat="botol" class="transform-tab active px-4 py-2 rounded-full border border-white/25 text-xs font-extrabold transition">Botol Plastik</button>
+            <button type="button" data-mat="sendok" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Sendok Plastik</button>
+            <button type="button" data-mat="tutup" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Tutup Botol &amp; Kardus</button>
+            <button type="button" data-mat="alam" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Batok Kelapa &amp; Kaleng</button>
+          </div>
+        </div>
+
+        <div id="transformStage" class="grid md:grid-cols-12 gap-5 items-center bg-white/10 border border-white/15 rounded-2xl p-4 sm:p-6 backdrop-blur-md transition-opacity duration-200">
+          <div class="md:col-span-5">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-lg">
+              <img id="trBeforeImg" src="assets/img_07.jpg" alt="Tahap pengolahan bahan bekas" class="w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/75 text-emerald-300 text-[11px] font-extrabold uppercase">Tahap Proses</span>
+            </div>
+          </div>
+          <div class="md:col-span-2 flex flex-col items-center justify-center text-center py-2">
+            <div class="w-12 h-12 rounded-full bg-[#F5A623] text-[#061D30] flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6 md:rotate-0 rotate-90" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </div>
+            <p id="trActionLabel" class="mt-2 text-xs font-extrabold text-[#FDB913] uppercase tracking-wide">Cuci • Ukir • Rangkai</p>
+          </div>
+          <div class="md:col-span-5">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-lg">
+              <img id="trAfterImg" src="assets/img_06.jpg" alt="Hasil karya jadi SABUMI" class="w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#197A54] text-white text-[11px] font-extrabold uppercase">Hasil Karya Berkah</span>
+            </div>
+          </div>
+          <div class="md:col-span-12 pt-2 border-t border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h4 id="trTitle" class="text-base sm:text-lg font-black text-white">Botol &amp; Gelas Plastik → Lampu Hias &amp; Bunga Dekoratif</h4>
+              <p id="trDesc" class="text-xs sm:text-sm text-emerald-100/90 mt-0.5">Botol dan gelas minuman bekas dicuci, dijemur, dipotong membentuk kelopak bunga, lalu diberi lampu LED hangat dan warna cerah.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Galeri Horizontal Karya Siswa (Auto-Scroll + Manual Drag + Speed) -->
+  <section id="karya" class="py-16 sm:py-20 bg-white border-y border-emerald-900/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-7 reveal">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#0B3B5B] text-white border border-[#F5A623] text-xs font-extrabold uppercase tracking-wider">
+            Galeri Interaktif • 18 Karya Siswa
+          </span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#0B3B5B]">Galeri Karya Daur Ulang</h2>
+          <p class="mt-2 text-slate-600 text-sm sm:text-base">
+            Galeri bergeser otomatis ke samping — <strong>seret langsung dengan mouse/jari</strong> untuk mempercepat, pilih kecepatan, atau klik karya untuk memberi apresiasi.
+          </p>
+        </div>
+
+        <!-- Search + Playback & Speed Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="relative w-full sm:w-52">
+            <label for="searchInput" class="sr-only">Cari karya siswa</label>
+            <input id="searchInput" type="text" placeholder="Cari karya atau bahan..." class="w-full pl-9 pr-4 py-2 rounded-full border border-slate-300 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-sm transition" />
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          </div>
+
+          <div id="speedGroup" class="inline-flex items-center rounded-full bg-slate-100 p-1 border border-slate-200" role="group" aria-label="Kecepatan geser otomatis">
+            <button type="button" data-speed="0.5" class="speed-btn px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Santai</button>
+            <button type="button" data-speed="0.95" class="speed-btn active px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Normal</button>
+            <button type="button" data-speed="1.8" class="speed-btn px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Cepat</button>
+          </div>
+
+          <button id="toggleAutoBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition" aria-pressed="true">
+            <span id="autoStatusDot" class="w-2 h-2 rounded-full bg-[#197A54] animate-pulse"></span>
+            <span id="autoStatusLabel">Otomatis: Aktif</span>
+          </button>
+
+          <button id="toggleViewBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-[#0B3B5B] text-xs font-extrabold transition">
+            <span id="viewModeLabel">Mode Grid</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs + Quick Horizontal Arrows -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div id="filterBar" class="flex flex-wrap gap-2">
+          <button type="button" data-cat="all" class="filter-btn active px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Semua (18)</button>
+          <button type="button" data-cat="dekorasi" class="filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Dekorasi &amp; Dinding (5)</button>
+          <button type="button" data-cat="lampu_vas" class="filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Lampu &amp; Vas (7)</button>
+          <button type="button" data-cat="fungsional" class="filter-btn px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Perlengkapan &amp; Fungsional (6)</button>
+        </div>
+
+        <div id="productArrows" class="flex items-center gap-2">
+          <button id="prodPrevBtn" type="button" class="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser karya ke kiri">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="prodNextBtn" type="button" class="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser karya ke kanan">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Horizontal Auto-Scroll Ribbon -->
+      <div id="productCarouselWrap" class="carousel-fade-wrap" style="--fade-bg: #ffffff;">
+        <div id="productTrack" class="carousel-track flex gap-5 py-3 px-2"></div>
+      </div>
+
+      <!-- Optional Full Grid -->
+      <div id="productGrid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <div id="emptyState" class="hidden text-center py-14 bg-[#F4FAF6] rounded-3xl border border-dashed border-emerald-300">
+        <p class="text-slate-600 font-semibold">Tidak ada karya yang cocok dengan pencarianmu.</p>
+        <button id="resetFilterBtn" type="button" class="mt-3 px-5 py-2 rounded-full bg-[#0B3B5B] text-white text-xs font-bold hover:bg-[#197A54] transition">Tampilkan Semua Karya</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Dokumentasi Proses Pembuatan (Auto-Scroll Horizontal Ribbon) -->
+  <section id="dokumentasi" class="py-16 sm:py-20 bg-[#F7F4EC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-extrabold uppercase tracking-wider">Di Balik Layar</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#0B3B5B]">Dokumentasi Proses Pembuatan</h2>
+          <p class="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl">
+            Rangkaian proses pembuatan karya siswa dari tahap perencanaan hingga jadi—termasuk <strong>10 tahap kronologis Jam Dinding SABUMI</strong>. Geser manual atau klik foto untuk melihat detail.
+          </p>
+          <div id="docFilterBar" class="flex flex-wrap gap-2 mt-4">
+            <button type="button" data-dcat="all" class="doc-filter-btn filter-btn active px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Semua Dokumentasi (19)</button>
+            <button type="button" data-dcat="jam_sabumi" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Proses Jam Dinding SABUMI (10)</button>
+            <button type="button" data-dcat="lainnya" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Karya Lainnya (9)</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <button id="docPrevBtn" type="button" class="w-9 h-9 rounded-full border border-amber-900/15 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser dokumentasi ke kiri">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="docNextBtn" type="button" class="w-9 h-9 rounded-full border border-amber-900/15 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser dokumentasi ke kanan">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-fade-wrap" style="--fade-bg: #F7F4EC;">
+        <div id="docTrack" class="carousel-track flex gap-5 py-3 px-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Sambutan Kepala Sekolah -->
+  <section id="sambutan" class="py-16 bg-[#F2FAF5] border-t border-emerald-900/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal bg-white rounded-3xl shadow-lg border border-emerald-900/10 overflow-hidden grid md:grid-cols-12 items-center">
+        <div class="md:col-span-4 bg-gradient-to-br from-[#072236] via-[#0E4F6E] to-[#197A54] p-7 flex flex-col items-center justify-center text-center">
+          <div class="w-44 h-44 rounded-3xl overflow-hidden border-4 border-[#F5A623] shadow-2xl bg-white">
+            <img src="assets/img_08.jpg" alt="Kepala Sekolah SMP Negeri 3 Tutuyan, Amelia Budikasih, S.Pd." class="w-full h-full object-cover object-top" />
+          </div>
+          <h3 class="mt-4 text-lg font-extrabold text-white">Amelia Budikasih, S.Pd.</h3>
+          <span class="mt-1 inline-block px-3.5 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] text-xs font-extrabold">Kepala Sekolah SMPN 3 Tutuyan</span>
+        </div>
+        <div class="md:col-span-8 p-6 sm:p-9 space-y-4">
+          <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-[#197A54] text-xs font-extrabold uppercase tracking-wider">Sambutan Kepala Sekolah</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-[#0B3B5B]">Langkah Kecil Sekolah, Berkah Nyata untuk Bumi</h2>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Expo Kokurikuler <strong>SABUMI (Sampah Berkah Untuk Bumi)</strong> menjadi wujud nyata komitmen SMP Negeri 3 Tutuyan dalam menumbuhkan karakter peduli lingkungan sekaligus kreativitas peserta didik. Dari bahan sederhana yang kerap dianggap limbah, para siswa berhasil menciptakan 18 karya yang indah dan bermanfaat.
+          </p>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Mari bersama menjaga semangat <strong>Kreatif, Peduli Lingkungan, dan Berdaya Guna</strong> demi mendukung <em>Pendidikan Bermutu untuk Semua</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#061D30] text-white pt-12 pb-8 border-t-4 border-[#29B36E]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/15">
+        <div class="text-center md:text-left">
+          <h3 class="text-xl font-black tracking-tight">EXPO SABUMI <span class="text-[#FDB913]">SMP NEGERI 3 TUTUYAN</span></h3>
+          <p class="text-sm text-emerald-200/90 mt-1">Sampah Berkah Untuk Bumi • Kreatif • Peduli Lingkungan • Berdaya Guna</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-3 bg-white rounded-2xl px-4 py-2.5 shadow-sm">
+          <img src="assets/img_01.png" alt="Kabupaten Bolaang Mongondow Timur" class="h-8 w-auto object-contain" />
+          <img src="assets/img_02.jpg" alt="SMPN 3 Tutuyan" class="h-8 w-auto object-contain rounded" />
+          <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-6 w-auto object-contain" />
+          <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-6 w-auto object-contain" />
+        </div>
+      </div>
+      <p class="text-center text-xs text-sky-200/80 pt-6">
+        &copy; 2026 Kegiatan Kokurikuler SABUMI — SMP Negeri 3 Tutuyan, Kabupaten Bolaang Mongondow Timur.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" type="button" aria-label="Kembali ke atas" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#0B3B5B] hover:bg-[#197A54] text-white border-2 border-[#F5A623] shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <!-- Interactive Lightbox Modal with Applause Button -->
+  <div id="lightboxModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-emerald-900/15">
+      <div class="relative bg-slate-900 flex items-center justify-center max-h-[60vh]">
+        <img id="modalImg" src="" alt="" class="img-fade max-h-[60vh] w-auto object-contain" />
+        <button id="modalCloseBtn" type="button" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-slate-900/75 hover:bg-slate-900 text-white flex items-center justify-center transition" aria-label="Tutup pratinjau">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button id="modalPrevBtn" type="button" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition" aria-label="Foto sebelumnya">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button id="modalNextBtn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition" aria-label="Foto berikutnya">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span id="modalBadge" class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-extrabold"></span>
+          <span id="modalCounter" class="text-xs font-semibold text-slate-400"></span>
+        </div>
+        <div class="mt-2 flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-[#0B3B5B]"></h3>
+            <p id="modalMaterial" class="mt-1 text-xs sm:text-sm font-semibold text-[#197A54]"></p>
+          </div>
+          <button id="applauseBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-[#B46906] text-xs font-extrabold transition active:scale-95">
+            <span>Apresiasi Karya</span>
+            <span id="applauseCount" class="px-2 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] text-[11px] font-black">0</span>
+          </button>
+        </div>
+        <p id="modalDesc" class="mt-2.5 text-sm text-slate-600 leading-relaxed"></p>
+        <div id="modalSubGallery" class="hidden mt-4 pt-3 border-t border-slate-100">
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-[#197A54] mb-2">Dokumentasi &amp; Tim Pembuat Karya Ini</p>
+          <div id="modalThumbRow" class="flex gap-2.5 overflow-x-auto pb-1"></div>
+        </div>
+        <div id="modalProcessWrap" class="hidden mt-4 pt-3.5 border-t border-slate-200">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#0B3B5B]">Tahapan Pengerjaan Siswa</span>
+            <span id="modalProcessHint" class="text-[11px] font-semibold text-[#197A54]">Klik foto untuk melihat proses</span>
+          </div>
+          <div id="modalProcessStrip" class="carousel-track flex gap-2 pb-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCTS = [
+      { id: 'p1', title: 'Jam Dinding SABUMI', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Kardus bekas, tutup botol biru, kertas warna', desc: 'Jam dinding ikonik bertema bumi tersenyum lengkap dengan angka dari tutup botol plastik dan pesan Reduce, Reuse, Recycle.', img: 'assets/img_05.jpg', process: [
+        { step: 'Tahap 1 • 10 Nov', title: 'Diskusi & Perencanaan Kelompok', desc: 'Enam siswa berdiskusi melingkar di halaman sekolah untuk merancang konsep Jam Dinding SABUMI dan membagi tugas.', img: 'assets/img_09.jpg' },
+        { step: 'Tahap 2 • 12 Nov', title: 'Membuat Pola Lingkaran pada Kardus', desc: 'Siswa menjiplak pola lingkaran besar pada kardus bekas sebagai rangka dasar jam dinding.', img: 'assets/img_10.jpg' },
+        { step: 'Tahap 3 • 12 Nov', title: 'Menyiapkan & Memotong Kardus Bekas', desc: 'Tim bekerja sama memotong lembaran kardus bekas di teras kelas agar siap dibentuk.', img: 'assets/img_11.jpg' },
+        { step: 'Tahap 4 • 12 Nov', title: 'Menggunting Lingkaran Rangka Jam', desc: 'Proses menggunting pola lingkaran pada kardus tebal secara teliti sebagai badan utama jam.', img: 'assets/img_12.jpg' },
+        { step: 'Tahap 5 • 17 Nov', title: 'Menggunting Ilustrasi Bumi & Latar', desc: 'Siswa menggunting gambar Bumi tersenyum dan menyiapkan kertas karton biru muda untuk pelapis.', img: 'assets/img_13.jpg' },
+        { step: 'Tahap 6 • 17 Nov', title: 'Memotong Pola Karton Biru Muda', desc: 'Tim mengukur dan memotong kertas biru muda mengikuti diameter rangka kardus jam.', img: 'assets/img_14.jpg' },
+        { step: 'Tahap 7 • 17 Nov', title: 'Merapikan Lapisan Permukaan Jam', desc: 'Pemotongan detail lingkaran biru muda sebagai latar belakang angka tutup botol.', img: 'assets/img_15.jpg' },
+        { step: 'Tahap 8 • 17 Nov', title: 'Menata Tutup Botol Biru & Angka', desc: 'Menyusun 12 tutup botol plastik biru dan menyiapkan potongan angka serta jarum jam.', img: 'assets/img_16.jpg' },
+        { step: 'Tahap 9 • 17 Nov', title: 'Menempel Angka 1–12 & Rangka Jam', desc: 'Menempelkan seluruh tutup botol angka 1–12 mengelilingi ilustrasi Bumi di atas rangka kardus.', img: 'assets/img_17.jpg' },
+        { step: 'Tahap 10 • 18 Nov', title: 'Presentasi Hasil Akhir Jam Dinding SABUMI', desc: 'Anggota kelompok memamerkan Jam Dinding SABUMI yang telah selesai lengkap dengan ornamen 3R.', img: 'assets/img_18.jpg' }
+      ] },
+      { id: 'p2', title: 'Hiasan Dinding & Bingkai Foto', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Gelas plastik, tutup botol, stik kayu bekas', desc: 'Rangkaian bunga dekoratif dari potongan gelas plastik dan bingkai foto berbentuk rumah untuk memperindah dinding kelas.', img: 'assets/img_19.jpg' },
+      { id: 'p3', title: 'Kerajinan Batok Kelapa', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Tempurung kelapa kering & tangkai alami', desc: 'Hiasan meja berbentuk bunga dan pot dari limbah tempurung kelapa yang dihaluskan sehingga tampil estetik bernuansa alami.', img: 'assets/img_20.jpg' },
+      { id: 'p4', title: 'Lampu Hias Sendok Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sendok plastik bekas, botol plastik, stik kayu', desc: 'Lampu hias meja berbentuk kelopak bunga dan nanas cerah yang dirangkai dari ratusan kepala sendok plastik bekas.', img: 'assets/img_21.jpg' },
+      { id: 'p5', title: 'Bunga & Vas Botol Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas, tutup botol, anyaman tali', desc: 'Rangkaian bunga teratai merah cerah dari potongan botol plastik yang dipadukan dengan vas anyaman berwarna hangat.', img: 'assets/img_22.jpg' },
+      { id: 'p6', title: 'Lampu Hias Botol Bekas', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas & lampu LED gantung', desc: 'Lampu gantung berbentuk kelopak bunga menyala hangat yang memanfaatkan botol plastik bening berukir dan dicat merah-oranye.', img: 'assets/img_06.jpg' },
+      { id: 'p7', title: 'Toples Kaleng Daur Ulang', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Kaleng susu bekas, cat putih-emas, label minimalis', desc: 'Wadah penyimpanan dapur bertema Coffee & Sugar bergaya minimalis modern dari kaleng susu bekas yang dicat ulang.', img: 'assets/img_23.jpg' },
+      { id: 'p8', title: 'Vas Bunga Sendok Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sendok plastik putih & botol plastik', desc: 'Vas bunga putih elegan dengan susunan kelopak sendok plastik simetris hasil kolaborasi tim siswa, cocok untuk hiasan meja guru maupun tamu.', img: 'assets/img_24.jpg', gallery: [
+        { img: 'assets/img_24.jpg', caption: 'Hasil Jadi Vas Bunga Sendok Plastik' },
+        { img: 'assets/img_25.jpg', caption: 'Menyiapkan Sendok & Botol Plastik' },
+        { img: 'assets/img_26.jpg', caption: 'Memotong & Menyiapkan Kelopak Sendok' },
+        { img: 'assets/img_27.jpg', caption: 'Merekatkan Kelopak dengan Lem Tembak' },
+        { img: 'assets/img_28.jpg', caption: 'Tim Pembuat Vas Bunga Sendok Plastik' }
+      ] },
+      { id: 'p9', title: 'Rak Kardus Tiga Susun', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Kardus tebal bekas & lapisan kertas putih', desc: 'Rak buku atau penyimpanan serbaguna tiga tingkat yang kokoh dari kardus bekas berlapis rapi warna putih bersih.', img: 'assets/img_29.jpg' },
+      { id: 'p10', title: 'Tempat Pensil Anyaman', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Stik es krim bekas & pita kertas warna-warni', desc: 'Koleksi enam tempat pensil anyaman warna pastel yang rapi untuk menyimpan alat tulis di meja belajar.', img: 'assets/img_30.jpg' },
+      { id: 'p11', title: 'Tas Tutup Botol Lukis', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol plastik putih & cat akrilik', desc: 'Keranjang/tas mini dekoratif dari susunan tutup botol yang masing-masing dilukis tangan dengan motif bunga, matahari, dan alam.', img: 'assets/img_31.jpg' },
+      { id: 'p12', title: 'Vas & Tempat Pensil Sedotan', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sedotan plastik bekas & gelas plastik', desc: 'Set tempat pensil dan vas bunga mungil bertekstur garis dari susunan sedotan bekas lengkap dengan bunga sedotan merah muda.', img: 'assets/img_32.jpg' },
+      { id: 'p13', title: 'Kalender Tutup Botol', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol bekas, papan kardus, stik kayu', desc: 'Kalender dinding November 2026 bertanda logo SMPN 3 Tutuyan dan peringatan Hari Guru Nasional dengan angka tanggal dari tutup botol.', img: 'assets/img_33.jpg' },
+      { id: 'p14', title: 'Vas & Lampu Botol Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas, cat warna, bohlam', desc: 'Satu set vas bunga putih dan empat kap lampu kelopak oranye yang seluruhnya diolah dari botol minuman plastik bekas.', img: 'assets/img_34.jpg' },
+      { id: 'p15', title: 'Hiasan Gantung Tutup Botol', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Tutup botol warna-warni & benang nilon', desc: 'Hiasan gantung bergerak warna-warni dari rangkaian tutup botol plastik bertuliskan Selamat Hari Guru Nasional.', img: 'assets/img_35.jpg' },
+      { id: 'p16', title: 'Tempat Lilin Kardus', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Kardus bekas, tutup botol, kertas warna', desc: 'Alas dan dudukan lilin berbentuk kelopak bunga merah-hijau cerah dari potongan kardus bekas.', img: 'assets/img_36.jpg' },
+      { id: 'p17', title: 'Lilin Hias Daur Ulang', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Gulungan karton bekas & kertas metalik', desc: 'Dekorasi tiga lilin hias bertingkat warna putih, merah, dan hijau metalik untuk mempercantik meja pameran.', img: 'assets/img_37.jpg' },
+      { id: 'p18', title: 'Kotak Tisu Hias', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Wadah plastik bekas, cat perunggu metalik, hiasan bunga', desc: 'Tempat tisu meja bernuansa perunggu emas dengan aksen bunga putih-hijau dan ucapan Happy Teacher Day.', img: 'assets/img_38.jpg' }
+    ];
+
+    const DOCS = [
+      { id: 'dj1', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 1', title: 'Diskusi & Perencanaan Kelompok', desc: 'Siswa berdiskusi melingkar merancang konsep Jam Dinding SABUMI.', img: 'assets/img_09.jpg' },
+      { id: 'dj2', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 2', title: 'Membuat Pola Lingkaran Kardus', desc: 'Menjiplak pola lingkaran besar pada kardus bekas sebagai rangka jam.', img: 'assets/img_10.jpg' },
+      { id: 'dj3', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 3', title: 'Menyiapkan & Memotong Kardus', desc: 'Kerja sama tim memotong lembaran kardus bekas di teras kelas.', img: 'assets/img_11.jpg' },
+      { id: 'dj4', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 4', title: 'Menggunting Lingkaran Rangka Jam', desc: 'Menggunting rapi pola lingkaran kardus sebagai badan utama jam.', img: 'assets/img_12.jpg' },
+      { id: 'dj5', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 5', title: 'Menggunting Bumi & Latar Biru', desc: 'Menggunting ilustrasi Bumi SABUMI dan menyiapkan kertas pelapis.', img: 'assets/img_13.jpg' },
+      { id: 'dj6', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 6', title: 'Memotong Pola Karton Biru Muda', desc: 'Memotong kertas biru muda mengikuti diameter lingkaran jam.', img: 'assets/img_14.jpg' },
+      { id: 'dj7', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 7', title: 'Merapikan Pelapis Permukaan Jam', desc: 'Detail pemotongan lingkaran biru muda untuk latar belakang angka.', img: 'assets/img_15.jpg' },
+      { id: 'dj8', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 8', title: 'Menata Tutup Botol Biru & Angka', desc: 'Menyusun 12 tutup botol biru dan potongan angka serta jarum jam.', img: 'assets/img_16.jpg' },
+      { id: 'dj9', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 9', title: 'Menempel Angka 1–12 & Rangka', desc: 'Menempelkan tutup botol angka 1–12 mengelilingi ilustrasi Bumi.', img: 'assets/img_17.jpg' },
+      { id: 'dj10', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Selesai', title: 'Presentasi Jam Dinding SABUMI', desc: 'Anggota kelompok memamerkan hasil akhir Jam Dinding SABUMI.', img: 'assets/img_18.jpg' },
+      { id: 'd1', group: 'lainnya', tag: 'Kerajinan Batok Kelapa', title: 'Presentasi Kerajinan Batok Kelapa', desc: 'Siswa menunjukkan hasil kerajinan tempurung kelapa yang telah dirakit.', img: 'assets/img_39.jpg' },
+      { id: 'd3', group: 'lainnya', tag: 'Lampu & Vas Sendok', title: 'Memotong Sendok & Botol Plastik', desc: 'Siswa menyiapkan kelopak dari sendok plastik bekas secara berkelompok.', img: 'assets/img_26.jpg' },
+      { id: 'd4', group: 'lainnya', tag: 'Tas Tutup Botol', title: 'Melukis Tutup Botol Bekas', desc: 'Pengecatan motif bunga dan alam pada tutup botol menggunakan cat akrilik.', img: 'assets/img_40.jpg' },
+      { id: 'd5', group: 'lainnya', tag: 'Rak Kardus', title: 'Merakit Rak Kardus Tiga Susun', desc: 'Siswa menyusun struktur kardus tebal untuk dijadikan rak penyimpanan.', img: 'assets/img_41.jpg' },
+      { id: 'd6', group: 'lainnya', tag: 'Hiasan Gantung', title: 'Merangkai Tutup Botol Warna-Warni', desc: 'Kerja sama merangkai tutup botol untuk hiasan gantung dan tatakan.', img: 'assets/img_42.jpg' },
+      { id: 'd7', group: 'lainnya', tag: 'Toples Kaleng', title: 'Mengolah Kaleng Susu Bekas', desc: 'Persiapan pengecatan kaleng susu bekas menjadi toples dapur minimalis.', img: 'assets/img_43.jpg' },
+      { id: 'd8', group: 'lainnya', tag: 'Hiasan Dinding', title: 'Hasil Hiasan Dinding & Bingkai', desc: 'Siswa menampilkan karya bunga gelas plastik dan bingkai rumah.', img: 'assets/img_44.jpg' },
+      { id: 'd9', group: 'lainnya', tag: 'Persiapan Bahan', title: 'Menjemur Gelas Plastik Bekas', desc: 'Tahap pencucian dan pengeringan gelas plastik sebelum diolah menjadi karya.', img: 'assets/img_07.jpg' },
+      { id: 'd10', group: 'lainnya', tag: 'Tempat Pensil', title: 'Menganyam Tempat Pensil', desc: 'Proses penganyaman stik dan pita warna untuk tempat pensil meja.', img: 'assets/img_45.jpg' },
+      { id: 'd11', title: 'Menyiapkan Bahan Vas Sendok Plastik', desc: 'Tim siswa mengumpulkan sendok plastik putih, cat, dan potongan botol plastik sebagai rangka vas.', img: 'assets/img_25.jpg' },
+      { id: 'd12', title: 'Merekatkan Kelopak Vas Sendok Plastik', desc: 'Siswa menempelkan kelopak sendok plastik satu per satu secara presisi dengan lem tembak.', img: 'assets/img_27.jpg' },
+      { id: 'd13', title: 'Tim Karya Vas Bunga Sendok Plastik', desc: 'Foto bersama lima siswa pembuat Vas Bunga Sendok Plastik sambil menampilkan hasil karyanya.', img: 'assets/img_28.jpg' }
+    ];
+
+    const TRANSFORMATIONS = {
+      botol: {
+        before: 'assets/img_07.jpg',
+        after: 'assets/img_06.jpg',
+        action: 'Cuci • Ukir • Rangkai',
+        title: 'Botol & Gelas Plastik → Lampu Hias & Bunga Dekoratif',
+        desc: 'Botol dan gelas minuman bekas dicuci, dijemur di bawah matahari, lalu dibentuk menjadi kelopak bunga lampu gantung yang hangat dan hiasan dinding.'
+      },
+      sendok: {
+        before: 'assets/img_26.jpg',
+        after: 'assets/img_21.jpg',
+        action: 'Potong • Susun • Warnai',
+        title: 'Sendok Plastik Bekas → Lampu Nanas & Vas Elegan',
+        desc: 'Kepala sendok plastik dipotong rapi dan disusun berlapis membentuk lampu meja kelopak putih, lampu nanas kuning, hingga vas bunga estetik.'
+      },
+      tutup: {
+        before: 'assets/img_40.jpg',
+        after: 'assets/img_05.jpg',
+        action: 'Lukis • Tata • Rakit',
+        title: 'Tutup Botol & Kardus → Jam SABUMI, Kalender & Rak',
+        desc: 'Tutup botol dilukis warna-warni dan dipadukan dengan kardus tebal menjadi Jam Dinding SABUMI, Kalender November 2026, Tas Lukis, dan Rak Tiga Susun.'
+      },
+      alam: {
+        before: 'assets/img_43.jpg',
+        after: 'assets/img_23.jpg',
+        action: 'Haluskan • Cat • Hias',
+        title: 'Kaleng Susu & Batok Kelapa → Toples Minimalis & Hiasan Meja',
+        desc: 'Kaleng susu bekas disulap menjadi toples dapur minimalis putih-emas, sedangkan tempurung kelapa dihaluskan menjadi bunga hias meja bernuansa alami.'
+      }
+    };
+
+    // State
+    let activeCategory = 'all';
+    let searchQuery = '';
+    let isGridView = false;
+    let autoScrollEnabled = true;
+    let scrollSpeed = 0.95;
+    let modalItems = [];
+    let modalIndex = 0;
+    let applauseMap = {};
+    try {
+      applauseMap = JSON.parse(localStorage.getItem('sabumi_applause') || '{}');
+    } catch (e) {
+      applauseMap = {};
+    }
+
+    // DOM References
+    const splashScreen = document.getElementById('splashScreen');
+    const enterExpoBtn = document.getElementById('enterExpoBtn');
+    const replayIntroBtn = document.getElementById('replayIntroBtn');
+    const productTrack = document.getElementById('productTrack');
+    const productCarouselWrap = document.getElementById('productCarouselWrap');
+    const productGrid = document.getElementById('productGrid');
+    const productArrows = document.getElementById('productArrows');
+    const emptyState = document.getElementById('emptyState');
+    const docTrack = document.getElementById('docTrack');
+    const searchInput = document.getElementById('searchInput');
+    const filterBar = document.getElementById('filterBar');
+    const resetFilterBtn = document.getElementById('resetFilterBtn');
+    const toggleAutoBtn = document.getElementById('toggleAutoBtn');
+    const autoStatusDot = document.getElementById('autoStatusDot');
+    const autoStatusLabel = document.getElementById('autoStatusLabel');
+    const toggleViewBtn = document.getElementById('toggleViewBtn');
+    const viewModeLabel = document.getElementById('viewModeLabel');
+    const speedGroup = document.getElementById('speedGroup');
+    const transformTabs = document.getElementById('transformTabs');
+    const transformStage = document.getElementById('transformStage');
+    const trBeforeImg = document.getElementById('trBeforeImg');
+    const trAfterImg = document.getElementById('trAfterImg');
+    const trActionLabel = document.getElementById('trActionLabel');
+    const trTitle = document.getElementById('trTitle');
+    const trDesc = document.getElementById('trDesc');
+
+    const lightboxModal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalBadge = document.getElementById('modalBadge');
+    const modalCounter = document.getElementById('modalCounter');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMaterial = document.getElementById('modalMaterial');
+    const modalDesc = document.getElementById('modalDesc');
+    const applauseBtn = document.getElementById('applauseBtn');
+    const applauseCount = document.getElementById('applauseCount');
+
+    // =========================================================
+    // AMBIENT FLOATING NATURE PARTICLES (Splash + Hero)
+    // =========================================================
+    function initParticles(canvasId, count) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0;
+      const dots = [];
+      const colors = ['rgba(74,222,128,0.55)', 'rgba(253,185,19,0.5)', 'rgba(56,189,248,0.45)', 'rgba(255,255,255,0.35)'];
+
+      function resize() {
+        w = canvas.width = canvas.offsetWidth || window.innerWidth;
+        h = canvas.height = canvas.offsetHeight || window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < count; i++) {
+        dots.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 1.8 + Math.random() * 3.4,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -0.25 - Math.random() * 0.45,
+          color: colors[i % colors.length]
+        });
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, w, h);
+        for (const d of dots) {
+          d.x += d.vx;
+          d.y += d.vy;
+          if (d.y < -10) { d.y = h + 10; d.x = Math.random() * w; }
+          if (d.x < -10) d.x = w + 10;
+          if (d.x > w + 10) d.x = -10;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = d.color;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    initParticles('splashCanvas', 34);
+    initParticles('heroParticles', 28);
+
+    // =========================================================
+    // SPLASH ENTRANCE & COUNT-UP
+    // =========================================================
+    function animateCount(el, target) {
+      if (!el) return;
+      let cur = 0;
+      const step = () => {
+        cur += 1;
+        el.textContent = String(cur);
+        if (cur < target) setTimeout(step, 38);
+      };
+      step();
+    }
+
+    function dismissSplash() {
+      splashScreen.classList.add('splash-exit');
+      document.body.style.overflow = '';
+      animateCount(document.getElementById('statWorks'), 18);
+      animateCount(document.getElementById('statDocs'), 19);
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 45, spread: 70, origin: { y: 0.65 }, colors: ['#29B36E', '#F5A623', '#38BDF8', '#FFFFFF'] });
+      }
+    }
+
+    document.body.style.overflow = 'hidden';
+    enterExpoBtn.addEventListener('click', dismissSplash);
+    replayIntroBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      splashScreen.classList.remove('splash-exit');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Subtle 3D Tilt on Hero Earth Stage
+    const earthTiltStage = document.getElementById('earthTiltStage');
+    const berandaEl = document.getElementById('beranda');
+    berandaEl.addEventListener('mousemove', (e) => {
+      const rect = berandaEl.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      earthTiltStage.style.transform = `perspective(900px) rotateY(${nx * 7}deg) rotateX(${-ny * 7}deg)`;
+    });
+    berandaEl.addEventListener('mouseleave', () => {
+      earthTiltStage.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
+    });
+
+    // Interactive Transformation Tabs
+    transformTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('.transform-tab');
+      if (!btn) return;
+      const data = TRANSFORMATIONS[btn.dataset.mat];
+      if (!data) return;
+      transformTabs.querySelectorAll('.transform-tab').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('bg-white/10', 'text-white');
+      });
+      btn.classList.add('active');
+      btn.classList.remove('bg-white/10', 'text-white');
+      transformStage.style.opacity = '0.2';
+      setTimeout(() => {
+        trBeforeImg.src = data.before;
+        trAfterImg.src = data.after;
+        trActionLabel.textContent = data.action;
+        trTitle.textContent = data.title;
+        trDesc.textContent = data.desc;
+        transformStage.style.opacity = '1';
+      }, 150);
+    });
+
+    // =========================================================
+    // HORIZONTAL AUTO-SCROLL + MANUAL DRAG RIBBON ENGINE
+    // =========================================================
+    function createInteractiveRibbon(trackEl, getSpeedFn) {
+      const state = {
+        isDown: false,
+        isHovered: false,
+        startX: 0,
+        startScrollLeft: 0,
+        dragDistance: 0,
+        loopWidth: 0,
+        isLooped: false,
+        rafId: null
+      };
+
+      function step() {
+        if (autoScrollEnabled && !state.isDown && !state.isHovered && trackEl.offsetParent !== null) {
+          trackEl.scrollLeft += getSpeedFn();
+          if (state.isLooped && state.loopWidth > 0) {
+            if (trackEl.scrollLeft >= state.loopWidth) trackEl.scrollLeft -= state.loopWidth;
+          } else {
+            const maxScroll = trackEl.scrollWidth - trackEl.clientWidth;
+            if (maxScroll > 10 && trackEl.scrollLeft >= maxScroll - 1) trackEl.scrollLeft = 0;
+          }
+        }
+        state.rafId = requestAnimationFrame(step);
+      }
+
+      trackEl.addEventListener('mousedown', (e) => {
+        state.isDown = true;
+        state.dragDistance = 0;
+        state.startX = e.pageX - trackEl.offsetLeft;
+        state.startScrollLeft = trackEl.scrollLeft;
+        trackEl.classList.add('is-dragging');
+      });
+      window.addEventListener('mouseup', () => {
+        if (!state.isDown) return;
+        state.isDown = false;
+        trackEl.classList.remove('is-dragging');
+      });
+      trackEl.addEventListener('mousemove', (e) => {
+        if (!state.isDown) return;
+        e.preventDefault();
+        const x = e.pageX - trackEl.offsetLeft;
+        const walk = (x - state.startX) * 1.5;
+        state.dragDistance = Math.max(state.dragDistance, Math.abs(x - state.startX));
+        trackEl.scrollLeft = state.startScrollLeft - walk;
+        if (state.isLooped && state.loopWidth > 0) {
+          if (trackEl.scrollLeft >= state.loopWidth) trackEl.scrollLeft -= state.loopWidth;
+          if (trackEl.scrollLeft <= 0) trackEl.scrollLeft += state.loopWidth;
+        }
+      });
+
+      trackEl.addEventListener('mouseenter', () => { state.isHovered = true; });
+      trackEl.addEventListener('mouseleave', () => { state.isHovered = false; });
+      trackEl.addEventListener('touchstart', () => { state.isDown = true; state.dragDistance = 0; }, { passive: true });
+      trackEl.addEventListener('touchend', () => { state.isDown = false; }, { passive: true });
+
+      function nudge(dir) { trackEl.scrollBy({ left: dir * 350, behavior: 'smooth' }); }
+      function refreshLoop(isLooped) {
+        state.isLooped = isLooped;
+        requestAnimationFrame(() => { state.loopWidth = isLooped ? trackEl.scrollWidth / 2 : 0; });
+      }
+      if (state.rafId) cancelAnimationFrame(state.rafId);
+      state.rafId = requestAnimationFrame(step);
+      return { state, nudge, refreshLoop };
+    }
+
+    const productRibbon = createInteractiveRibbon(productTrack, () => scrollSpeed);
+    const docRibbon = createInteractiveRibbon(docTrack, () => scrollSpeed * 0.72);
+
+    document.getElementById('prodPrevBtn').addEventListener('click', () => productRibbon.nudge(-1));
+    document.getElementById('prodNextBtn').addEventListener('click', () => productRibbon.nudge(1));
+    document.getElementById('docPrevBtn').addEventListener('click', () => docRibbon.nudge(-1));
+    document.getElementById('docNextBtn').addEventListener('click', () => docRibbon.nudge(1));
+
+    speedGroup.addEventListener('click', (e) => {
+      const btn = e.target.closest('.speed-btn');
+      if (!btn) return;
+      scrollSpeed = parseFloat(btn.dataset.speed) || 0.95;
+      speedGroup.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+
+    function getFilteredProducts() {
+      const q = searchQuery.trim().toLowerCase();
+      return PRODUCTS.filter(p => {
+        const matchCat = activeCategory === 'all' || p.category === activeCategory;
+        const matchQ = !q || p.title.toLowerCase().includes(q) || p.material.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+    }
+
+    function buildProductCard(item, list, idx, isRibbon) {
+      const card = document.createElement('button');
+      card.type = 'button';
+      const likes = applauseMap[item.id] || 0;
+      card.className = (isRibbon ? 'shrink-0 w-[272px] sm:w-[300px] ' : 'w-full ') +
+        'text-left group bg-white rounded-3xl border border-emerald-900/10 overflow-hidden shadow-sm natural-card flex flex-col focus:outline-none focus:ring-2 focus:ring-[#29B36E]';
+      card.innerHTML = `
+        <div class="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
+          <img src="${item.img}" alt="${item.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#072236]/90 text-white text-[11px] font-bold border border-[#F5A623]/80">${item.catLabel}</span>
+          ${item.process && item.process.length ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#197A54]/95 text-white text-[10px] font-extrabold shadow">${item.process.length} Foto Proses</span>` : ''}
+          ${likes > 0 ? `<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#F5A623] text-[#061D30] text-[11px] font-black">★ ${likes}</span>` : ''}
+        </div>
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="text-base font-extrabold text-[#0B3B5B] group-hover:text-[#197A54] transition">${item.title}</h3>
+          <p class="mt-1 text-xs font-semibold text-[#197A54]">Bahan: ${item.material}</p>
+          <p class="mt-2 text-xs text-slate-600 line-clamp-2 leading-relaxed">${item.desc}</p>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        if (isRibbon && productRibbon.state.dragDistance > 8) return;
+        openLightbox(list.map(x => ({
+          id: x.id,
+          img: x.img,
+          badge: x.catLabel,
+          title: x.title,
+          material: 'Bahan daur ulang: ' + x.material,
+          desc: x.desc,
+          gallery: x.gallery || null,
+          process: x.process || null
+        })), idx);
+      });
+      return card;
+    }
+
+    function renderProducts() {
+      const list = getFilteredProducts();
+      productTrack.innerHTML = '';
+      productGrid.innerHTML = '';
+
+      if (list.length === 0) {
+        emptyState.classList.remove('hidden');
+        productCarouselWrap.classList.add('hidden');
+        productGrid.classList.add('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      if (isGridView) {
+        productCarouselWrap.classList.add('hidden');
+        productArrows.classList.add('hidden');
+        productGrid.classList.remove('hidden');
+        list.forEach((item, idx) => productGrid.appendChild(buildProductCard(item, list, idx, false)));
+      } else {
+        productGrid.classList.add('hidden');
+        productCarouselWrap.classList.remove('hidden');
+        productArrows.classList.remove('hidden');
+        const shouldLoop = list.length >= 4;
+        for (let copy = 0; copy < (shouldLoop ? 2 : 1); copy++) {
+          list.forEach((item, idx) => productTrack.appendChild(buildProductCard(item, list, idx, true)));
+        }
+        productTrack.scrollLeft = 0;
+        productRibbon.refreshLoop(shouldLoop);
+      }
+    }
+
+    let activeDocGroup = 'all';
+    const docFilterBar = document.getElementById('docFilterBar');
+
+    function renderDocs() {
+      const list = activeDocGroup === 'all' ? DOCS : DOCS.filter(d => d.group === activeDocGroup);
+      docTrack.innerHTML = '';
+      const shouldLoop = list.length >= 4;
+      for (let copy = 0; copy < (shouldLoop ? 2 : 1); copy++) {
+        list.forEach((doc, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'shrink-0 w-[256px] sm:w-[284px] text-left group bg-white rounded-3xl border border-amber-900/10 overflow-hidden shadow-sm natural-card flex flex-col focus:outline-none focus:ring-2 focus:ring-[#29B36E]';
+          btn.innerHTML = `
+            <div class="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
+              <img src="${doc.img}" alt="${doc.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+              <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#072236]/85 text-white text-[10px] font-bold border border-[#F5A623]/70">${doc.tag}</span>
+            </div>
+            <div class="p-4">
+              <h3 class="text-sm font-extrabold text-[#0B3B5B] leading-snug group-hover:text-[#197A54] transition">${doc.title}</h3>
+              <p class="mt-1 text-xs text-slate-500 line-clamp-2 leading-relaxed">${doc.desc}</p>
+            </div>
+          `;
+          btn.addEventListener('click', () => {
+            if (docRibbon.state.dragDistance > 8) return;
+            openLightbox(list.map(d => ({
+              id: d.id,
+              img: d.img,
+              badge: d.tag,
+              title: d.title,
+              material: 'Kegiatan Kokurikuler SABUMI • SMP Negeri 3 Tutuyan',
+              desc: d.desc
+            })), idx);
+          });
+          docTrack.appendChild(btn);
+        });
+      }
+      docTrack.scrollLeft = 0;
+      docRibbon.refreshLoop(shouldLoop);
+    }
+
+    docFilterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.doc-filter-btn');
+      if (!btn) return;
+      activeDocGroup = btn.dataset.dcat;
+      docFilterBar.querySelectorAll('.doc-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderDocs();
+    });
+
+    // Lightbox & Applause
+    const modalProcessWrap = document.getElementById('modalProcessWrap');
+    const modalProcessStrip = document.getElementById('modalProcessStrip');
+
+    function renderModalProcessStrip(item) {
+      if (!item.process || !item.process.length) {
+        modalProcessWrap.classList.add('hidden');
+        modalProcessStrip.innerHTML = '';
+        return;
+      }
+      modalProcessWrap.classList.remove('hidden');
+      modalProcessStrip.innerHTML = '';
+
+      const entries = [
+        { label: 'Hasil Jadi', img: item.img, title: item.title, desc: item.desc, sub: item.material },
+        ...item.process.map(s => ({ label: s.step, img: s.img, title: `${item.title} — ${s.title}`, desc: s.desc, sub: s.step }))
+      ];
+
+      entries.forEach((entry, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'shrink-0 w-24 rounded-xl overflow-hidden border-2 transition text-left bg-slate-50 ' + (i === 0 ? 'border-[#F5A623] ring-2 ring-amber-200' : 'border-slate-200 hover:border-[#197A54]');
+        b.innerHTML = `
+          <div class="aspect-[4/3] w-full bg-slate-200 overflow-hidden">
+            <img src="${entry.img}" alt="${entry.label}" class="w-full h-full object-cover" />
+          </div>
+          <span class="block px-1.5 py-1 text-[10px] font-bold text-[#0B3B5B] truncate">${entry.label}</span>
+        `;
+        b.addEventListener('click', () => {
+          modalProcessStrip.querySelectorAll('button').forEach(x => {
+            x.classList.remove('border-[#F5A623]', 'ring-2', 'ring-amber-200');
+            x.classList.add('border-slate-200');
+          });
+          b.classList.remove('border-slate-200');
+          b.classList.add('border-[#F5A623]', 'ring-2', 'ring-amber-200');
+          modalImg.style.opacity = '0.2';
+          setTimeout(() => {
+            modalImg.src = entry.img;
+            modalTitle.textContent = entry.title;
+            modalMaterial.textContent = entry.sub;
+            modalDesc.textContent = entry.desc;
+            modalImg.style.opacity = '1';
+          }, 120);
+        });
+        modalProcessStrip.appendChild(b);
+      });
+    }
+
+    function updateModalContent(animate = false) {
+      const item = modalItems[modalIndex];
+      if (!item) return;
+      const apply = () => {
+        modalImg.src = item.img;
+        modalImg.alt = item.title;
+        modalBadge.textContent = item.badge;
+        modalCounter.textContent = `${modalIndex + 1} / ${modalItems.length}`;
+        modalTitle.textContent = item.title;
+        modalMaterial.textContent = item.material;
+        modalDesc.textContent = item.desc;
+        applauseCount.textContent = String(applauseMap[item.id] || 0);
+        const subWrap = document.getElementById('modalSubGallery');
+        const thumbRow = document.getElementById('modalThumbRow');
+        if (item.gallery && item.gallery.length > 1) {
+          subWrap.classList.remove('hidden');
+          thumbRow.innerHTML = '';
+          item.gallery.forEach((g, gIdx) => {
+            const tb = document.createElement('button');
+            tb.type = 'button';
+            tb.title = g.caption;
+            tb.className = 'shrink-0 w-16 h-14 rounded-xl overflow-hidden border-2 transition ' + (gIdx === 0 ? 'border-[#197A54] ring-2 ring-emerald-200' : 'border-slate-200 hover:border-[#F5A623]');
+            tb.innerHTML = `<img src="${g.img}" alt="${g.caption}" class="w-full h-full object-cover" />`;
+            tb.addEventListener('click', () => {
+              modalImg.style.opacity = '0.2';
+              setTimeout(() => {
+                modalImg.src = g.img;
+                modalImg.alt = g.caption;
+                modalDesc.textContent = g.caption + ' — ' + item.desc;
+                modalImg.style.opacity = '1';
+              }, 120);
+              thumbRow.querySelectorAll('button').forEach(b => {
+                b.classList.remove('border-[#197A54]', 'ring-2', 'ring-emerald-200');
+                b.classList.add('border-slate-200');
+              });
+              tb.classList.add('border-[#197A54]', 'ring-2', 'ring-emerald-200');
+              tb.classList.remove('border-slate-200');
+            });
+            thumbRow.appendChild(tb);
+          });
+        } else {
+          subWrap.classList.add('hidden');
+          thumbRow.innerHTML = '';
+        }
+        renderModalProcessStrip(item);
+        modalImg.style.opacity = '1';
+      };
+      if (animate) {
+        modalImg.style.opacity = '0.15';
+        setTimeout(apply, 140);
+      } else {
+        apply();
+      }
+    }
+
+    function openLightbox(items, startIdx) {
+      modalItems = items;
+      modalIndex = startIdx;
+      updateModalContent(false);
+      lightboxModal.classList.remove('modal-closed');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.add('modal-closed');
+      document.body.style.overflow = '';
+    }
+
+    applauseBtn.addEventListener('click', () => {
+      const item = modalItems[modalIndex];
+      if (!item) return;
+      applauseMap[item.id] = (applauseMap[item.id] || 0) + 1;
+      try { localStorage.setItem('sabumi_applause', JSON.stringify(applauseMap)); } catch (e) {}
+      applauseCount.textContent = String(applauseMap[item.id]);
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 30, spread: 55, origin: { y: 0.7 }, colors: ['#29B36E', '#F5A623', '#38BDF8'] });
+      }
+      renderProducts();
+    });
+
+    document.getElementById('heroFeatureBtn').addEventListener('click', () => {
+      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc, process: x.process || null })), 0);
+    });
+    document.getElementById('heroLampBtn').addEventListener('click', () => {
+      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc })), 5);
+    });
+
+    document.getElementById('modalCloseBtn').addEventListener('click', closeLightbox);
+    lightboxModal.addEventListener('click', (e) => { if (e.target === lightboxModal) closeLightbox(); });
+    document.getElementById('modalPrevBtn').addEventListener('click', () => {
+      if (!modalItems.length) return;
+      modalIndex = (modalIndex - 1 + modalItems.length) % modalItems.length;
+      updateModalContent(true);
+    });
+    document.getElementById('modalNextBtn').addEventListener('click', () => {
+      if (!modalItems.length) return;
+      modalIndex = (modalIndex + 1) % modalItems.length;
+      updateModalContent(true);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (lightboxModal.classList.contains('modal-closed')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') document.getElementById('modalPrevBtn').click();
+      if (e.key === 'ArrowRight') document.getElementById('modalNextBtn').click();
+    });
+
+    toggleAutoBtn.addEventListener('click', () => {
+      autoScrollEnabled = !autoScrollEnabled;
+      toggleAutoBtn.setAttribute('aria-pressed', String(autoScrollEnabled));
+      autoStatusLabel.textContent = autoScrollEnabled ? 'Otomatis: Aktif' : 'Otomatis: Dijeda';
+      autoStatusDot.classList.toggle('animate-pulse', autoScrollEnabled);
+      autoStatusDot.classList.toggle('bg-[#197A54]', autoScrollEnabled);
+      autoStatusDot.classList.toggle('bg-slate-400', !autoScrollEnabled);
+    });
+
+    toggleViewBtn.addEventListener('click', () => {
+      isGridView = !isGridView;
+      viewModeLabel.textContent = isGridView ? 'Mode Geser' : 'Mode Grid';
+      renderProducts();
+    });
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      activeCategory = btn.dataset.cat;
+      filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    resetFilterBtn.addEventListener('click', () => {
+      activeCategory = 'all';
+      searchQuery = '';
+      searchInput.value = '';
+      filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+      renderProducts();
+    });
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+    mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll Progress & Back-to-Top
+    const scrollProgress = document.getElementById('scrollProgress');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    function onScroll() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+      scrollProgress.style.width = pct + '%';
+      if (window.scrollY > 360) {
+        backToTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Smooth Scroll-Reveal Observer
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => obs.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+
+    renderProducts();
+    renderDocs();
+    onScroll();
+  </script>
+</body>
+</html>
