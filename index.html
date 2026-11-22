@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Expo SABUMI — SMP Negeri 3 Tutuyan | Sampah Berkah Untuk Bumi</title>
+  <title>Expo SABUMI — SMP Negeri 3 Tutuyan | Pendidikan Expo Boltim 2026</title>
+  <meta name="description" content="Portofolio Digital Resmi Stand SMP Negeri 3 Tutuyan pada Pendidikan Expo Kabupaten Bolaang Mongondow Timur Tahun 2026. Inovasi SABUMI (Sampah Berkah Untuk Bumi): Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -297,6 +298,34 @@
     </div>
   </div>
 
+  <!-- Official Expo Announcement Top Bar (Juknis Boltim 2026) -->
+  <aside aria-label="Pengumuman Resmi Expo" class="bg-gradient-to-r from-[#061D30] via-[#0E4F6E] to-[#197A54] text-white text-xs border-b border-emerald-500/30 py-2 px-4 shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400 text-[#072236] font-black text-[10px] uppercase tracking-wider">
+          Juknis Expo 2026
+        </span>
+        <span class="font-medium text-emerald-100">
+          Pendidikan Expo Kab. Bolaang Mongondow Timur • <strong>24–25 Nov 2026</strong>
+        </span>
+        <span class="hidden md:inline text-emerald-300/60">•</span>
+        <span class="hidden md:inline text-amber-200 font-semibold">
+          Tema: “Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”
+        </span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="topInovasiBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-[11px] transition border border-white/20">
+          <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Lembar Inovasi
+        </button>
+        <button id="topPitchBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/30 hover:bg-emerald-500/50 text-emerald-100 font-bold text-[11px] transition border border-emerald-400/40">
+          <svg class="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+          Panduan 3 Menit
+        </button>
+      </div>
+    </div>
+  </aside>
+
   <!-- Sticky Navigation -->
   <header class="sticky top-0 z-40 bg-white/92 backdrop-blur-md border-b border-emerald-900/10 shadow-sm">
     <div class="h-1 w-full bg-emerald-50 overflow-hidden">
@@ -313,17 +342,18 @@
           </span>
           <div class="leading-tight">
             <span class="block text-base font-extrabold tracking-tight text-[#0B3B5B]">EXPO <span class="text-[#197A54]">SABUMI</span></span>
-            <span class="block text-[11px] font-medium text-slate-500">Sampah Berkah Untuk Bumi</span>
+            <span class="block text-[11px] font-medium text-slate-500">Stand Jenjang SMP/MTs • SMPN 3 Tutuyan</span>
           </div>
         </a>
 
         <nav class="hidden md:flex items-center gap-1" aria-label="Navigasi Utama">
           <a href="#beranda" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition active-nav">Beranda</a>
-          <a href="#profil" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Profil Bumi</a>
+          <a href="#profil" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Profil &amp; Inovasi</a>
           <a href="#karya" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Galeri Karya</a>
           <a href="#dokumentasi" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Dokumentasi</a>
-          <a href="#sambutan" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Kepala Sekolah</a>
-          <button id="replayIntroBtn" type="button" class="ml-2 px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Putar Intro</button>
+          <a href="#sambutan" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Suara Murid &amp; Sambutan</a>
+          <button id="navInovasiBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-[#B46906] border border-amber-300 text-xs font-black transition">Lembar Inovasi</button>
+          <button id="replayIntroBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Intro</button>
           <button id="quickMusicToggleBtn" type="button" aria-label="Nyalakan atau jeda musik latar" class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">
             <span class="inline-flex items-end gap-0.5 h-3.5 w-3.5" id="navMusicBars">
               <span class="eq-bar-1 w-0.5 h-2 bg-[#197A54] rounded-full transition-all"></span>
@@ -343,11 +373,25 @@
     </div>
     <div id="mobileMenu" class="hidden md:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1 shadow-lg">
       <a href="#beranda" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Beranda</a>
-      <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil Bumi</a>
+      <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil &amp; Inovasi</a>
       <a href="#karya" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
       <a href="#dokumentasi" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
-      <a href="#sambutan" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Kepala Sekolah</a>
+      <a href="#sambutan" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Suara Murid &amp; Sambutan</a>
       <div class="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
+        <button id="mobileInovasiBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#B46906] bg-amber-50 hover:bg-amber-100 transition">
+          <span class="flex items-center gap-2">
+            <span>📋</span>
+            <span>Lembar Inovasi (Lampiran 2)</span>
+          </span>
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-amber-800 border border-amber-300">Juknis</span>
+        </button>
+        <button id="mobilePitchBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/90 hover:bg-emerald-100 transition">
+          <span class="flex items-center gap-2">
+            <span>⏱️</span>
+            <span>Panduan Juri 3 Menit</span>
+          </span>
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-300">Bab 5</span>
+        </button>
         <button id="mobileReplayIntroBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#197A54] bg-emerald-50/70 hover:bg-emerald-100 transition">
           <span class="flex items-center gap-2">
             <span>🌍</span>
@@ -377,7 +421,7 @@
         <div class="lg:col-span-7 space-y-6">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/12 border border-emerald-300/35 text-xs sm:text-sm font-bold tracking-wide text-emerald-100 backdrop-blur-md">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            Expo Kegiatan Kokurikuler • SMP Negeri 3 Tutuyan
+            Stand Jenjang SMP/MTs • SMP Negeri 3 Tutuyan
           </div>
 
           <div>
@@ -387,20 +431,28 @@
             <p class="mt-2.5 text-xl sm:text-2xl font-bold text-emerald-200 tracking-wide">
               Sampah Berkah Untuk Bumi
             </p>
+            <p class="mt-1 text-xs sm:text-sm font-semibold text-amber-300/90 tracking-wide">
+              Pendidikan Expo Kabupaten Bolaang Mongondow Timur 2026
+            </p>
           </div>
 
           <p class="text-base sm:text-lg text-sky-50/90 max-w-2xl leading-relaxed">
-            Dari kepedulian kecil untuk bumi, lahirlah <strong>18 karya daur ulang</strong> siswa SMP Negeri 3 Tutuyan. Setiap botol, tutup plastik, sendok bekas, kardus, kaleng, dan batok kelapa diberi kehidupan baru yang indah dan berdaya guna.
+            Dari kepedulian kecil untuk bumi, lahirlah <strong>18 karya daur ulang</strong> siswa SMP Negeri 3 Tutuyan. Setiap botol, tutup plastik, sendok bekas, kardus, kaleng, dan batok kelapa diberi kehidupan baru yang indah dan berdaya guna—mewujudkan tema <em>“Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”</em>.
           </p>
 
-          <div class="flex flex-wrap gap-3 pt-1">
+          <div class="flex flex-wrap items-center gap-3 pt-1">
             <a href="#karya" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-extrabold text-sm sm:text-base shadow-xl shadow-amber-900/25 transition hover:-translate-y-0.5">
               Jelajahi Galeri Geser
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
-            <a href="#transformasi" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/12 hover:bg-white/22 border border-white/30 text-white font-bold text-sm sm:text-base backdrop-blur-md transition hover:-translate-y-0.5">
-              Lihat Transformasi 3R
-            </a>
+            <button id="heroInovasiBtn" type="button" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Lembar Inovasi Juknis
+            </button>
+            <button id="heroPitchBtn" type="button" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-full bg-emerald-600/60 hover:bg-emerald-600/80 text-white font-bold text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md transition hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+              Panduan Juri 3 Menit
+            </button>
           </div>
 
           <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-3 max-w-lg">
@@ -546,6 +598,33 @@
           <p class="mt-2 text-sm text-slate-600 leading-relaxed">
             Dikerjakan bersama dalam tim antarsiswa sebagai cerminan budaya belajar kolaboratif yang selaras dengan <em>Pendidikan Bermutu untuk Semua</em>.
           </p>
+        </div>
+      </div>
+
+      <!-- Keselarasan Juknis Stand & Pembelajaran Mendalam Banner -->
+      <div class="mt-8 rounded-3xl bg-white border border-emerald-900/10 p-6 sm:p-7 shadow-sm reveal flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-[#FDB913] flex items-center justify-center shrink-0 shadow-md">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-xs font-black uppercase tracking-wider">Format Stand Bab 3 &amp; Lampiran 2 Juknis</span>
+              <span class="text-xs font-semibold text-slate-500">Kategori Sekolah Inovatif &amp; Stand Kreatif</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-[#0B3B5B] mt-1">
+              Pembelajaran Mendalam: Memahami – Mengaplikasi – Merefleksi
+            </h3>
+            <p class="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+              Inovasi SABUMI SMP Negeri 3 Tutuyan dirancang dengan kepemilikan dan keterlibatan murid (<em>student agency</em>) secara penuh. Stand memadukan karya fisik, portofolio digital berbasis QR, refleksi siswa, serta demonstrasi interaktif sesuai ketentuan resmi Petunjuk Teknis Pendidikan Expo Boltim 2026.
+            </p>
+          </div>
+        </div>
+        <div class="shrink-0 flex sm:flex-col gap-2 w-full sm:w-auto">
+          <button id="profilInovasiBtn" type="button" class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0B3B5B] to-[#197A54] hover:brightness-110 text-white text-xs font-black shadow-md transition">
+            <span>Buka Lembar Inovasi Juknis</span>
+            <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
         </div>
       </div>
 
@@ -723,9 +802,104 @@
             Expo Kokurikuler <strong>SABUMI (Sampah Berkah Untuk Bumi)</strong> menjadi wujud nyata komitmen SMP Negeri 3 Tutuyan dalam menumbuhkan karakter peduli lingkungan sekaligus kreativitas peserta didik. Dari bahan sederhana yang kerap dianggap limbah, para siswa berhasil menciptakan 18 karya yang indah dan bermanfaat.
           </p>
           <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Mari bersama menjaga semangat <strong>Kreatif, Peduli Lingkungan, dan Berdaya Guna</strong> demi mendukung <em>Pendidikan Bermutu untuk Semua</em>.
+            Mari bersama menjaga semangat <strong>Kreatif, Peduli Lingkungan, dan Berdaya Guna</strong> demi mendukung <em>Pendidikan Bermutu untuk Semua</em> dalam bingkai tema resmi Pendidikan Expo Boltim 2026: <strong>“Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”</strong>.
           </p>
         </div>
+      </div>
+
+      <!-- Zona E: Suara Murid & Refleksi Guru Pendamping (Juknis Bab 3 Zona E & Bab 14 Apresiasi Khusus) -->
+      <div class="mt-12 reveal">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 text-[#B46906] text-xs font-black uppercase tracking-wider">
+            Zona E • Suara Murid &amp; Agency Belajar
+          </span>
+          <h3 class="mt-2 text-2xl sm:text-3xl font-black text-[#0B3B5B]">Suara Murid (Student Voice) &amp; Refleksi Guru</h3>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600">
+            Penilaian Juknis Expo 2026 menekankan keterlibatan langsung dan refleksi murid sebagai aktor utama inovasi.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Student Quote 1 -->
+          <div class="bg-white rounded-3xl p-6 shadow-sm border border-emerald-900/10 natural-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-[#197A54] flex items-center justify-center font-black text-sm">
+                  NZ
+                </div>
+                <div>
+                  <h4 class="text-sm font-black text-[#0B3B5B]">Nazwa</h4>
+                  <p class="text-[11px] font-semibold text-emerald-700">Tim Jam Dinding SABUMI 3R</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                “Awalnya kami kira kardus biskuit dan tutup botol cuma sampah yang dibakar. Pas kami rangkai jadi Jam Dinding SABUMI dan jarumnya muter, kami bangga sekali! Kami belajar sabar membagi tugas dan mengukur pola lingkaran.”
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+              <span>Siswa SMPN 3 Tutuyan</span>
+              <span class="text-[#F5A623]">★★★★★</span>
+            </div>
+          </div>
+
+          <!-- Student Quote 2 -->
+          <div class="bg-white rounded-3xl p-6 shadow-sm border border-emerald-900/10 natural-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-sky-100 text-[#0E4F6E] flex items-center justify-center font-black text-sm">
+                  FR
+                </div>
+                <div>
+                  <h4 class="text-sm font-black text-[#0B3B5B]">Farel</h4>
+                  <p class="text-[11px] font-semibold text-[#0E4F6E]">Tim Toples Kaleng &amp; Rak Kardus</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                “Paling seru pas mengecat kaleng susu bekas jadi toples kopi minimalis dan memotong kardus tebal untuk rak sepatu 3 tingkat. Dari sampah berserakan di kantin, sekarang bisa jadi perabot kelas yang kuat dan rapi.”
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+              <span>Siswa SMPN 3 Tutuyan</span>
+              <span class="text-[#F5A623]">★★★★★</span>
+            </div>
+          </div>
+
+          <!-- Student Quote 3 -->
+          <div class="bg-white rounded-3xl p-6 shadow-sm border border-emerald-900/10 natural-card flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-amber-100 text-[#D98A0C] flex items-center justify-center font-black text-sm">
+                  ST
+                </div>
+                <div>
+                  <h4 class="text-sm font-black text-[#0B3B5B]">Siti</h4>
+                  <p class="text-[11px] font-semibold text-amber-700">Tim Bunga &amp; Hiasan Dinding Gelas</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                “Kami memungut ratusan gelas plastik di semak kebun sekolah, mencuci bersih berulang kali, lalu menjemurnya. Waktu dibentuk kelopak bunga dengan inti tutup botol merah, dinding kelas kami jadi kelihatan hidup dan ceria!”
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+              <span>Siswa SMPN 3 Tutuyan</span>
+              <span class="text-[#F5A623]">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catatan Refleksi Guru Pendamping -->
+        <div class="mt-6 bg-gradient-to-r from-emerald-900/5 via-sky-900/5 to-amber-900/5 border border-emerald-900/10 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-white shadow-sm flex items-center justify-center text-lg shrink-0">👩‍🏫</span>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong>Refleksi Guru Pembimbing:</strong> “Peran guru bergeser dari sekadar instruktur menjadi fasilitator. Saat murid diberi ruang memilih dan mendesain karyanya sendiri, mereka bertransformasi menjadi pribadi yang percaya diri, bertanggung jawab, dan peduli pada alam sekitar.”
+            </p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-white text-emerald-800 text-[11px] font-extrabold border border-emerald-200 shrink-0">
+            Guru Berinovasi • Murid Berkarya
+          </span>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -761,8 +935,13 @@
       </div>
 
       <p class="text-center text-xs text-sky-200/80 pt-6">
-        &copy; 2026 Kegiatan Kokurikuler SABUMI — SMP Negeri 3 Tutuyan, Kabupaten Bolaang Mongondow Timur.
+        &copy; 2026 Inovasi SABUMI • Stand Jenjang SMP/MTs • SMP Negeri 3 Tutuyan
       </p>
+      <div class="mt-3 text-center text-[11px] text-slate-400 space-y-1 max-w-3xl mx-auto leading-relaxed">
+        <p>Pendidikan Expo Kabupaten Bolaang Mongondow Timur Tahun 2026 • 24–25 November 2026</p>
+        <p>Dinas Pendidikan dan Kebudayaan Pemerintah Kabupaten Bolaang Mongondow Timur</p>
+        <p class="text-[10px] text-slate-500">Kepatuhan Etika Digital &amp; Privasi (Bab 6 Juknis) • Portofolio Digital &amp; Warisan Digital Stand (Bab 13 Juknis)</p>
+      </div>
     </div>
   </footer>
 
@@ -903,6 +1082,302 @@
           </div>
           <div id="modalProcessStrip" class="carousel-track flex gap-2 pb-1"></div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Lembar Deskripsi Inovasi Sekolah (Lampiran 2 Juknis) -->
+  <div id="inovasiModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="inovasiModalTitle">
+    <div class="modal-panel bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15">
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-[#061D30] via-[#0E4F6E] to-[#197A54] text-white p-4 sm:p-6 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-xl shrink-0">
+            📋
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] text-[10px] font-black uppercase tracking-wider">Lampiran 2 Juknis</span>
+              <span class="text-xs text-emerald-200">Format Baku Inovasi Sekolah</span>
+            </div>
+            <h3 id="inovasiModalTitle" class="text-lg sm:text-xl font-black text-white mt-0.5">
+              Lembar Deskripsi Inovasi Sekolah SABUMI
+            </h3>
+            <p class="text-[11px] text-sky-100">
+              Pendidikan Expo Kabupaten Bolaang Mongondow Timur Tahun 2026 • Stand Jenjang SMP/MTs (SMPN 3 Tutuyan)
+            </p>
+          </div>
+        </div>
+        <button id="inovasiModalCloseBtn" type="button" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition" aria-label="Tutup lembar inovasi">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (10 Poin Lampiran 2) -->
+      <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4 text-[#072236]">
+        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🏆</span>
+            <span>Dokumen ini disusun untuk instrumen penilaian <strong>Sekolah Inovatif (Bab 15)</strong> dan <strong>Stand Kreatif (Bab 16)</strong>.</span>
+          </div>
+          <button type="button" onclick="window.print()" class="self-start sm:self-auto shrink-0 px-3 py-1 rounded-xl bg-white text-[#197A54] border border-emerald-300 font-extrabold text-[11px] hover:bg-emerald-100 transition shadow-xs flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            Cetak Dokumen
+          </button>
+        </div>
+
+        <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100 text-xs sm:text-sm">
+          <!-- 1. Judul Inovasi -->
+          <div class="p-4 bg-slate-50/50 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">1</span>
+              Judul Inovasi (Maks. 15 kata)
+            </div>
+            <div class="sm:w-3/4 font-black text-sm sm:text-base text-[#197A54]">
+              SABUMI (Sampah Berkah Untuk Bumi): Gerakan Kokurikuler Pengolahan Limbah Sekolah Menjadi Karya Kreatif Berdaya Guna
+              <span class="block text-[11px] font-normal text-slate-500 mt-0.5">(Total 14 kata — Memenuhi batasan maksimal 15 kata Juknis)</span>
+            </div>
+          </div>
+
+          <!-- 2. Masalah / Kebutuhan -->
+          <div class="p-4 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">2</span>
+              Masalah / Kebutuhan
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed">
+              Timbulan sampah anorganik (botol air mineral, gelas plastik, kaleng susu formula, kardus kemasan biskuit, dan sedotan) di lingkungan sekolah dan wilayah pesisir Tutuyan yang belum terkelola optimal, serta minimnya pembelajaran kontekstual yang menghubungkan kepedulian lingkungan dengan keterampilan vokasional kreasi nyata peserta didik.
+            </div>
+          </div>
+
+          <!-- 3. Tujuan -->
+          <div class="p-4 bg-slate-50/50 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">3</span>
+              Tujuan
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed space-y-1">
+              <p>• Mengurangi timbulan sampah anorganik sekolah melalui aksi nyata prinsip 3R (Reduce, Reuse, Recycle).</p>
+              <p>• Mengembangkan Profil Pelajar Pancasila: Gotong Royong, Bernalar Kritis, dan Kreatif pada murid jenjang SMP.</p>
+              <p>• Menghasilkan 18 produk daur ulang yang berestetika tinggi dan fungsional untuk sarana kelas maupun rumah tangga.</p>
+            </div>
+          </div>
+
+          <!-- 4. Proses -->
+          <div class="p-4 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">4</span>
+              Proses (Memahami – Mengaplikasi – Merefleksi)
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed space-y-1.5">
+              <p><strong>1. Memahami:</strong> Siswa bersama guru melakukan aksi observasi sampah di halaman dan kebun sekolah, memetakan jenis bahan limbah, serta merancang sketsa karya dalam tim kelompok.</p>
+              <p><strong>2. Mengaplikasi:</strong> Melakukan pencucian higienis dengan air sabun, penjemuran di bawah sinar matahari, pengukuran dan pembuatan pola, pemotongan simetris, pengecatan ramah lingkungan, dan perakitan presisi (seperti 10 tahap pengerjaan Jam Dinding SABUMI dan Toples Kaleng).</p>
+              <p><strong>3. Merefleksi:</strong> Siswa menguji kekuatan dan fungsi guna karya, mempresentasikan hasil kerja di depan teman sebaya, serta mendokumentasikan refleksi proses ke dalam portofolio digital.</p>
+            </div>
+          </div>
+
+          <!-- 5. Produk / Karya -->
+          <div class="p-4 bg-slate-50/50 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">5</span>
+              Produk / Karya
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed">
+              <strong>18 Karya Daur Ulang</strong> terbagi dalam 3 klaster:
+              <ul class="mt-1 space-y-0.5 list-disc list-inside">
+                <li><em>Dekorasi &amp; Dinding (5 karya):</em> Jam Dinding SABUMI 3R, Bingkai Foto Rumah Hari Guru, Hiasan Bunga Gelas, Kerajinan Batok Kelapa, dan Ornamen Dinding.</li>
+                <li><em>Lampu &amp; Vas (7 karya):</em> Lampu Hias Sendok Nanas, Vas Bunga Botol Anyaman, Lampu Gantung Botol Berukir, Vas Sendok Putih Elegan, Lampu Hias Meja LED, dll.</li>
+                <li><em>Perlengkapan &amp; Fungsional (6 karya):</em> Toples Kaleng Coffee &amp; Sugar, Rak Sepatu/Buku Kardus 3 Susun, Kalender Abadi Kayu, Tas Belanja Lukis Ramah Lingkungan, Wadah Serbaguna.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 6. Bukti -->
+          <div class="p-4 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">6</span>
+              Bukti (Dokumentasi &amp; Data)
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed space-y-1">
+              <p>• <strong>47 foto kronologis</strong> aksi pengerjaan nyata siswa (terverifikasi di galeri dokumentasi web).</p>
+              <p>• Fisik 18 karya yang dipajang dan dapat dicoba/disentuh langsung di stand pameran.</p>
+              <p>• Reduksi timbulan sampah anorganik di SMPN 3 Tutuyan tercatat signifikan selama masa aksi kokurikuler.</p>
+              <p>• Portofolio digital interaktif dengan QR Code akrilik di meja stand.</p>
+            </div>
+          </div>
+
+          <!-- 7. Dampak -->
+          <div class="p-4 bg-slate-50/50 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">7</span>
+              Dampak (Perubahan Nyata)
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed space-y-1">
+              <p>• <strong>Bagi Murid:</strong> Tumbuhnya <em>student agency</em> (suara, pilihan, kepemilikan), peningkatan rasa percaya diri dalam berbicara dan presentasi, serta perubahan perilaku tidak membuang sampah sembarangan.</p>
+              <p>• <strong>Bagi Sekolah:</strong> Lingkungan sekolah menjadi lebih asri dan indah, kelas memiliki dekorasi edukatif hasil karya mandiri, serta terbangun budaya kolaborasi antarsiswa dan guru.</p>
+            </div>
+          </div>
+
+          <!-- 8. Refleksi -->
+          <div class="p-4 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">8</span>
+              Refleksi &amp; Tindak Lanjut
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed space-y-1">
+              <p>• <em>Keberhasilan:</em> 100% siswa berpartisipasi dengan antusias tanpa rasa malu memegang bahan daur ulang.</p>
+              <p>• <em>Tantangan:</em> Keterbatasan peralatan perekat lem panas sehingga siswa harus bergantian secara tertib.</p>
+              <p>• <em>Rencana Perbaikan:</em> Merintis Bank Sampah Unit SMPN 3 Tutuyan dan memperluas integrasi karya ke dalam mata pelajaran Seni Budaya dan Prakarya.</p>
+            </div>
+          </div>
+
+          <!-- 9. Potensi Berbagi -->
+          <div class="p-4 bg-slate-50/50 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">9</span>
+              Potensi Berbagi / Replikasi
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed">
+              Program SABUMI bersifat <strong>inklusif dan berbiaya sangat rendah (zero-budget)</strong> sehingga sangat mudah direplikasi oleh 94 sekolah SD/SMP/SMA se-Kabupaten Bolaang Mongondow Timur. Modul alur kerja 3M (Memungut, Memilah, Membentuk) siap dibagikan dalam forum <strong>Komunitas Belajar (KOMBEL)</strong> antarsekolah.
+            </div>
+          </div>
+
+          <!-- 10. QR Portofolio -->
+          <div class="p-4 flex flex-col sm:flex-row gap-2 sm:gap-6">
+            <div class="sm:w-1/4 font-extrabold text-[#0B3B5B] flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 text-[#197A54] flex items-center justify-center text-xs font-black">10</span>
+              Tautan QR &amp; Warisan Digital
+            </div>
+            <div class="sm:w-3/4 text-slate-600 leading-relaxed flex items-center gap-3 flex-wrap">
+              <span class="px-3 py-1 rounded-full bg-slate-100 font-mono text-xs font-bold text-teal-800">
+                rikadama0505.github.io/expo-sabumi
+              </span>
+              <span class="text-xs text-emerald-700 font-semibold">• Sesuai Bab 13 Juknis: Portofolio Digital Resmi &amp; Warisan Digital Expo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
+        <span class="text-xs text-slate-500 font-medium">Panitia Pelaksana &amp; Dewan Juri Pendidikan Expo Boltim 2026</span>
+        <button id="inovasiModalCloseBtn2" type="button" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Mode Panduan Presentasi Juri 3 Menit (Bab 5 Point 3 Juknis) -->
+  <div id="pitchModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="pitchModalTitle">
+    <div class="modal-panel bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15">
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-[#072236] via-[#0E4F6E] to-[#197A54] text-white p-4 sm:p-5 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-400 text-[#072236] flex items-center justify-center text-xl font-black shrink-0">
+            ⏱️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] text-[10px] font-black uppercase tracking-wider">Juknis Bab 5 Point 3</span>
+              <span class="text-xs text-emerald-200">Mekanisme Penilaian Juri</span>
+            </div>
+            <h3 id="pitchModalTitle" class="text-lg font-black text-white mt-0.5">
+              Panduan Presentasi 3 Menit Stand bagi Siswa &amp; Guru
+            </h3>
+            <p class="text-[11px] text-sky-100">
+              Alur cepat memandu kunjungan tim penilai juri expo di Stand SMPN 3 Tutuyan
+            </p>
+          </div>
+        </div>
+        <button id="pitchModalCloseBtn" type="button" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition" aria-label="Tutup panduan presentasi">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Timer & Progress Bar Section -->
+      <div class="p-4 sm:p-5 bg-emerald-50/70 border-b border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+        <div class="flex items-center gap-4">
+          <div class="text-center">
+            <span id="pitchTimerDisplay" class="font-mono text-3xl sm:text-4xl font-black text-[#0B3B5B]">03:00</span>
+            <p id="pitchStageLabel" class="text-[10px] font-extrabold uppercase tracking-wider text-[#197A54] mt-0.5">Siap Memulai (Menit 1)</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="pitchStartBtn" type="button" class="px-4 py-2 rounded-xl bg-[#197A54] hover:bg-[#146344] text-white font-extrabold text-xs shadow-md transition flex items-center gap-1.5">
+              <svg id="pitchPlayIcon" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <span id="pitchStartBtnText">Mulai</span>
+            </button>
+            <button id="pitchResetBtn" type="button" class="px-3 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-bold text-xs transition">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Minute Step Pills -->
+        <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+          <span id="stepPill1" class="px-2.5 sm:px-3 py-1 rounded-full font-bold bg-[#197A54] text-white transition-all shadow-xs">
+            1: Latar &amp; Inovasi
+          </span>
+          <span id="stepPill2" class="px-2.5 sm:px-3 py-1 rounded-full font-bold bg-slate-200 text-slate-600 transition-all">
+            2: Proses &amp; Demo
+          </span>
+          <span id="stepPill3" class="px-2.5 sm:px-3 py-1 rounded-full font-bold bg-slate-200 text-slate-600 transition-all">
+            3: Dampak &amp; Replikasi
+          </span>
+        </div>
+      </div>
+
+      <!-- Narration Cue Cards for Students -->
+      <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
+        <!-- Cue Card 1: Menit 1 -->
+        <div id="cueCard1" class="p-4 sm:p-5 rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-600 text-white text-[11px] font-black uppercase">
+              Menit 1 (Detik 0–60) • Pembuka &amp; Masalah
+            </span>
+            <span class="text-xs font-bold text-emerald-800">Fokus: Konteks &amp; Kebaruan (Bobot 15)</span>
+          </div>
+          <h4 class="text-sm font-black text-[#0B3B5B]">Panduan Bicara Siswa Pemandu Stand:</h4>
+          <p class="mt-2 text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-white p-3 rounded-xl border border-emerald-200">
+            “Selamat pagi / siang Bapak/Ibu Dewan Juri! Selamat datang di Stand SMP Negeri 3 Tutuyan. Inovasi yang kami usung bernama <strong>SABUMI (Sampah Berkah Untuk Bumi)</strong>. Program ini berawal dari kepedulian kami melihat limbah botol, gelas plastik, dan kardus di sekitar lingkungan sekolah dan pantai Tutuyan. Melalui SABUMI, kami membuktikan bahwa sampah bukan masalah yang harus dibakar, melainkan berkah yang dapat diolah menjadi 18 karya bernilai guna tinggi.”
+          </p>
+        </div>
+
+        <!-- Cue Card 2: Menit 2 -->
+        <div id="cueCard2" class="p-4 sm:p-5 rounded-2xl border-2 border-slate-200 bg-white transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-slate-700 text-white text-[11px] font-black uppercase">
+              Menit 2 (Detik 61–120) • Agency Murid &amp; Demonstrasi
+            </span>
+            <span class="text-xs font-bold text-slate-600">Fokus: Keterlibatan Murid (Bobot 20) &amp; Interaktivitas (Bobot 20)</span>
+          </div>
+          <h4 class="text-sm font-black text-[#0B3B5B]">Panduan Bicara &amp; Demo Karya:</h4>
+          <p class="mt-2 text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-slate-50 p-3 rounded-xl border border-slate-200">
+            “Dalam pembuatannya, kami para murid terlibat langsung 100% dengan alur <em>Memahami, Mengaplikasi, dan Merefleksi</em>—mulai dari aksi memungut sampah, mencuci bersih dengan sabun, menjemur, memotong, hingga merangkai. Ini salah satu karya ikonik kami: <strong>Jam Dinding SABUMI 3R</strong> dengan angka dari tutup botol, serta lampu hias sendok dan toples kaleng susu formula. Bapak/Ibu Juri juga dapat mencoba simulasi interaktif transformasi sampah di layar tablet kami!”
+          </p>
+        </div>
+
+        <!-- Cue Card 3: Menit 3 -->
+        <div id="cueCard3" class="p-4 sm:p-5 rounded-2xl border-2 border-slate-200 bg-white transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-slate-700 text-white text-[11px] font-black uppercase">
+              Menit 3 (Detik 121–180) • Dampak, Refleksi &amp; Replikasi
+            </span>
+            <span class="text-xs font-bold text-slate-600">Fokus: Bukti Dampak (Bobot 20) &amp; Keberlanjutan (Bobot 15)</span>
+          </div>
+          <h4 class="text-sm font-black text-[#0B3B5B]">Panduan Penutup &amp; Warisan Digital:</h4>
+          <p class="mt-2 text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-slate-50 p-3 rounded-xl border border-slate-200">
+            “Dampak nyatanya, lingkungan sekolah kami kini bersih, dan kami memiliki kepercayaan diri serta keterampilan baru. Karena program ini ramah anggaran, praktik baik ini sangat siap direplikasi oleh sekolah-sekolah lain di Boltim melalui forum KOMBEL. Seluruh 47 dokumentasi kronologis dan video demo dapat diakses dengan memindai QR Code di meja stand kami. Terima kasih, Salam SABUMI!”
+          </p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
+        <span class="text-xs text-slate-500 font-medium">Tip: Latih siswa bergantian menjelaskan menit 1, 2, dan 3.</span>
+        <button id="pitchModalCloseBtn2" type="button" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs transition">
+          Tutup
+        </button>
       </div>
     </div>
   </div>
@@ -1645,6 +2120,175 @@
       if (e.key === 'ArrowLeft') document.getElementById('modalPrevBtn').click();
       if (e.key === 'ArrowRight') document.getElementById('modalNextBtn').click();
     });
+
+    // ==========================================
+    // JUKNIS EXPO 2026 MODALS & PITCH TIMER
+    // ==========================================
+    const inovasiModal = document.getElementById('inovasiModal');
+    const pitchModal = document.getElementById('pitchModal');
+
+    function openInovasiModal() {
+      if (!inovasiModal) return;
+      inovasiModal.classList.remove('modal-closed');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeInovasiModal() {
+      if (!inovasiModal) return;
+      inovasiModal.classList.add('modal-closed');
+      document.body.style.overflow = '';
+    }
+
+    function openPitchModal() {
+      if (!pitchModal) return;
+      pitchModal.classList.remove('modal-closed');
+      document.body.style.overflow = 'hidden';
+      updatePitchUI();
+    }
+    function closePitchModal() {
+      if (!pitchModal) return;
+      pitchModal.classList.add('modal-closed');
+      document.body.style.overflow = '';
+    }
+
+    // Attach open buttons
+    ['topInovasiBtn', 'navInovasiBtn', 'mobileInovasiBtn', 'heroInovasiBtn', 'profilInovasiBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', openInovasiModal);
+    });
+    ['topPitchBtn', 'mobilePitchBtn', 'heroPitchBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', openPitchModal);
+    });
+
+    // Attach close buttons
+    ['inovasiModalCloseBtn', 'inovasiModalCloseBtn2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', closeInovasiModal);
+    });
+    if (inovasiModal) {
+      inovasiModal.addEventListener('click', (e) => {
+        if (e.target === inovasiModal) closeInovasiModal();
+      });
+    }
+
+    ['pitchModalCloseBtn', 'pitchModalCloseBtn2'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', closePitchModal);
+    });
+    if (pitchModal) {
+      pitchModal.addEventListener('click', (e) => {
+        if (e.target === pitchModal) closePitchModal();
+      });
+    }
+
+    // Escape listener for Juknis modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (inovasiModal && !inovasiModal.classList.contains('modal-closed')) closeInovasiModal();
+        if (pitchModal && !pitchModal.classList.contains('modal-closed')) closePitchModal();
+      }
+    });
+
+    // Pitch Countdown Timer Logic (3 Minutes / 180s)
+    let pitchTotalSeconds = 180;
+    let pitchSecondsLeft = 180;
+    let pitchInterval = null;
+    let isPitchRunning = false;
+
+    const pitchTimerDisplay = document.getElementById('pitchTimerDisplay');
+    const pitchStageLabel = document.getElementById('pitchStageLabel');
+    const pitchStartBtn = document.getElementById('pitchStartBtn');
+    const pitchStartBtnText = document.getElementById('pitchStartBtnText');
+    const pitchResetBtn = document.getElementById('pitchResetBtn');
+    const stepPill1 = document.getElementById('stepPill1');
+    const stepPill2 = document.getElementById('stepPill2');
+    const stepPill3 = document.getElementById('stepPill3');
+    const cueCard1 = document.getElementById('cueCard1');
+    const cueCard2 = document.getElementById('cueCard2');
+    const cueCard3 = document.getElementById('cueCard3');
+
+    function updatePitchUI() {
+      const m = Math.floor(pitchSecondsLeft / 60);
+      const s = pitchSecondsLeft % 60;
+      if (pitchTimerDisplay) {
+        pitchTimerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+
+      // Determine active minute (0-60 elapsed = minute 1, 61-120 = minute 2, 121-180 = minute 3)
+      const elapsed = pitchTotalSeconds - pitchSecondsLeft;
+      let activeMin = 1;
+      if (elapsed >= 120) activeMin = 3;
+      else if (elapsed >= 60) activeMin = 2;
+
+      if (pitchStageLabel) {
+        if (pitchSecondsLeft === 0) {
+          pitchStageLabel.textContent = 'Waktu 3 Menit Selesai!';
+          pitchStageLabel.className = 'text-[10px] font-extrabold uppercase tracking-wider text-rose-600 mt-0.5 animate-pulse';
+        } else {
+          pitchStageLabel.textContent = `Menit ${activeMin} dari 3: ${activeMin === 1 ? 'Latar & Inovasi' : activeMin === 2 ? 'Agency Murid & Demo' : 'Dampak & Refleksi'}`;
+          pitchStageLabel.className = 'text-[10px] font-extrabold uppercase tracking-wider text-[#197A54] mt-0.5';
+        }
+      }
+
+      // Update pills
+      if (stepPill1) {
+        stepPill1.className = activeMin === 1 ? 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-[#197A54] text-white shadow-xs' : 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-slate-200 text-slate-600';
+      }
+      if (stepPill2) {
+        stepPill2.className = activeMin === 2 ? 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-[#0E4F6E] text-white shadow-xs' : 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-slate-200 text-slate-600';
+      }
+      if (stepPill3) {
+        stepPill3.className = activeMin === 3 ? 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-[#D98A0C] text-white shadow-xs' : 'px-2.5 sm:px-3 py-1 rounded-full font-bold bg-slate-200 text-slate-600';
+      }
+
+      // Highlight active cue card
+      if (cueCard1) {
+        cueCard1.className = activeMin === 1 ? 'p-4 sm:p-5 rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 shadow-sm transition-all' : 'p-4 sm:p-5 rounded-2xl border-2 border-slate-200 bg-white opacity-60 transition-all';
+      }
+      if (cueCard2) {
+        cueCard2.className = activeMin === 2 ? 'p-4 sm:p-5 rounded-2xl border-2 border-sky-500 bg-sky-50/50 shadow-sm transition-all' : 'p-4 sm:p-5 rounded-2xl border-2 border-slate-200 bg-white opacity-60 transition-all';
+      }
+      if (cueCard3) {
+        cueCard3.className = activeMin === 3 ? 'p-4 sm:p-5 rounded-2xl border-2 border-amber-500 bg-amber-50/50 shadow-sm transition-all' : 'p-4 sm:p-5 rounded-2xl border-2 border-slate-200 bg-white opacity-60 transition-all';
+      }
+    }
+
+    function togglePitchTimer() {
+      if (isPitchRunning) {
+        clearInterval(pitchInterval);
+        isPitchRunning = false;
+        if (pitchStartBtnText) pitchStartBtnText.textContent = 'Lanjutkan';
+      } else {
+        if (pitchSecondsLeft <= 0) pitchSecondsLeft = pitchTotalSeconds;
+        isPitchRunning = true;
+        if (pitchStartBtnText) pitchStartBtnText.textContent = 'Jeda';
+        pitchInterval = setInterval(() => {
+          if (pitchSecondsLeft > 0) {
+            pitchSecondsLeft--;
+            updatePitchUI();
+          } else {
+            clearInterval(pitchInterval);
+            isPitchRunning = false;
+            if (pitchStartBtnText) pitchStartBtnText.textContent = 'Mulai';
+            updatePitchUI();
+            if (typeof confetti === 'function') {
+              confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
+            }
+          }
+        }, 1000);
+      }
+    }
+
+    function resetPitchTimer() {
+      clearInterval(pitchInterval);
+      isPitchRunning = false;
+      pitchSecondsLeft = pitchTotalSeconds;
+      if (pitchStartBtnText) pitchStartBtnText.textContent = 'Mulai';
+      updatePitchUI();
+    }
+
+    if (pitchStartBtn) pitchStartBtn.addEventListener('click', togglePitchTimer);
+    if (pitchResetBtn) pitchResetBtn.addEventListener('click', resetPitchTimer);
 
     // Mobile Touch Swipe Gesture for Lightbox Modal
     let modalTouchStartX = 0;
