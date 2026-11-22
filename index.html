@@ -236,7 +236,7 @@
       </h1>
       <p class="mt-2.5 text-lg sm:text-2xl font-bold text-sky-100">Sampah Berkah Untuk Bumi</p>
       <p class="mt-3 text-xs sm:text-sm text-emerald-100/80 max-w-md">
-        Menampilkan 18 karya kreatif daur ulang dan 19 dokumentasi proses kolaborasi siswa untuk bumi yang lebih lestari.
+        Menampilkan 18 karya kreatif daur ulang dan 47 dokumentasi proses kolaborasi siswa untuk bumi yang lebih lestari.
       </p>
 
       <button id="enterExpoBtn" type="button" class="mt-8 group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-black text-sm sm:text-base shadow-2xl shadow-amber-500/30 transition hover:scale-105 active:scale-95">
@@ -352,8 +352,8 @@
               <p class="text-xs font-semibold text-emerald-100 mt-0.5">Karya Daur Ulang</p>
             </div>
             <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
-              <p class="text-2xl sm:text-3xl font-black text-emerald-300" data-count="19" id="statDocs">19</p>
-              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi</p>
+              <p class="text-2xl sm:text-3xl font-black text-emerald-300" data-count="47" id="statDocs">47</p>
+              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi Nyata</p>
             </div>
             <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
               <p class="text-2xl sm:text-3xl font-black text-sky-200">3R</p>
@@ -619,12 +619,17 @@
           <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-extrabold uppercase tracking-wider">Di Balik Layar</span>
           <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#0B3B5B]">Dokumentasi Proses Pembuatan</h2>
           <p class="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl">
-            Rangkaian proses pembuatan karya siswa dari tahap perencanaan hingga jadi—termasuk <strong>10 tahap kronologis Jam Dinding SABUMI</strong>. Geser manual atau klik foto untuk melihat detail.
+            Rangkaian proses pembuatan karya siswa dari tahap aksi bersih lingkungan hingga jadi—termasuk <strong>10 tahap kronologis Jam Dinding SABUMI</strong> dan aksi gotong royong kelas. Geser manual atau klik foto untuk melihat detail.
           </p>
           <div id="docFilterBar" class="flex flex-wrap gap-2 mt-4">
-            <button type="button" data-dcat="all" class="doc-filter-btn filter-btn active px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Semua Dokumentasi (19)</button>
-            <button type="button" data-dcat="jam_sabumi" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Proses Jam Dinding SABUMI (10)</button>
-            <button type="button" data-dcat="lainnya" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Karya Lainnya (9)</button>
+            <button type="button" data-dcat="all" class="doc-filter-btn filter-btn active px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Semua Dokumentasi (47)</button>
+            <button type="button" data-dcat="jam_sabumi" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Jam SABUMI (10)</button>
+            <button type="button" data-dcat="gelas" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Aksi Bersih &amp; Gelas Plastik (8)</button>
+            <button type="button" data-dcat="kaleng" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Toples Kaleng Morigro (5)</button>
+            <button type="button" data-dcat="kardus" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Rak Kardus Tiga Susun (7)</button>
+            <button type="button" data-dcat="tutup" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Tutup Botol &amp; Kalender (11)</button>
+            <button type="button" data-dcat="sendok" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Vas Sendok Plastik (4)</button>
+            <button type="button" data-dcat="lainnya" class="doc-filter-btn filter-btn px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Karya Lainnya (2)</button>
           </div>
         </div>
         <div class="flex items-center gap-2 self-start sm:self-auto">
@@ -742,10 +747,10 @@
 
   <script>
     const PRODUCTS = [
-      { id: 'p1', title: 'Jam Dinding SABUMI', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Kardus bekas, tutup botol biru, kertas warna', desc: 'Jam dinding ikonik bertema bumi tersenyum lengkap dengan angka dari tutup botol plastik dan pesan Reduce, Reuse, Recycle.', img: 'assets/img_05.jpg', process: [
+      { id: 'p1', title: 'Jam Dinding SABUMI', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Kardus bekas NutriSari, tutup botol biru, kertas warna', desc: 'Jam dinding ikonik bertema bumi tersenyum lengkap dengan angka dari tutup botol plastik dan pesan Reduce, Reuse, Recycle.', img: 'assets/img_05.jpg', process: [
         { step: 'Tahap 1 • 10 Nov', title: 'Diskusi & Perencanaan Kelompok', desc: 'Enam siswa berdiskusi melingkar di halaman sekolah untuk merancang konsep Jam Dinding SABUMI dan membagi tugas.', img: 'assets/img_09.jpg' },
         { step: 'Tahap 2 • 12 Nov', title: 'Membuat Pola Lingkaran pada Kardus', desc: 'Siswa menjiplak pola lingkaran besar pada kardus bekas sebagai rangka dasar jam dinding.', img: 'assets/img_10.jpg' },
-        { step: 'Tahap 3 • 12 Nov', title: 'Menyiapkan & Memotong Kardus Bekas', desc: 'Tim bekerja sama memotong lembaran kardus bekas di teras kelas agar siap dibentuk.', img: 'assets/img_11.jpg' },
+        { step: 'Tahap 3 • 12 Nov', title: 'Menyiapkan & Memotong Kardus NutriSari', desc: 'Tim bekerja sama memotong lembaran kardus bekas di teras kelas agar siap dibentuk.', img: 'assets/img_11.jpg' },
         { step: 'Tahap 4 • 12 Nov', title: 'Menggunting Lingkaran Rangka Jam', desc: 'Proses menggunting pola lingkaran pada kardus tebal secara teliti sebagai badan utama jam.', img: 'assets/img_12.jpg' },
         { step: 'Tahap 5 • 17 Nov', title: 'Menggunting Ilustrasi Bumi & Latar', desc: 'Siswa menggunting gambar Bumi tersenyum dan menyiapkan kertas karton biru muda untuk pelapis.', img: 'assets/img_13.jpg' },
         { step: 'Tahap 6 • 17 Nov', title: 'Memotong Pola Karton Biru Muda', desc: 'Tim mengukur dan memotong kertas biru muda mengikuti diameter rangka kardus jam.', img: 'assets/img_14.jpg' },
@@ -754,12 +759,26 @@
         { step: 'Tahap 9 • 17 Nov', title: 'Menempel Angka 1–12 & Rangka Jam', desc: 'Menempelkan seluruh tutup botol angka 1–12 mengelilingi ilustrasi Bumi di atas rangka kardus.', img: 'assets/img_17.jpg' },
         { step: 'Tahap 10 • 18 Nov', title: 'Presentasi Hasil Akhir Jam Dinding SABUMI', desc: 'Anggota kelompok memamerkan Jam Dinding SABUMI yang telah selesai lengkap dengan ornamen 3R.', img: 'assets/img_18.jpg' }
       ] },
-      { id: 'p2', title: 'Hiasan Dinding & Bingkai Foto', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Gelas plastik, tutup botol, stik kayu bekas', desc: 'Rangkaian bunga dekoratif dari potongan gelas plastik dan bingkai foto berbentuk rumah untuk memperindah dinding kelas.', img: 'assets/img_19.jpg' },
+      { id: 'p2', title: 'Hiasan Dinding & Bingkai Foto', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Gelas plastik Ale-Ale, stik kayu bekas, tutup botol', desc: 'Rangkaian bunga dekoratif dari potongan gelas plastik bekas dan bingkai foto rumah kayu untuk memperindah dinding kelas.', img: 'assets/img_19.jpg', process: [
+        { step: 'Tahap 1 • Pungut Sampah', title: 'Aksi Bersih Sampah di Halaman', desc: 'Siswa memungut gelas plastik minuman bekas yang berserakan di halaman sekolah.', img: 'assets/gelas_01_pungut.jpg' },
+        { step: 'Tahap 2 • Kebun Sekolah', title: 'Membersihkan Sampah Plastik di Semak', desc: 'Siswa bergotong royong mengambil sampah gelas plastik di area semak dan kebun belakang.', img: 'assets/gelas_02_kebun.jpg' },
+        { step: 'Tahap 3 • Cuci Bersih', title: 'Mencuci & Menyortir Gelas di Ember Air', desc: 'Gelas-gelas plastik yang terkumpul dicuci bersih dengan air sabun di ember untuk menghilangkan sisa minuman.', img: 'assets/gelas_04_cuci.jpg' },
+        { step: 'Tahap 4 • Jemur Terik', title: 'Menjemur Gelas di Bawah Sinar Matahari', desc: 'Ratusan gelas plastik ditata berbaris rapi di lantai selasar agar kering sempurna sebelum dipotong.', img: 'assets/gelas_05_jemur.jpg' },
+        { step: 'Tahap 5 • Gunting Kelopak', title: 'Menggunting Bibir & Badan Gelas', desc: 'Siswa menggunting badan gelas plastik secara simetris menjadi helaian kelopak bunga dekoratif.', img: 'assets/gelas_06_gunting.jpg' },
+        { step: 'Tahap 6 • Rangkai Bunga', title: 'Merangkai Bunga & Inti Tutup Botol', desc: 'Kelopak bunga dirangkai berlapis dan diberi inti tutup botol warna merah dan oranye cerah.', img: 'assets/gelas_07_rangkai.jpg' },
+        { step: 'Tahap 7 • Presentasi Tim', title: 'Presentasi Tim Bunga Gelas & Bingkai Rumah', desc: 'Empat siswa memamerkan karya Hiasan Bunga Gelas Plastik dan Bingkai Foto Rumah Hari Guru.', img: 'assets/gelas_08_tim.jpg' }
+      ] },
       { id: 'p3', title: 'Kerajinan Batok Kelapa', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Tempurung kelapa kering & tangkai alami', desc: 'Hiasan meja berbentuk bunga dan pot dari limbah tempurung kelapa yang dihaluskan sehingga tampil estetik bernuansa alami.', img: 'assets/img_20.jpg' },
       { id: 'p4', title: 'Lampu Hias Sendok Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sendok plastik bekas, botol plastik, stik kayu', desc: 'Lampu hias meja berbentuk kelopak bunga dan nanas cerah yang dirangkai dari ratusan kepala sendok plastik bekas.', img: 'assets/img_21.jpg' },
       { id: 'p5', title: 'Bunga & Vas Botol Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas, tutup botol, anyaman tali', desc: 'Rangkaian bunga teratai merah cerah dari potongan botol plastik yang dipadukan dengan vas anyaman berwarna hangat.', img: 'assets/img_22.jpg' },
       { id: 'p6', title: 'Lampu Hias Botol Bekas', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas & lampu LED gantung', desc: 'Lampu gantung berbentuk kelopak bunga menyala hangat yang memanfaatkan botol plastik bening berukir dan dicat merah-oranye.', img: 'assets/img_06.jpg' },
-      { id: 'p7', title: 'Toples Kaleng Daur Ulang', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Kaleng susu bekas, cat putih-emas, label minimalis', desc: 'Wadah penyimpanan dapur bertema Coffee & Sugar bergaya minimalis modern dari kaleng susu bekas yang dicat ulang.', img: 'assets/img_23.jpg' },
+      { id: 'p7', title: 'Toples Kaleng Daur Ulang', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Kaleng susu formula Morigro bekas, cat aerosol putih, label minimalis', desc: 'Wadah penyimpanan dapur bertema Coffee & Sugar bergaya minimalis modern dari kaleng susu formula bekas yang dicat ulang.', img: 'assets/img_23.jpg', process: [
+        { step: 'Tahap 1 • Persiapan', title: 'Menyiapkan Kaleng Morigro & Cat Semprot', desc: 'Siswa menyiapkan kaleng susu bubuk formula Morigro bekas dan cat aerosol Penta Prima di ruang kelas.', img: 'assets/kaleng_01_siap.jpg' },
+        { step: 'Tahap 2 • Cat Semprot', title: 'Pengecatan Kaleng dengan Cat Semprot Putih', desc: 'Siswa mengecat seluruh permukaan luar kaleng susu menggunakan cat semprot putih di halaman luar sekolah.', img: 'assets/kaleng_02_cat.jpg' },
+        { step: 'Tahap 3 • Finishing Cat', title: 'Pelapisan Cat Aerosol Putih Merata', desc: 'Proses penyemprotan detail agar seluruh bodi kaleng terlapisi warna putih bersih tanpa noda.', img: 'assets/kaleng_03_semprot.jpg' },
+        { step: 'Tahap 4 • Pasang Label', title: 'Pemasangan Label Kertas Bersama Guru', desc: 'Siswa bersama guru menempelkan label minimalis bertuliskan Coffee & Sugar pada kaleng yang telah kering.', img: 'assets/kaleng_04_label.jpg' },
+        { step: 'Tahap 5 • Presentasi Tim', title: 'Presentasi Tim Toples Coffee & Sugar', desc: 'Tiga siswa memamerkan sepasang Toples Kaleng Coffee & Sugar bergaya minimalis modern.', img: 'assets/kaleng_05_tim.jpg' }
+      ] },
       { id: 'p8', title: 'Vas Bunga Sendok Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sendok plastik putih & botol plastik', desc: 'Vas bunga putih elegan dengan susunan kelopak sendok plastik simetris hasil kolaborasi tim siswa, cocok untuk hiasan meja guru maupun tamu.', img: 'assets/img_24.jpg', gallery: [
         { img: 'assets/img_24.jpg', caption: 'Hasil Jadi Vas Bunga Sendok Plastik' },
         { img: 'assets/img_25.jpg', caption: 'Menyiapkan Sendok & Botol Plastik' },
@@ -767,71 +786,139 @@
         { img: 'assets/img_27.jpg', caption: 'Merekatkan Kelopak dengan Lem Tembak' },
         { img: 'assets/img_28.jpg', caption: 'Tim Pembuat Vas Bunga Sendok Plastik' }
       ] },
-      { id: 'p9', title: 'Rak Kardus Tiga Susun', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Kardus tebal bekas & lapisan kertas putih', desc: 'Rak buku atau penyimpanan serbaguna tiga tingkat yang kokoh dari kardus bekas berlapis rapi warna putih bersih.', img: 'assets/img_29.jpg' },
+      { id: 'p9', title: 'Rak Kardus Tiga Susun', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Boks kardus kertas SIDU F4 tebal & lapisan putih', desc: 'Rak buku atau penyimpanan serbaguna tiga tingkat yang kokoh dari tumpukan kardus boks kertas SIDU bekas yang direkatkan rapi.', img: 'assets/img_29.jpg', process: [
+        { step: 'Tahap 1 • Rencana Boks', title: 'Menata Boks Kardus SIDU di Selasar', desc: 'Siswa menyusun 3 boks kardus kertas SIDU F4 di lantai selasar untuk merancang dimensi rak buku.', img: 'assets/rak_01_rencana.jpg' },
+        { step: 'Tahap 2 • Ukur & Potong', title: 'Mengukur Lembaran Kardus Pembatas', desc: 'Siswa mengukur lembaran kardus tebal untuk pembatas dan penutup dinding rak buku.', img: 'assets/rak_02_ukur.jpg' },
+        { step: 'Tahap 3 • Potong Presisi', title: 'Memotong Kardus Mengikuti Pola', desc: 'Pemotongan presisi kardus boks menggunakan pisau cutter dan gunting secara hati-hati.', img: 'assets/rak_03_potong.jpg' },
+        { step: 'Tahap 4 • Lem Tembak', title: 'Merekatkan Rangka dg Lem Tembak', desc: 'Menggunakan lem tembak panas untuk mengunci sambungan antar tingkat boks kardus secara kuat.', img: 'assets/rak_04_lem.jpg' },
+        { step: 'Tahap 5 • Struktur Kokoh', title: 'Rangka Tiga Tingkat Berdiri Sempurna', desc: 'Pemeriksaan kekuatan struktur rak buku tiga susun yang telah tersambung kokoh dan stabil.', img: 'assets/rak_05_tegak.jpg' },
+        { step: 'Tahap 6 • Kolaborasi Tim', title: 'Kerja Sama 5 Siswa Merapikan Detail', desc: 'Tim siswa bersama-sama merapikan tepi dan melapis bagian luar rak kardus.', img: 'assets/rak_06_kolaborasi.jpg' },
+        { step: 'Tahap 7 • Presentasi Tim', title: 'Foto Bersama 6 Siswa Pembuat Rak Kardus', desc: 'Enam siswa berpose gembira di selasar kelas di samping rak buku kardus tiga susun buatan mereka.', img: 'assets/rak_07_tim.jpg' }
+      ] },
       { id: 'p10', title: 'Tempat Pensil Anyaman', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Stik es krim bekas & pita kertas warna-warni', desc: 'Koleksi enam tempat pensil anyaman warna pastel yang rapi untuk menyimpan alat tulis di meja belajar.', img: 'assets/img_30.jpg' },
-      { id: 'p11', title: 'Tas Tutup Botol Lukis', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol plastik putih & cat akrilik', desc: 'Keranjang/tas mini dekoratif dari susunan tutup botol yang masing-masing dilukis tangan dengan motif bunga, matahari, dan alam.', img: 'assets/img_31.jpg' },
+      { id: 'p11', title: 'Tas Tutup Botol Lukis', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol plastik putih, cat akrilik, lem tembak', desc: 'Keranjang/tas mini dekoratif dari susunan tutup botol yang masing-masing dilukis tangan dengan motif bunga, matahari, dan alam.', img: 'assets/img_31.jpg', process: [
+        { step: 'Tahap 1 • Sortir Bahan', title: 'Menyiapkan & Menyortir Tutup Botol Putih', desc: 'Siswa mengumpulkan dan memilih puluhan tutup botol plastik putih bersih siap lukis.', img: 'assets/tas_01_sortir.jpg' },
+        { step: 'Tahap 2 • Warna Dasar', title: 'Melukis Warna Dasar Biru pada Tutup Botol', desc: 'Siswa mengecat dasar tutup botol menggunakan cat akrilik biru dengan kuas halus.', img: 'assets/tas_02_catdasar.jpg' },
+        { step: 'Tahap 3 • Lukis Motif', title: 'Melukis Aneka Motif Bunga & Alam', desc: 'Siswa berkreasi melukis motif bunga mawar, matahari, dan pepohonan di atas setiap tutup botol.', img: 'assets/tas_03_lukis.jpg' },
+        { step: 'Tahap 4 • Ragam Desain', title: 'Mengeringkan Puluhan Tutup Botol Bermotif', desc: 'Deretan tutup botol aneka motif warna-warni yang siap dirakit menjadi pola tas keranjang.', img: 'assets/tas_04_motif.jpg' },
+        { step: 'Tahap 5 • Pengeleman', title: 'Merekatkan Tutup Botol dg Lem Tembak', desc: 'Siswa merekatkan satu per satu tutup botol secara presisi membentuk dinding dan pegangan tas keranjang.', img: 'assets/tas_05_lem.jpg' },
+        { step: 'Tahap 6 • Presentasi', title: 'Siswa Memamerkan Hasil Jadi Tas Lukis', desc: 'Siswa tersenyum bangga memperlihatkan tas keranjang tutup botol lukis yang selesai dan kokoh.', img: 'assets/tas_06_tim.jpg' }
+      ] },
       { id: 'p12', title: 'Vas & Tempat Pensil Sedotan', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Sedotan plastik bekas & gelas plastik', desc: 'Set tempat pensil dan vas bunga mungil bertekstur garis dari susunan sedotan bekas lengkap dengan bunga sedotan merah muda.', img: 'assets/img_32.jpg' },
-      { id: 'p13', title: 'Kalender Tutup Botol', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol bekas, papan kardus, stik kayu', desc: 'Kalender dinding November 2026 bertanda logo SMPN 3 Tutuyan dan peringatan Hari Guru Nasional dengan angka tanggal dari tutup botol.', img: 'assets/img_33.jpg' },
+      { id: 'p13', title: 'Kalender Tutup Botol', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Tutup botol bekas, papan kardus, stik kayu', desc: 'Kalender dinding November 2024 bertanda logo SMPN 3 Tutuyan dan peringatan Hari Guru Nasional dengan angka tanggal dari tutup botol.', img: 'assets/img_33.jpg', process: [
+        { step: 'Tahap 1 • Cat Semprot', title: 'Mengecat Tutup Botol Angka di Halaman', desc: 'Siswa mengecat tutup botol plastik dengan cat semprot warna pastel untuk angka kalender.', img: 'assets/kalender_01_cat.jpg' },
+        { step: 'Tahap 2 • Keringkan', title: 'Menata & Mengeringkan Tutup Botol Angka', desc: 'Menjajarkan tutup botol berwarna di atas kertas agar cat kering sempurna di teras luar.', img: 'assets/kalender_02_jemur.jpg' },
+        { step: 'Tahap 3 • Susun Kalender', title: 'Menyusun Kalender November 2024 Bersama Guru', desc: 'Siswa bersama guru menata dan menempelkan tutup botol tanggal 1–30 pada papan kalender Hari Guru.', img: 'assets/kalender_03_susun.jpg' },
+        { step: 'Tahap 4 • Presentasi', title: 'Presentasi Kalender Tutup Botol & Kotak Tisu', desc: 'Dua siswa memamerkan karya Kalender November 2024 dan Kotak Tisu Hias Hari Guru.', img: 'assets/kalender_04_tim.jpg' }
+      ] },
       { id: 'p14', title: 'Vas & Lampu Botol Plastik', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Botol plastik bekas, cat warna, bohlam', desc: 'Satu set vas bunga putih dan empat kap lampu kelopak oranye yang seluruhnya diolah dari botol minuman plastik bekas.', img: 'assets/img_34.jpg' },
-      { id: 'p15', title: 'Hiasan Gantung Tutup Botol', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Tutup botol warna-warni & benang nilon', desc: 'Hiasan gantung bergerak warna-warni dari rangkaian tutup botol plastik bertuliskan Selamat Hari Guru Nasional.', img: 'assets/img_35.jpg' },
+      { id: 'p15', title: 'Hiasan Gantung Tutup Botol', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Tutup botol warna-warni & benang nilon', desc: 'Hiasan gantung bergerak warna-warni dari rangkaian tutup botol plastik bertuliskan Selamat Hari Guru Nasional.', img: 'assets/img_35.jpg', gallery: [
+        { img: 'assets/img_35.jpg', caption: 'Hasil Jadi Hiasan Gantung Tutup Botol' },
+        { img: 'assets/gantung_01_rangkai.jpg', caption: 'Siswa Merangkai Lingkaran Tutup Botol Warna-warni' },
+        { img: 'assets/kalender_04_tim.jpg', caption: 'Hiasan Gantung Dipamerkan di Dinding Ruang Kelas' }
+      ] },
       { id: 'p16', title: 'Tempat Lilin Kardus', category: 'lampu_vas', catLabel: 'Lampu & Vas', material: 'Kardus bekas, tutup botol, kertas warna', desc: 'Alas dan dudukan lilin berbentuk kelopak bunga merah-hijau cerah dari potongan kardus bekas.', img: 'assets/img_36.jpg' },
       { id: 'p17', title: 'Lilin Hias Daur Ulang', category: 'dekorasi', catLabel: 'Dekorasi & Dinding', material: 'Gulungan karton bekas & kertas metalik', desc: 'Dekorasi tiga lilin hias bertingkat warna putih, merah, dan hijau metalik untuk mempercantik meja pameran.', img: 'assets/img_37.jpg' },
-      { id: 'p18', title: 'Kotak Tisu Hias', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Wadah plastik bekas, cat perunggu metalik, hiasan bunga', desc: 'Tempat tisu meja bernuansa perunggu emas dengan aksen bunga putih-hijau dan ucapan Happy Teacher Day.', img: 'assets/img_38.jpg' }
+      { id: 'p18', title: 'Kotak Tisu Hias', category: 'fungsional', catLabel: 'Perlengkapan & Fungsional', material: 'Wadah plastik bekas, cat perunggu emas, hiasan bunga', desc: 'Tempat tisu meja bernuansa perunggu emas dengan aksen bunga putih-hijau dan ucapan Happy Teacher Day.', img: 'assets/img_38.jpg', gallery: [
+        { img: 'assets/img_38.jpg', caption: 'Hasil Jadi Kotak Tisu Hias Emas Happy Teacher Day' },
+        { img: 'assets/kalender_04_tim.jpg', caption: 'Siswa Memegang Kotak Tisu Hias Hasil Daur Ulang' },
+        { img: 'assets/kalender_05_tim2.jpg', caption: 'Detail Tampilan Kotak Tisu Bersama Tim Siswa' }
+      ] }
     ];
 
     const DOCS = [
-      { id: 'dj1', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 1', title: 'Diskusi & Perencanaan Kelompok', desc: 'Siswa berdiskusi melingkar merancang konsep Jam Dinding SABUMI.', img: 'assets/img_09.jpg' },
-      { id: 'dj2', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 2', title: 'Membuat Pola Lingkaran Kardus', desc: 'Menjiplak pola lingkaran besar pada kardus bekas sebagai rangka jam.', img: 'assets/img_10.jpg' },
-      { id: 'dj3', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 3', title: 'Menyiapkan & Memotong Kardus', desc: 'Kerja sama tim memotong lembaran kardus bekas di teras kelas.', img: 'assets/img_11.jpg' },
-      { id: 'dj4', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 4', title: 'Menggunting Lingkaran Rangka Jam', desc: 'Menggunting rapi pola lingkaran kardus sebagai badan utama jam.', img: 'assets/img_12.jpg' },
-      { id: 'dj5', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 5', title: 'Menggunting Bumi & Latar Biru', desc: 'Menggunting ilustrasi Bumi SABUMI dan menyiapkan kertas pelapis.', img: 'assets/img_13.jpg' },
-      { id: 'dj6', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 6', title: 'Memotong Pola Karton Biru Muda', desc: 'Memotong kertas biru muda mengikuti diameter lingkaran jam.', img: 'assets/img_14.jpg' },
-      { id: 'dj7', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 7', title: 'Merapikan Pelapis Permukaan Jam', desc: 'Detail pemotongan lingkaran biru muda untuk latar belakang angka.', img: 'assets/img_15.jpg' },
-      { id: 'dj8', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 8', title: 'Menata Tutup Botol Biru & Angka', desc: 'Menyusun 12 tutup botol biru dan potongan angka serta jarum jam.', img: 'assets/img_16.jpg' },
-      { id: 'dj9', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Tahap 9', title: 'Menempel Angka 1–12 & Rangka', desc: 'Menempelkan tutup botol angka 1–12 mengelilingi ilustrasi Bumi.', img: 'assets/img_17.jpg' },
-      { id: 'dj10', group: 'jam_sabumi', tag: 'Jam Dinding SABUMI • Selesai', title: 'Presentasi Jam Dinding SABUMI', desc: 'Anggota kelompok memamerkan hasil akhir Jam Dinding SABUMI.', img: 'assets/img_18.jpg' },
-      { id: 'd1', group: 'lainnya', tag: 'Kerajinan Batok Kelapa', title: 'Presentasi Kerajinan Batok Kelapa', desc: 'Siswa menunjukkan hasil kerajinan tempurung kelapa yang telah dirakit.', img: 'assets/img_39.jpg' },
-      { id: 'd3', group: 'lainnya', tag: 'Lampu & Vas Sendok', title: 'Memotong Sendok & Botol Plastik', desc: 'Siswa menyiapkan kelopak dari sendok plastik bekas secara berkelompok.', img: 'assets/img_26.jpg' },
-      { id: 'd4', group: 'lainnya', tag: 'Tas Tutup Botol', title: 'Melukis Tutup Botol Bekas', desc: 'Pengecatan motif bunga dan alam pada tutup botol menggunakan cat akrilik.', img: 'assets/img_40.jpg' },
-      { id: 'd5', group: 'lainnya', tag: 'Rak Kardus', title: 'Merakit Rak Kardus Tiga Susun', desc: 'Siswa menyusun struktur kardus tebal untuk dijadikan rak penyimpanan.', img: 'assets/img_41.jpg' },
-      { id: 'd6', group: 'lainnya', tag: 'Hiasan Gantung', title: 'Merangkai Tutup Botol Warna-Warni', desc: 'Kerja sama merangkai tutup botol untuk hiasan gantung dan tatakan.', img: 'assets/img_42.jpg' },
-      { id: 'd7', group: 'lainnya', tag: 'Toples Kaleng', title: 'Mengolah Kaleng Susu Bekas', desc: 'Persiapan pengecatan kaleng susu bekas menjadi toples dapur minimalis.', img: 'assets/img_43.jpg' },
-      { id: 'd8', group: 'lainnya', tag: 'Hiasan Dinding', title: 'Hasil Hiasan Dinding & Bingkai', desc: 'Siswa menampilkan karya bunga gelas plastik dan bingkai rumah.', img: 'assets/img_44.jpg' },
-      { id: 'd9', group: 'lainnya', tag: 'Persiapan Bahan', title: 'Menjemur Gelas Plastik Bekas', desc: 'Tahap pencucian dan pengeringan gelas plastik sebelum diolah menjadi karya.', img: 'assets/img_07.jpg' },
-      { id: 'd10', group: 'lainnya', tag: 'Tempat Pensil', title: 'Menganyam Tempat Pensil', desc: 'Proses penganyaman stik dan pita warna untuk tempat pensil meja.', img: 'assets/img_45.jpg' },
-      { id: 'd11', title: 'Menyiapkan Bahan Vas Sendok Plastik', desc: 'Tim siswa mengumpulkan sendok plastik putih, cat, dan potongan botol plastik sebagai rangka vas.', img: 'assets/img_25.jpg' },
-      { id: 'd12', title: 'Merekatkan Kelopak Vas Sendok Plastik', desc: 'Siswa menempelkan kelopak sendok plastik satu per satu secara presisi dengan lem tembak.', img: 'assets/img_27.jpg' },
-      { id: 'd13', title: 'Tim Karya Vas Bunga Sendok Plastik', desc: 'Foto bersama lima siswa pembuat Vas Bunga Sendok Plastik sambil menampilkan hasil karyanya.', img: 'assets/img_28.jpg' }
+      // Jam Dinding SABUMI (10 foto proses)
+      { id: 'dj1', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 1', title: 'Diskusi & Perencanaan Kelompok', desc: 'Enam siswa berdiskusi melingkar di halaman sekolah untuk merancang konsep Jam Dinding SABUMI.', img: 'assets/img_09.jpg' },
+      { id: 'dj2', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 2', title: 'Membuat Pola Lingkaran Kardus', desc: 'Menjiplak pola lingkaran besar pada kardus bekas sebagai rangka dasar jam dinding.', img: 'assets/img_10.jpg' },
+      { id: 'dj3', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 3', title: 'Menyiapkan & Memotong Kardus NutriSari', desc: 'Kerja sama tim memotong lembaran kardus bekas di teras kelas agar siap dibentuk.', img: 'assets/img_11.jpg' },
+      { id: 'dj4', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 4', title: 'Menggunting Lingkaran Rangka Jam', desc: 'Menggunting rapi pola lingkaran kardus sebagai badan utama jam dinding.', img: 'assets/img_12.jpg' },
+      { id: 'dj5', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 5', title: 'Menggunting Ilustrasi Bumi & Latar', desc: 'Menggunting ilustrasi Bumi tersenyum dan menyiapkan kertas karton pelapis.', img: 'assets/img_13.jpg' },
+      { id: 'dj6', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 6', title: 'Memotong Pola Karton Biru Muda', desc: 'Memotong kertas biru muda mengikuti diameter lingkaran rangka jam.', img: 'assets/img_14.jpg' },
+      { id: 'dj7', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 7', title: 'Merapikan Pelapis Permukaan Jam', desc: 'Detail pemotongan lingkaran biru muda untuk latar belakang angka tutup botol.', img: 'assets/img_15.jpg' },
+      { id: 'dj8', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 8', title: 'Menata Tutup Botol Biru & Angka', desc: 'Menyusun 12 tutup botol biru dan potongan angka serta jarum jam.', img: 'assets/img_16.jpg' },
+      { id: 'dj9', group: 'jam_sabumi', tag: 'Jam SABUMI • Tahap 9', title: 'Menempel Angka 1–12 & Rangka', desc: 'Menempelkan tutup botol angka 1–12 mengelilingi ilustrasi Bumi.', img: 'assets/img_17.jpg' },
+      { id: 'dj10', group: 'jam_sabumi', tag: 'Jam SABUMI • Selesai', title: 'Presentasi Tim Jam Dinding SABUMI', desc: 'Anggota kelompok memamerkan hasil akhir Jam Dinding SABUMI lengkap ornamen 3R.', img: 'assets/img_18.jpg' },
+
+      // Aksi Bersih & Gelas Plastik (8 foto)
+      { id: 'dg1', group: 'gelas', tag: 'Aksi Bersih • Pungut', title: 'Aksi Bersih Sampah di Halaman', desc: 'Siswa memungut gelas minuman plastik yang berserakan di halaman sekolah.', img: 'assets/gelas_01_pungut.jpg' },
+      { id: 'dg2', group: 'gelas', tag: 'Aksi Bersih • Kebun', title: 'Membersihkan Semak & Kebun Belakang', desc: 'Siswa bergotong royong mengambil sampah botol dan gelas plastik di kebun belakang.', img: 'assets/gelas_02_kebun.jpg' },
+      { id: 'dg3', group: 'gelas', tag: 'Aksi Bersih • Kumpul', title: 'Mengumpulkan Tumpukan Gelas Bekas', desc: 'Puluhan gelas plastik dikumpulkan untuk dicuci dan disortir.', img: 'assets/gelas_03_kumpul.jpg' },
+      { id: 'dg4', group: 'gelas', tag: 'Gelas Plastik • Cuci', title: 'Mencuci Bersih Gelas di Ember Air', desc: 'Pembersihan sisa minuman pada gelas menggunakan air bersih di ember.', img: 'assets/gelas_04_cuci.jpg' },
+      { id: 'dg5', group: 'gelas', tag: 'Gelas Plastik • Jemur', title: 'Menjemur Gelas di Terik Matahari', desc: 'Ratusan gelas plastik ditata rapi di selasar agar kering sempurna sebelum diolah.', img: 'assets/gelas_05_jemur.jpg' },
+      { id: 'dg6', group: 'gelas', tag: 'Gelas Plastik • Gunting', title: 'Menggunting Kelopak Bunga di Selasar', desc: 'Siswa memotong badan gelas plastik menjadi kelopak melingkar.', img: 'assets/gelas_06_gunting.jpg' },
+      { id: 'dg7', group: 'gelas', tag: 'Gelas Plastik • Rangkai', title: 'Merangkai Kelopak Bunga Dekoratif', desc: 'Penyusunan kelopak bunga dengan inti tutup botol warna-warni.', img: 'assets/gelas_07_rangkai.jpg' },
+      { id: 'dg8', group: 'gelas', tag: 'Hiasan Dinding • Tim', title: 'Presentasi Tim Bunga Gelas & Bingkai', desc: 'Empat siswa memamerkan karya hiasan dinding bunga dan bingkai foto rumah stik es krim.', img: 'assets/gelas_08_tim.jpg' },
+
+      // Toples Kaleng Morigro (5 foto)
+      { id: 'dk1', group: 'kaleng', tag: 'Toples Kaleng • Siap', title: 'Menyiapkan Kaleng Susu Morigro', desc: 'Persiapan kaleng susu bubuk bekas dan cat semprot aerosol di kelas.', img: 'assets/kaleng_01_siap.jpg' },
+      { id: 'dk2', group: 'kaleng', tag: 'Toples Kaleng • Cat Semprot', title: 'Pengecatan Kaleng di Halaman', desc: 'Penyemprotan cat aerosol putih pada kaleng susu di ruang terbuka.', img: 'assets/kaleng_02_cat.jpg' },
+      { id: 'dk3', group: 'kaleng', tag: 'Toples Kaleng • Finishing', title: 'Pelapisan Cat Aerosol Putih Merata', desc: 'Siswa memastikan seluruh permukaan bodi kaleng terlapisi cat putih mulus.', img: 'assets/kaleng_03_semprot.jpg' },
+      { id: 'dk4', group: 'kaleng', tag: 'Toples Kaleng • Label', title: 'Pemasangan Label Bersama Guru', desc: 'Siswa bersama guru menempelkan label minimalis Coffee & Sugar pada kaleng.', img: 'assets/kaleng_04_label.jpg' },
+      { id: 'dk5', group: 'kaleng', tag: 'Toples Kaleng • Tim', title: 'Presentasi Tim Toples Coffee & Sugar', desc: 'Tiga siswa memamerkan sepasang toples dapur daur ulang yang tampil modern.', img: 'assets/kaleng_05_tim.jpg' },
+
+      // Rak Kardus Tiga Susun (7 foto)
+      { id: 'dr1', group: 'kardus', tag: 'Rak Kardus • Rencana', title: 'Menyusun Boks Kardus SIDU di Selasar', desc: 'Siswa merencanakan penataan tiga boks kardus kertas SIDU F4 di teras kelas.', img: 'assets/rak_01_rencana.jpg' },
+      { id: 'dr2', group: 'kardus', tag: 'Rak Kardus • Ukur', title: 'Mengukur Pembatas Sisi Rak', desc: 'Siswa mengukur lembaran kardus untuk memperkuat dinding rak buku.', img: 'assets/rak_02_ukur.jpg' },
+      { id: 'dr3', group: 'kardus', tag: 'Rak Kardus • Potong', title: 'Memotong Lembaran Kardus Tebal', desc: 'Pemotongan presisi kardus boks menggunakan pisau dan penggaris.', img: 'assets/rak_03_potong.jpg' },
+      { id: 'dr4', group: 'kardus', tag: 'Rak Kardus • Lem', title: 'Merekatkan Rangka dg Lem Tembak', desc: 'Siswa menggunakan lem tembak untuk menyatukan rangka susun rak.', img: 'assets/rak_04_lem.jpg' },
+      { id: 'dr5', group: 'kardus', tag: 'Rak Kardus • Struktur', title: 'Rangka Tiga Tingkat Berdiri Kokoh', desc: 'Struktur tiga susun rak buku kardus telah terpasang stabil.', img: 'assets/rak_05_tegak.jpg' },
+      { id: 'dr6', group: 'kardus', tag: 'Rak Kardus • Kolaborasi', title: 'Kerja Sama 5 Siswa Merapikan Rak', desc: 'Kolaborasi siswa merapikan sudut dan sambungan rak kardus.', img: 'assets/rak_06_kolaborasi.jpg' },
+      { id: 'dr7', group: 'kardus', tag: 'Rak Kardus • Tim', title: 'Foto Bersama Tim Pembuat Rak Kardus', desc: 'Enam siswa tersenyum ceria bersama rak buku kardus tiga susun karya mereka.', img: 'assets/rak_07_tim.jpg' },
+
+      // Tas & Tutup Botol Lukis (6 foto)
+      { id: 'dt1', group: 'tutup', tag: 'Tas Tutup Botol • Sortir', title: 'Menyortir Tutup Botol Putih Bersih', desc: 'Siswa memilih tutup botol plastik putih dengan permukaan rata untuk dilukis.', img: 'assets/tas_01_sortir.jpg' },
+      { id: 'dt2', group: 'tutup', tag: 'Tas Tutup Botol • Cat Dasar', title: 'Melukis Warna Dasar Biru', desc: 'Pengecatan warna dasar biru cerah pada tutup botol menggunakan cat akrilik.', img: 'assets/tas_02_catdasar.jpg' },
+      { id: 'dt3', group: 'tutup', tag: 'Tas Tutup Botol • Lukis', title: 'Melukis Detail Motif Bunga & Alam', desc: 'Siswa melukis gambar bunga, daun, dan matahari menggunakan kuas halus.', img: 'assets/tas_03_lukis.jpg' },
+      { id: 'dt4', group: 'tutup', tag: 'Tas Tutup Botol • Ragam', title: 'Koleksi Puluhan Motif Tutup Botol', desc: 'Deretan tutup botol lukis beraneka warna yang telah selesai dihias.', img: 'assets/tas_04_motif.jpg' },
+      { id: 'dt5', group: 'tutup', tag: 'Tas Tutup Botol • Lem', title: 'Merekatkan Tutup Botol Jadi Keranjang', desc: 'Siswa menyusun dan merekatkan tutup botol menggunakan lem tembak menjadi tas.', img: 'assets/tas_05_lem.jpg' },
+      { id: 'dt6', group: 'tutup', tag: 'Tas Tutup Botol • Tim', title: 'Presentasi Hasil Jadi Tas Lukis', desc: 'Siswa memamerkan tas keranjang tutup botol lukis dengan motif artistik.', img: 'assets/tas_06_tim.jpg' },
+
+      // Kalender 2024, Kotak Tisu & Hiasan Gantung (5 foto)
+      { id: 'dh1', group: 'tutup', tag: 'Kalender 2024 • Cat', title: 'Cat Semprot Tutup Botol Kalender', desc: 'Siswa menyemprot tutup botol plastik dengan warna-warni cerah di halaman.', img: 'assets/kalender_01_cat.jpg' },
+      { id: 'dh2', group: 'tutup', tag: 'Kalender 2024 • Kering', title: 'Mengeringkan Tutup Botol Kalender', desc: 'Tutup botol yang telah dicat ditata rapi di selasar agar cepat kering.', img: 'assets/kalender_02_jemur.jpg' },
+      { id: 'dh3', group: 'tutup', tag: 'Kalender 2024 • Susun', title: 'Menyusun Kalender November Bersama Guru', desc: 'Siswa bersama guru menempelkan angka tutup botol pada papan kalender November 2024.', img: 'assets/kalender_03_susun.jpg' },
+      { id: 'dh4', group: 'tutup', tag: 'Hiasan Gantung • Rangkai', title: 'Merangkai Lingkaran Hiasan Gantung', desc: 'Siswa merangkai tutup botol melingkar dengan benang untuk gantungan putar.', img: 'assets/gantung_01_rangkai.jpg' },
+      { id: 'dh5', group: 'tutup', tag: 'Hari Guru • Presentasi', title: 'Presentasi Kalender, Kotak Tisu & Hiasan', desc: 'Dua siswa berpose dengan Kalender November 2024, Kotak Tisu Emas, dan Hiasan Gantung Hari Guru.', img: 'assets/kalender_04_tim.jpg' },
+
+      // Vas Bunga Sendok Plastik (4 foto)
+      { id: 'ds1', group: 'sendok', tag: 'Vas Sendok • Siap', title: 'Menyiapkan Sendok & Botol Plastik', desc: 'Tim siswa mengumpulkan sendok plastik putih, cat, dan botol plastik sebagai rangka vas.', img: 'assets/img_25.jpg' },
+      { id: 'ds2', group: 'sendok', tag: 'Vas Sendok • Potong', title: 'Memotong Kelopak Sendok Plastik', desc: 'Siswa memotong tangkai sendok dan mengambil bagian kepala sendok secara simetris.', img: 'assets/img_26.jpg' },
+      { id: 'ds3', group: 'sendok', tag: 'Vas Sendok • Lem', title: 'Merekatkan Kelopak dg Lem Tembak', desc: 'Siswa menempelkan kelopak sendok plastik lapis demi lapis mengelilingi botol.', img: 'assets/img_27.jpg' },
+      { id: 'ds4', group: 'sendok', tag: 'Vas Sendok • Tim', title: 'Foto Bersama Tim Vas Bunga Sendok', desc: 'Lima siswa pembuat Vas Bunga Sendok Plastik memamerkan hasil karyanya.', img: 'assets/img_28.jpg' },
+
+      // Kerajinan Batok & Anyaman (2 foto)
+      { id: 'do1', group: 'lainnya', tag: 'Kerajinan Batok Kelapa', title: 'Presentasi Kerajinan Batok Kelapa', desc: 'Siswa menunjukkan hasil kerajinan tempurung kelapa yang telah dirakit rapi.', img: 'assets/img_39.jpg' },
+      { id: 'do2', group: 'lainnya', tag: 'Tempat Pensil Anyaman', title: 'Menganyam Tempat Pensil Meja', desc: 'Proses penganyaman stik dan pita warna untuk tempat pensil meja siswa.', img: 'assets/img_45.jpg' }
     ];
 
     const TRANSFORMATIONS = {
       botol: {
-        before: 'assets/img_07.jpg',
-        after: 'assets/img_06.jpg',
-        action: 'Cuci • Ukir • Rangkai',
-        title: 'Botol & Gelas Plastik → Lampu Hias & Bunga Dekoratif',
-        desc: 'Botol dan gelas minuman bekas dicuci, dijemur di bawah matahari, lalu dibentuk menjadi kelopak bunga lampu gantung yang hangat dan hiasan dinding.'
+        before: 'assets/gelas_01_pungut.jpg',
+        after: 'assets/gelas_08_tim.jpg',
+        action: 'Pungut • Cuci • Gunting • Rangkai',
+        title: 'Sampah Gelas Minuman → Bunga Hias Dinding & Pigura Rumah',
+        desc: 'Siswa memungut ratusan sampah gelas plastik Ale-Ale dari halaman dan kebun sekolah, mencuci dan menjemurnya, lalu mengguntingnya menjadi kelopak bunga dinding nan mempesona.'
       },
       sendok: {
         before: 'assets/img_26.jpg',
-        after: 'assets/img_21.jpg',
+        after: 'assets/img_24.jpg',
         action: 'Potong • Susun • Warnai',
         title: 'Sendok Plastik Bekas → Lampu Nanas & Vas Elegan',
         desc: 'Kepala sendok plastik dipotong rapi dan disusun berlapis membentuk lampu meja kelopak putih, lampu nanas kuning, hingga vas bunga estetik.'
       },
       tutup: {
-        before: 'assets/img_40.jpg',
-        after: 'assets/img_05.jpg',
+        before: 'assets/tas_03_lukis.jpg',
+        after: 'assets/tas_06_tim.jpg',
         action: 'Lukis • Tata • Rakit',
-        title: 'Tutup Botol & Kardus → Jam SABUMI, Kalender & Rak',
-        desc: 'Tutup botol dilukis warna-warni dan dipadukan dengan kardus tebal menjadi Jam Dinding SABUMI, Kalender November 2026, Tas Lukis, dan Rak Tiga Susun.'
+        title: 'Tutup Botol Bekas → Jam SABUMI, Tas Lukis & Kalender 2024',
+        desc: 'Tutup botol plastik dilukis tangan motif bunga dan alam, lalu dirakit dengan lem tembak menjadi Jam Dinding SABUMI, Tas Lukis Etnik, hingga Kalender Edukatif.'
       },
       alam: {
-        before: 'assets/img_43.jpg',
-        after: 'assets/img_23.jpg',
-        action: 'Haluskan • Cat • Hias',
-        title: 'Kaleng Susu & Batok Kelapa → Toples Minimalis & Hiasan Meja',
-        desc: 'Kaleng susu bekas disulap menjadi toples dapur minimalis putih-emas, sedangkan tempurung kelapa dihaluskan menjadi bunga hias meja bernuansa alami.'
+        before: 'assets/kaleng_01_siap.jpg',
+        after: 'assets/kaleng_05_tim.jpg',
+        action: 'Bersih • Cat Semprot • Label',
+        title: 'Kaleng Susu Morigro → Toples Dapur "Coffee & Sugar"',
+        desc: 'Kaleng susu formula bekas dibersihkan, dicat semprot putih bersih di halaman, dan dipasang label minimalis bersama guru menjadi toples dapur modern.'
       }
     };
 
@@ -1107,7 +1194,7 @@
         <div class="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
           <img src="${item.img}" alt="${item.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
           <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#072236]/90 text-white text-[11px] font-bold border border-[#F5A623]/80">${item.catLabel}</span>
-          ${item.process && item.process.length ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#197A54]/95 text-white text-[10px] font-extrabold shadow">${item.process.length} Foto Proses</span>` : ''}
+          ${item.process && item.process.length ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#197A54]/95 text-white text-[10px] font-extrabold shadow">${item.process.length} Foto Proses</span>` : (item.gallery && item.gallery.length > 1 ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#0E4F6E]/95 text-white text-[10px] font-extrabold shadow">${item.gallery.length} Dokumentasi</span>` : '')}
           ${likes > 0 ? `<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#F5A623] text-[#061D30] text-[11px] font-black">★ ${likes}</span>` : ''}
         </div>
         <div class="p-4 flex-1 flex flex-col">
@@ -1341,10 +1428,10 @@
     });
 
     document.getElementById('heroFeatureBtn').addEventListener('click', () => {
-      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc, process: x.process || null })), 0);
+      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc, gallery: x.gallery || null, process: x.process || null })), 0);
     });
     document.getElementById('heroLampBtn').addEventListener('click', () => {
-      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc })), 5);
+      openLightbox(PRODUCTS.map(x => ({ id: x.id, img: x.img, badge: x.catLabel, title: x.title, material: 'Bahan daur ulang: ' + x.material, desc: x.desc, gallery: x.gallery || null, process: x.process || null })), 5);
     });
 
     document.getElementById('modalCloseBtn').addEventListener('click', closeLightbox);
