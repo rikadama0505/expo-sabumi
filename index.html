@@ -908,7 +908,7 @@
               <div>
                 <div class="flex items-center gap-2 flex-wrap">
                   <h4 class="text-base font-black text-[#0B3B5B]">Pohon Komitmen SABUMI</h4>
-                  <span id="treeLevelBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider">Pohon Rindang Lestari</span>
+                  <span id="treeLevelBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider">🌱 Siap Bersemi</span>
                 </div>
                 <p class="text-xs text-slate-500 mt-0.5">
                   <span id="treeLeafCount" class="font-extrabold text-[#197A54]">0</span> helai daun komitmen tertanam mekar di dahan
@@ -2475,157 +2475,25 @@
     // ==========================================
     // POHON KOMITMEN & APRESIASI PENGUNJUNG SABUMI
     // ==========================================
-    const DEFAULT_GUEST_VOICES = [
-      {
-        id: 'v_init_1',
-        author: 'Fadlan Mokodompit',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas IX-A • Ketua Tim Jam SABUMI 3R',
-        commitment: '🥤 Bawa Botol Minum / Tumbler Sendiri',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Waktu aksi tanggal 10 November, kami berenam memungut 12 tutup botol NutriSari dan kardus bekas di halaman sekolah. Sempat ragu apa bisa jadi jam beneran, tapi setelah dipandu Bu Rahma dan Bu Kepsek Amelia, Jam Dinding SABUMI 3R sekarang benar-benar berdetak di kelas! Saya berjanji tidak akan pernah buang botol plastik sembarangan lagi di pantai Tutuyan dan selalu bawa tumbler sendiri ke sekolah.',
-        time: 'Hari ke-1 Expo • 08:45 WITA',
-        likes: 28
-      },
-      {
-        id: 'v_init_2',
-        author: 'Meisya Putri Damopolii',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VIII-B • Tim Keranjang Tutup Botol Lukis',
-        commitment: '🛍️ Bawa Tas Belanja Ramah Lingkungan',
-        stamp: '💡 Inovasi Karya Kreatif',
-        message: 'Melukis 60 tutup botol putih satu per satu dengan motif bunga matahari pakai cat akrilik dan kuas kecil butuh kesabaran luar biasa. Pas dirangkai dengan lem tembak jadi tas etnik, rasanya puas sekali melihat pengunjung stand memuji karya kami. Komitmen nyata saya: setiap ikut mama belanja ke pasar Tutuyan, saya selalu bawa tas kain sendiri.',
-        time: 'Hari ke-1 Expo • 09:30 WITA',
-        likes: 34
-      },
-      {
-        id: 'v_init_3',
-        author: 'Moh. Al-Fath Paputungan',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VIII-A • Tim Rak Buku Kardus SIDU',
-        commitment: '♻️ Daur Ulang Kreatif Barang Bekas',
-        stamp: '👏 Bangga & Luar Biasa',
-        message: 'Dulu boks kardus kertas SIDU F4 di ruang guru cuma ditumpuk dan biasanya dibakar. Kami ukur presisi, lapis pembatas tiga tingkat, dan rekatkan dengan lem tembak sampai kokoh menampung puluhan buku bacaan di selasar. Ternyata sampah di sekitar kita bisa bernilai guna tinggi kalau kita mau berkolaborasi!',
-        time: 'Hari ke-1 Expo • 10:15 WITA',
-        likes: 22
-      },
-      {
-        id: 'v_init_4',
-        author: 'Novita Mamonto',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VII-A • Tim Bunga Gelas & Sendok Nanas',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Sebagai murid baru kelas 7, saya senang sekali diajak gotong royong mencuci ratusan gelas minuman bekas di ember dan mengguntingnya jadi kelopak bunga dekorasi. Aksi ini bikin sekolah kami bersih dan kami jadi kompak satu sama lain. Komitmen saya: mulai pilah sampah plastik dan daun kering di halaman rumah.',
-        time: 'Hari ke-1 Expo • 11:20 WITA',
-        likes: 19
-      },
-      {
-        id: 'v_init_5',
-        author: 'Ibu Rahmawati, S.Pd.',
-        role: 'guru',
-        roleLabel: '👩‍🏫 Guru / Pendidik',
-        origin: 'Guru Pembina Lingkungan Hidup & Kokurikuler SMPN 3 Tutuyan',
-        commitment: '♻️ Daur Ulang Kreatif Barang Bekas',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Melihat antusiasme anak-anak mencuci gelas bekas, menjemur di terik matahari, hingga dengan telaten menyemprot kaleng susu Morigro menjadi toples dapur berlabel Coffee & Sugar adalah bukti nyata student agency. Anak-anak tidak sekadar menghafal teori daur ulang, tapi mengalami langsung perubahan pola pikir peduli bumi.',
-        time: 'Hari ke-1 Expo • 08:30 WITA',
-        likes: 42
-      },
-      {
-        id: 'v_init_6',
-        author: 'Bpk. Hendra Mokoginta, S.Pd.',
-        role: 'guru',
-        roleLabel: '👩‍🏫 Guru / Pendidik',
-        origin: 'Guru Pembina Prakarya & Seni Budaya SMPN 3 Tutuyan',
-        commitment: '💡 Hemat Energi & Kurangi Emisi',
-        stamp: '💡 Inovasi Karya Kreatif',
-        message: 'Kombinasi limbah botol plastik dengan sistem penerangan LED hemat energi pada Lampu Hias Meja dan Lentera Gantung membuktikan anak-anak pesisir Tutuyan mampu menciptakan produk bernilai kriya tinggi. Komitmen dewan guru: menjadikan SABUMI sebagai kurikulum kokurikuler tahunan yang berkelanjutan.',
-        time: 'Hari ke-1 Expo • 10:40 WITA',
-        likes: 27
-      },
-      {
-        id: 'v_init_7',
-        author: 'Dra. Hj. Farida Mokodongan, M.Pd.',
-        role: 'juri',
-        roleLabel: '⚖️ Dewan Juri Expo',
-        origin: 'Koordinator Tim Penilai Juri Expo • Pengawas Dikbud Boltim',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '🏆 Stand Juara Boltim',
-        message: 'Stand SABUMI SMPN 3 Tutuyan ini tampil sangat memukau dan melampaui ekspektasi dewan juri. Integrasi 3 tahap Memahami-Mengaplikasi-Merefleksi berjalan konsisten, 19 karya kriya memiliki fungsi guna riil, dan portofolio digital berbasis web QR mandiri ini memenuhi seluruh poin Juknis Bab 5 & 13. Ini contoh sekolah pedesaan yang sukses bertransformasi.',
-        time: 'Hari ke-1 Expo • 11:45 WITA',
-        likes: 56
-      },
-      {
-        id: 'v_init_8',
-        author: 'Drs. Subhan Mamonto',
-        role: 'juri',
-        roleLabel: '⚖️ Dewan Juri Expo',
-        origin: 'Penilai Juri Standar Inovasi Lingkungan Hidup Boltim',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Presentasi 3 menit siswa pemandu stand berlangsung lancar, artikulatif, dan percaya diri saat menjelaskan proses kaleng Morigro dan jam tutup botol. Tidak ada unsur kepura-puraan—semua didukung 47 foto kronologis nyata. Sangat layak menjadi tolok ukur bagi sekolah lain di Bolaang Mongondow Timur.',
-        time: 'Hari ke-1 Expo • 13:10 WITA',
-        likes: 38
-      },
-      {
-        id: 'v_init_9',
-        author: 'Ibu Sitti Nurjana Potabuga',
-        role: 'masyarakat',
-        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
-        origin: 'Orang Tua Murid Kelas VIII • Warga Tombolikat Tutuyan',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '👏 Bangga & Luar Biasa',
-        message: 'Awalnya saya sempat heran melihat anak saya pulang sekolah rajin mengumpulkan botol dan sendok plastik bekas tetangga. Begitu saya datang ke stand pameran ini dan melihat vas sendok putih nanas serta lentera hiasnya menyala terang, dada saya bergetar bangga. Sekarang seluruh keluarga kami di Tombolikat sepakat memilah sampah plastik dari dapur.',
-        time: 'Hari ke-1 Expo • 14:05 WITA',
-        likes: 31
-      },
-      {
-        id: 'v_init_10',
-        author: 'Bapak Rusdi Mamonto',
-        role: 'masyarakat',
-        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
-        origin: 'Ketua Komite Sekolah & Tokoh Masyarakat Tutuyan',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Sebagai tokoh masyarakat Tutuyan dan komite sekolah, saya menyaksikan langsung bagaimana program SABUMI ini merubah perilaku anak-anak kami. Halaman sekolah kini bersih, bibir pantai Tutuyan ikut terpelihara, dan anak-anak belajar kemandirian vokasional. Komite sekolah siap mendukung penuh keberlanjutan program ini ke depan.',
-        time: 'Hari ke-1 Expo • 14:50 WITA',
-        likes: 36
-      },
-      {
-        id: 'v_init_11',
-        author: 'Ardiansyah Manoppo, S.T.',
-        role: 'umum',
-        roleLabel: '🌟 Pengunjung Umum',
-        origin: 'Alumni SMPN 3 Tutuyan • Pegiat Komunitas Peduli Laut Boltim',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Bangga luar biasa sebagai alumni melihat kemajuan almamater tercinta SMPN 3 Tutuyan. Dari zaman saya dulu sampah belum terkelola, kini adik-adik mampu mengubahnya jadi 19 produk bernilai ekonomi dan dipamerkan lewat platform web interaktif sekelas ini. Komitmen saya: ikut mengajak pemuda Tutuyan rutin aksi bersih pantai setiap akhir pekan.',
-        time: 'Hari ke-1 Expo • 15:30 WITA',
-        likes: 29
-      }
-    ];
+    const DEFAULT_GUEST_VOICES = [];
 
-    const GUEST_VOICE_STORAGE_KEY = 'sabumi_guest_voices_v3';
+    const GUEST_VOICE_STORAGE_KEY = 'sabumi_guest_voices_v4';
 
     function loadGuestVoices() {
       try {
         const stored = localStorage.getItem(GUEST_VOICE_STORAGE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
+          if (Array.isArray(parsed)) {
             return parsed;
           }
         }
-        // Bersihkan data template dummy lama jika masih tersimpan di browser
+        // Bersihkan data lama jika masih tersimpan di browser
         localStorage.removeItem('sabumi_guest_voices');
         localStorage.removeItem('sabumi_guest_voices_v2');
+        localStorage.removeItem('sabumi_guest_voices_v3');
       } catch (e) {}
-      return [...DEFAULT_GUEST_VOICES];
+      return [];
     }
 
     function saveGuestVoices(list) {
@@ -2735,7 +2603,10 @@
       const total = guestVoices.length;
       if (treeLeafCountEl) treeLeafCountEl.textContent = total;
       if (treeLevelBadgeEl) {
-        if (total < 5) {
+        if (total === 0) {
+          treeLevelBadgeEl.textContent = '🌱 Siap Bersemi';
+          treeLevelBadgeEl.className = 'px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider';
+        } else if (total < 5) {
           treeLevelBadgeEl.textContent = '🌱 Tunas Muda Bersemi';
           treeLevelBadgeEl.className = 'px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider';
         } else if (total < 10) {
@@ -2853,11 +2724,12 @@
       if (treeLeavesWrap) {
         treeLeavesWrap.innerHTML = '';
         if (filtered.length === 0) {
+          const isCategoryFilter = currentVoiceFilter !== 'all';
           treeLeavesWrap.innerHTML = `
             <div class="text-center py-10 px-4 bg-white/5 rounded-3xl border border-dashed border-emerald-400/20 max-w-sm">
               <span class="text-3xl block mb-2">🍃</span>
-              <p class="text-sm font-bold text-emerald-200">Belum ada daun untuk kategori ini.</p>
-              <p class="text-xs text-emerald-300/70 mt-1">Gunakan formulir di atas untuk menanam daun komitmen baru!</p>
+              <p class="text-sm font-bold text-emerald-200">${isCategoryFilter ? 'Belum ada daun untuk kategori ini.' : 'Pohon komitmen siap bersemi!'}</p>
+              <p class="text-xs text-emerald-300/70 mt-1">Gunakan formulir di atas untuk menanam daun komitmen nyata Anda untuk bumi.</p>
             </div>
           `;
         } else {
