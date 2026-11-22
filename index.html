@@ -228,12 +228,12 @@
 
     <div class="relative z-10 max-w-2xl w-full flex flex-col items-center">
       <!-- 4 Official Logos Pill -->
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 bg-white/95 rounded-full px-5 py-2 shadow-xl mb-7">
-        <img src="assets/img_01.png" alt="Kabupaten Bolaang Mongondow Timur" class="h-8 sm:h-9 w-auto object-contain" />
-        <img src="assets/img_02.jpg" alt="SMP Negeri 3 Tutuyan" class="h-8 sm:h-9 w-auto object-contain rounded" />
-        <span class="h-6 w-px bg-slate-200 hidden sm:inline-block"></span>
-        <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-5 sm:h-6 w-auto object-contain" />
-        <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-5 sm:h-6 w-auto object-contain" />
+      <div class="flex items-center justify-center gap-2 sm:gap-4 bg-white/95 rounded-2xl sm:rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2 shadow-xl mb-7 max-w-full overflow-x-auto no-scrollbar">
+        <img src="assets/img_01.png" alt="Kabupaten Bolaang Mongondow Timur" class="h-7 sm:h-9 w-auto object-contain shrink-0" />
+        <img src="assets/img_02.jpg" alt="SMP Negeri 3 Tutuyan" class="h-7 sm:h-9 w-auto object-contain rounded shrink-0" />
+        <span class="h-5 sm:h-6 w-px bg-slate-200 hidden sm:inline-block"></span>
+        <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-5 sm:h-6 w-auto object-contain shrink-0" />
+        <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-5 sm:h-6 w-auto object-contain shrink-0" />
       </div>
 
       <!-- Glowing Earth Emblem -->
@@ -341,13 +341,20 @@
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1 shadow-lg">
       <a href="#beranda" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Beranda</a>
       <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil Bumi</a>
       <a href="#karya" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
       <a href="#dokumentasi" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
       <a href="#sambutan" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Kepala Sekolah</a>
-      <div class="pt-2 border-t border-slate-100">
+      <div class="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
+        <button id="mobileReplayIntroBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#197A54] bg-emerald-50/70 hover:bg-emerald-100 transition">
+          <span class="flex items-center gap-2">
+            <span>🌍</span>
+            <span>Putar Ulang Intro Expo</span>
+          </span>
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-200">Intro</span>
+        </button>
         <button id="mobileMusicToggleBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80 hover:bg-emerald-100 transition">
           <span class="flex items-center gap-2">
             <span>🎵</span>
@@ -396,25 +403,25 @@
             </a>
           </div>
 
-          <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-3 max-w-lg">
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
-              <p class="text-2xl sm:text-3xl font-black text-[#FDB913]" data-count="18" id="statWorks">18</p>
-              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Karya Daur Ulang</p>
+          <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-3 max-w-lg">
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
+              <p class="text-xl sm:text-3xl font-black text-[#FDB913]" data-count="18" id="statWorks">18</p>
+              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Karya Daur Ulang</p>
             </div>
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
-              <p class="text-2xl sm:text-3xl font-black text-emerald-300" data-count="47" id="statDocs">47</p>
-              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi Nyata</p>
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
+              <p class="text-xl sm:text-3xl font-black text-emerald-300" data-count="47" id="statDocs">47</p>
+              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi Nyata</p>
             </div>
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-3.5 text-center backdrop-blur-md">
-              <p class="text-2xl sm:text-3xl font-black text-sky-200">3R</p>
-              <p class="text-xs font-semibold text-emerald-100 mt-0.5">Reduce • Reuse • Recycle</p>
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
+              <p class="text-xl sm:text-3xl font-black text-sky-200">3R</p>
+              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Reduce • Reuse • Recycle</p>
             </div>
           </div>
         </div>
 
         <!-- Hero Right: 3D Tilt-Interactive Living Earth + Orbiting Real Craft Chips -->
         <div class="lg:col-span-5 flex flex-col items-center justify-center">
-          <div id="earthTiltStage" class="tilt-stage relative w-full max-w-md aspect-square flex items-center justify-center earth-float">
+          <div id="earthTiltStage" class="tilt-stage relative w-64 h-64 sm:w-80 sm:h-80 md:w-full max-w-xs sm:max-w-md aspect-square flex items-center justify-center earth-float mx-auto">
             <div class="absolute inset-4 rounded-full bg-gradient-to-tr from-emerald-400/35 via-sky-300/25 to-amber-300/30 blur-3xl halo-pulse"></div>
 
             <svg class="w-full h-full drop-shadow-2xl" viewBox="0 0 400 400" fill="none" aria-label="Ilustrasi Bumi SABUMI yang hidup dengan daun dan orbit daur ulang">
@@ -550,11 +557,11 @@
             <h3 class="text-2xl sm:text-3xl font-black mt-1">Lihat Transformasi: Dari Limbah Jadi Berkah</h3>
             <p class="text-xs sm:text-sm text-emerald-100/85 mt-1">Pilih jenis bahan bekas di bawah ini untuk melihat proses pengolahan dan karya nyata siswa.</p>
           </div>
-          <div id="transformTabs" class="flex flex-wrap gap-2">
-            <button type="button" data-mat="botol" class="transform-tab active px-4 py-2 rounded-full border border-white/25 text-xs font-extrabold transition">Botol Plastik</button>
-            <button type="button" data-mat="sendok" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Sendok Plastik</button>
-            <button type="button" data-mat="tutup" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Tutup Botol &amp; Kardus</button>
-            <button type="button" data-mat="alam" class="transform-tab px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Batok Kelapa &amp; Kaleng</button>
+          <div id="transformTabs" class="flex flex-nowrap sm:flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1">
+            <button type="button" data-mat="botol" class="transform-tab active shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 text-xs font-extrabold transition">Botol Plastik</button>
+            <button type="button" data-mat="sendok" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Sendok Plastik</button>
+            <button type="button" data-mat="tutup" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Tutup Botol &amp; Kardus</button>
+            <button type="button" data-mat="alam" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Batok Kelapa &amp; Kaleng</button>
           </div>
         </div>
 
@@ -702,8 +709,8 @@
   <section id="sambutan" class="py-16 bg-[#F2FAF5] border-t border-emerald-900/10">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="reveal bg-white rounded-3xl shadow-lg border border-emerald-900/10 overflow-hidden grid md:grid-cols-12 items-center">
-        <div class="md:col-span-4 bg-gradient-to-br from-[#072236] via-[#0E4F6E] to-[#197A54] p-7 flex flex-col items-center justify-center text-center">
-          <div class="w-44 h-44 rounded-3xl overflow-hidden border-4 border-[#F5A623] shadow-2xl bg-white">
+        <div class="md:col-span-4 bg-gradient-to-br from-[#072236] via-[#0E4F6E] to-[#197A54] p-5 sm:p-7 flex flex-col items-center justify-center text-center">
+          <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-3xl overflow-hidden border-4 border-[#F5A623] shadow-2xl bg-white">
             <img src="assets/img_08.jpg" alt="Kepala Sekolah SMP Negeri 3 Tutuyan, Amelia Budikasih, S.Pd." class="w-full h-full object-cover object-top" />
           </div>
           <h3 class="mt-4 text-lg font-extrabold text-white">Amelia Budikasih, S.Pd.</h3>
@@ -744,6 +751,9 @@
     </div>
   </footer>
 
+  <!-- Mobile Music Drawer Backdrop Overlay -->
+  <div id="musicBackdrop" class="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
   <!-- Floating Background Music Player & Drawer (Bottom Left) -->
   <div id="musicPlayerContainer" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2.5 select-none font-sans">
     <!-- Music Playlist & Control Drawer (Expandable Panel) -->
@@ -756,7 +766,7 @@
             <p class="text-[10px] text-slate-500 font-medium">Harmoni Alam & Kearifan Lokal</p>
           </div>
         </div>
-        <button id="closeMusicDrawerBtn" type="button" aria-label="Tutup daftar lagu" class="w-7 h-7 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+        <button id="closeMusicDrawerBtn" type="button" aria-label="Tutup daftar lagu" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
@@ -856,12 +866,12 @@
           <span id="modalBadge" class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-extrabold"></span>
           <span id="modalCounter" class="text-xs font-bold text-slate-500"></span>
         </div>
-        <div class="mt-2 flex flex-wrap items-start justify-between gap-3">
+        <div class="mt-2 flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div>
             <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-[#0B3B5B]"></h3>
             <p id="modalMaterial" class="mt-1 text-xs sm:text-sm font-semibold text-[#197A54]"></p>
           </div>
-          <button id="applauseBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-[#B46906] text-xs font-extrabold transition active:scale-95">
+          <button id="applauseBtn" type="button" class="self-start sm:self-auto shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-[#B46906] text-xs font-extrabold transition active:scale-95">
             <span>Apresiasi Karya</span>
             <span id="applauseCount" class="px-2 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] text-[11px] font-black">0</span>
           </button>
@@ -1292,8 +1302,24 @@
 
       trackEl.addEventListener('mouseenter', () => { state.isHovered = true; });
       trackEl.addEventListener('mouseleave', () => { state.isHovered = false; });
-      trackEl.addEventListener('touchstart', () => { state.isDown = true; state.dragDistance = 0; }, { passive: true });
-      trackEl.addEventListener('touchend', () => { state.isDown = false; }, { passive: true });
+
+      let touchStartX = 0;
+      trackEl.addEventListener('touchstart', (e) => {
+        state.isDown = true;
+        state.dragDistance = 0;
+        if (e.touches && e.touches.length) {
+          touchStartX = e.touches[0].pageX;
+        }
+      }, { passive: true });
+      trackEl.addEventListener('touchmove', (e) => {
+        if (!e.touches || !e.touches.length) return;
+        const dx = Math.abs(e.touches[0].pageX - touchStartX);
+        state.dragDistance = Math.max(state.dragDistance, dx);
+      }, { passive: true });
+      trackEl.addEventListener('touchend', () => {
+        state.isDown = false;
+        setTimeout(() => { state.dragDistance = 0; }, 200);
+      }, { passive: true });
 
       function nudge(dir) { trackEl.scrollBy({ left: dir * 350, behavior: 'smooth' }); }
       function refreshLoop(isLooped) {
@@ -1605,6 +1631,30 @@
       if (e.key === 'ArrowRight') document.getElementById('modalNextBtn').click();
     });
 
+    // Mobile Touch Swipe Gesture for Lightbox Modal
+    let modalTouchStartX = 0;
+    let modalTouchStartY = 0;
+    const modalImageStage = document.getElementById('modalImg')?.parentElement;
+    if (modalImageStage) {
+      modalImageStage.addEventListener('touchstart', (e) => {
+        if (!e.touches.length) return;
+        modalTouchStartX = e.touches[0].clientX;
+        modalTouchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      modalImageStage.addEventListener('touchend', (e) => {
+        if (!e.changedTouches.length) return;
+        const dx = e.changedTouches[0].clientX - modalTouchStartX;
+        const dy = e.changedTouches[0].clientY - modalTouchStartY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx < 0) {
+            document.getElementById('modalNextBtn').click();
+          } else {
+            document.getElementById('modalPrevBtn').click();
+          }
+        }
+      }, { passive: true });
+    }
+
     toggleAutoBtn.addEventListener('click', () => {
       autoScrollEnabled = !autoScrollEnabled;
       toggleAutoBtn.setAttribute('aria-pressed', String(autoScrollEnabled));
@@ -1656,6 +1706,13 @@
         mobileMenu.classList.add('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
+    });
+    document.getElementById('mobileReplayIntroBtn')?.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      splashScreen.classList.remove('splash-exit');
+      document.body.style.overflow = 'hidden';
     });
 
     // Scroll Progress & Back-to-Top
@@ -1846,6 +1903,7 @@
         document.getElementById('pillTrackInfoBtn')?.addEventListener('click', () => this.toggleDrawer());
         document.getElementById('pillToggleDrawerBtn')?.addEventListener('click', () => this.toggleDrawer());
         document.getElementById('closeMusicDrawerBtn')?.addEventListener('click', () => this.closeDrawer());
+        document.getElementById('musicBackdrop')?.addEventListener('click', () => this.closeDrawer());
 
         // Prev / Next
         document.getElementById('drawerPrevBtn')?.addEventListener('click', () => this.prevTrack());
@@ -1965,10 +2023,15 @@
 
       toggleDrawer() {
         this.isDrawerOpen = !this.isDrawerOpen;
+        const backdrop = document.getElementById('musicBackdrop');
         if (this.isDrawerOpen) {
           this.drawer.classList.remove('music-panel-closed');
           this.drawer.classList.add('music-panel-open');
           this.chevronIcon.classList.add('rotate-180');
+          if (backdrop) {
+            backdrop.classList.remove('opacity-0', 'pointer-events-none');
+            backdrop.classList.add('opacity-100', 'pointer-events-auto');
+          }
         } else {
           this.closeDrawer();
         }
@@ -1979,6 +2042,11 @@
         this.drawer?.classList.add('music-panel-closed');
         this.drawer?.classList.remove('music-panel-open');
         this.chevronIcon?.classList.remove('rotate-180');
+        const backdrop = document.getElementById('musicBackdrop');
+        if (backdrop) {
+          backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
+        }
       }
 
       onTimeUpdate() {
