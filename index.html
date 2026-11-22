@@ -179,6 +179,24 @@
     }
     .img-fade { transition: opacity 0.22s ease; }
 
+    /* Equalizer & Audio Player Animations */
+    @keyframes eqWave1 { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+    @keyframes eqWave2 { 0%, 100% { height: 14px; } 50% { height: 6px; } }
+    @keyframes eqWave3 { 0%, 100% { height: 7px; } 50% { height: 15px; } }
+    .playing .eq-bar-1 { animation: eqWave1 0.75s ease-in-out infinite; }
+    .playing .eq-bar-2 { animation: eqWave2 0.6s ease-in-out infinite; }
+    .playing .eq-bar-3 { animation: eqWave3 0.85s ease-in-out infinite; }
+    .music-panel-closed {
+      opacity: 0;
+      transform: translateY(16px) scale(0.95);
+      pointer-events: none;
+    }
+    .music-panel-open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .earth-float, .orbit-spin, .orbit-reverse, .leaf-sway, .halo-pulse, .gold-shimmer { animation: none !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
@@ -291,6 +309,14 @@
           <a href="#dokumentasi" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Dokumentasi</a>
           <a href="#sambutan" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Kepala Sekolah</a>
           <button id="replayIntroBtn" type="button" class="ml-2 px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Putar Intro</button>
+          <button id="quickMusicToggleBtn" type="button" aria-label="Nyalakan atau jeda musik latar" class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">
+            <span class="inline-flex items-end gap-0.5 h-3.5 w-3.5" id="navMusicBars">
+              <span class="eq-bar-1 w-0.5 h-2 bg-[#197A54] rounded-full transition-all"></span>
+              <span class="eq-bar-2 w-0.5 h-3.5 bg-[#197A54] rounded-full transition-all"></span>
+              <span class="eq-bar-3 w-0.5 h-1.5 bg-[#197A54] rounded-full transition-all"></span>
+            </span>
+            <span id="navMusicLabel">Musik</span>
+          </button>
         </nav>
 
         <button id="mobileMenuBtn" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-[#0B3B5B] hover:bg-emerald-50 focus:outline-none" aria-label="Buka menu navigasi" aria-expanded="false">
@@ -306,6 +332,15 @@
       <a href="#karya" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
       <a href="#dokumentasi" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
       <a href="#sambutan" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Kepala Sekolah</a>
+      <div class="pt-2 border-t border-slate-100">
+        <button id="mobileMusicToggleBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80 hover:bg-emerald-100 transition">
+          <span class="flex items-center gap-2">
+            <span>🎵</span>
+            <span>Musik Latar</span>
+          </span>
+          <span id="mobileMusicLabel" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-white text-emerald-700 border border-emerald-200">Musik: Siap (35%)</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -694,6 +729,93 @@
     </div>
   </footer>
 
+  <!-- Floating Background Music Player & Drawer (Bottom Left) -->
+  <div id="musicPlayerContainer" class="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-2.5 select-none font-sans">
+    <!-- Music Playlist & Control Drawer (Expandable Panel) -->
+    <div id="musicDrawer" class="music-panel-closed transition-all duration-300 w-80 sm:w-88 max-w-[calc(100vw-3rem)] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-emerald-900/15 p-4 text-[#072236]">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center text-sm shadow-sm">🎵</span>
+          <div>
+            <h3 class="text-xs font-black uppercase tracking-wider text-[#0B3B5B]">Musik Expo SABUMI</h3>
+            <p class="text-[10px] text-slate-500 font-medium">Harmoni Alam & Kearifan Lokal</p>
+          </div>
+        </div>
+        <button id="closeMusicDrawerBtn" type="button" aria-label="Tutup daftar lagu" class="w-7 h-7 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Playlist Items List -->
+      <div class="py-2.5 space-y-1.5 max-h-56 overflow-y-auto" id="musicTrackList"></div>
+
+      <!-- Progress Bar & Time Display -->
+      <div class="pt-2">
+        <div class="flex items-center justify-between text-[10px] text-slate-400 font-medium mb-1">
+          <span id="musicCurrentTime">0:00</span>
+          <span id="musicDuration">0:00</span>
+        </div>
+        <div class="relative w-full h-1.5 bg-slate-100 rounded-full cursor-pointer overflow-hidden group" id="musicProgressBar" title="Geser durasi">
+          <div id="musicProgressFill" class="h-full bg-gradient-to-r from-[#197A54] to-[#29B36E] rounded-full w-0 transition-all duration-100"></div>
+        </div>
+      </div>
+
+      <!-- Track Transport Buttons (Prev, Play, Next) -->
+      <div class="pt-3 flex items-center justify-between border-t border-slate-100 mt-2.5">
+        <div class="flex items-center gap-1.5">
+          <button id="drawerPrevBtn" type="button" aria-label="Lagu sebelumnya" title="Sebelumnya" class="w-8 h-8 rounded-full hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 flex items-center justify-center transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="drawerPlayPauseBtn" type="button" aria-label="Putar atau jeda" class="w-9 h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition">
+            <svg id="drawerPlayIcon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="drawerPauseIcon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button id="drawerNextBtn" type="button" aria-label="Lagu berikutnya" title="Berikutnya" class="w-8 h-8 rounded-full hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 flex items-center justify-center transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button id="musicLoopBtn" type="button" aria-label="Ulangi lagu saat ini" title="Ulangi Lagu Saat Ini (Mati)" class="w-7 h-7 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-slate-100 flex items-center justify-center transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </button>
+        </div>
+
+        <!-- Volume Slider & Mute Toggle -->
+        <div class="flex items-center gap-1.5 max-w-[130px]">
+          <button id="musicMuteBtn" type="button" aria-label="Mute / Unmute" class="text-slate-500 hover:text-emerald-700 transition p-1">
+            <svg id="volumeIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+            </svg>
+          </button>
+          <input id="musicVolumeSlider" type="range" min="0" max="1" step="0.01" value="0.35" class="w-16 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#197A54]" aria-label="Volume Musik" />
+          <span id="musicVolumeLabel" class="text-[10px] font-bold text-slate-600 w-7 text-right">35%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Pill Button (Always visible on bottom-left) -->
+    <div id="musicFloatingPill" class="inline-flex items-center rounded-full bg-white/95 backdrop-blur-md shadow-xl border border-emerald-900/15 p-1 sm:p-1.5 gap-2 text-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50">
+      <button id="pillPlayPauseBtn" type="button" aria-label="Putar atau jeda musik latar" class="w-9 h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition">
+        <svg id="pillPlayIcon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pillPauseIcon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+
+      <button id="pillTrackInfoBtn" type="button" class="flex items-center gap-2 px-1 text-left group" title="Buka daftar pilihan lagu">
+        <span class="music-bars inline-flex items-end gap-0.5 h-3.5 w-3.5" id="pillMusicBars">
+          <span class="eq-bar-1 w-0.5 h-2 bg-[#197A54] rounded-full transition-all"></span>
+          <span class="eq-bar-2 w-0.5 h-3.5 bg-[#197A54] rounded-full transition-all"></span>
+          <span class="eq-bar-3 w-0.5 h-1.5 bg-[#197A54] rounded-full transition-all"></span>
+        </span>
+        <div class="max-w-[125px] sm:max-w-[170px] truncate">
+          <p id="pillTrackTitle" class="text-xs font-bold text-slate-800 truncate group-hover:text-[#197A54] transition">Harmoni Suling</p>
+          <p id="pillTrackStatus" class="text-[10px] text-slate-400 font-medium truncate">Pilihan Musik (4 Trek)</p>
+        </div>
+      </button>
+
+      <button id="pillToggleDrawerBtn" type="button" aria-label="Buka panel daftar musik" class="w-7 h-7 rounded-full hover:bg-emerald-50 text-slate-500 hover:text-emerald-700 flex items-center justify-center transition mr-1">
+        <svg id="pillChevronIcon" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
   <!-- Back to Top Button -->
   <button id="backToTopBtn" type="button" aria-label="Kembali ke atas" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#0B3B5B] hover:bg-[#197A54] text-white border-2 border-[#F5A623] shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
@@ -1044,6 +1166,9 @@
       animateCount(document.getElementById('statDocs'), 19);
       if (typeof confetti === 'function') {
         confetti({ particleCount: 45, spread: 70, origin: { y: 0.65 }, colors: ['#29B36E', '#F5A623', '#38BDF8', '#FFFFFF'] });
+      }
+      if (window.sabumiMusic) {
+        window.sabumiMusic.startAutoplay();
       }
     }
 
@@ -1539,6 +1664,359 @@
     renderProducts();
     renderDocs();
     onScroll();
+
+    // =========================================================
+    // EXPO SABUMI BACKGROUND AUDIO PLAYER
+    // =========================================================
+    const SABUMI_TRACKS = [
+      {
+        id: 'suling',
+        title: 'Harmoni Alam & Suling Nusantara',
+        shortTitle: 'Harmoni Suling',
+        subtitle: 'Degung & Suling Tradisional Nusantara',
+        mood: 'Alami & Damai',
+        src: 'assets/audio/suling_nusantara.mp3'
+      },
+      {
+        id: 'morning',
+        title: 'Akustik Pagi Inspiratif',
+        shortTitle: 'Akustik Pagi',
+        subtitle: 'Morning by Kevin MacLeod (CC BY 4.0)',
+        mood: 'Gitar Akustik Hangat',
+        src: 'assets/audio/morning_acoustic.mp3'
+      },
+      {
+        id: 'waters',
+        title: 'Alunan Damai Air Jernih',
+        shortTitle: 'Air Jernih',
+        subtitle: 'Clear Waters by Kevin MacLeod (CC BY 4.0)',
+        mood: 'Piano Reflektif Lestari',
+        src: 'assets/audio/clear_waters.mp3'
+      },
+      {
+        id: 'carefree',
+        title: 'Semangat Kreativitas Siswa',
+        shortTitle: 'Semangat Siswa',
+        subtitle: 'Carefree by Kevin MacLeod (CC BY 4.0)',
+        mood: 'Ceria & Semangat Kreasi',
+        src: 'assets/audio/carefree_spirit.mp3'
+      }
+    ];
+
+    class SabumiAudioEngine {
+      constructor() {
+        this.audio = new Audio();
+        this.audio.preload = 'metadata';
+        this.tracks = SABUMI_TRACKS;
+        this.currentIndex = 0;
+        this.isLoopOne = false;
+        this.isDrawerOpen = false;
+
+        // Load saved preferences
+        const savedTrack = parseInt(localStorage.getItem('sabumi_music_track'), 10);
+        if (!isNaN(savedTrack) && savedTrack >= 0 && savedTrack < this.tracks.length) {
+          this.currentIndex = savedTrack;
+        }
+
+        const savedVol = localStorage.getItem('sabumi_music_vol');
+        this.volume = savedVol !== null ? parseFloat(savedVol) : 0.35;
+        this.isMuted = localStorage.getItem('sabumi_music_muted') === 'true';
+
+        this.audio.volume = this.isMuted ? 0 : this.volume;
+        this.audio.src = this.tracks[this.currentIndex].src;
+
+        this.bindDOM();
+        this.renderPlaylist();
+        this.bindEvents();
+        this.updateUI();
+      }
+
+      bindDOM() {
+        this.drawer = document.getElementById('musicDrawer');
+        this.trackListEl = document.getElementById('musicTrackList');
+        this.pillTitle = document.getElementById('pillTrackTitle');
+        this.pillStatus = document.getElementById('pillTrackStatus');
+        this.pillPlayIcon = document.getElementById('pillPlayIcon');
+        this.pillPauseIcon = document.getElementById('pillPauseIcon');
+        this.drawerPlayIcon = document.getElementById('drawerPlayIcon');
+        this.drawerPauseIcon = document.getElementById('drawerPauseIcon');
+        this.pillBars = document.getElementById('pillMusicBars');
+        this.navBars = document.getElementById('navMusicBars');
+        this.navLabel = document.getElementById('navMusicLabel');
+        this.mobileLabel = document.getElementById('mobileMusicLabel');
+        this.progressBar = document.getElementById('musicProgressBar');
+        this.progressFill = document.getElementById('musicProgressFill');
+        this.currentTimeEl = document.getElementById('musicCurrentTime');
+        this.durationEl = document.getElementById('musicDuration');
+        this.volumeSlider = document.getElementById('musicVolumeSlider');
+        this.volumeLabel = document.getElementById('musicVolumeLabel');
+        this.volumeIcon = document.getElementById('volumeIcon');
+        this.loopBtn = document.getElementById('musicLoopBtn');
+        this.chevronIcon = document.getElementById('pillChevronIcon');
+      }
+
+      renderPlaylist() {
+        if (!this.trackListEl) return;
+        this.trackListEl.innerHTML = this.tracks.map((t, idx) => {
+          const isActive = idx === this.currentIndex;
+          return `
+            <button type="button" data-idx="${idx}" class="track-select-btn w-full flex items-center justify-between p-2.5 rounded-xl border text-left transition ${
+              isActive
+                ? 'bg-emerald-50/90 border-[#197A54] text-[#072236] shadow-sm'
+                : 'bg-white border-slate-100 hover:border-emerald-200 hover:bg-slate-50 text-slate-700'
+            }">
+              <div class="flex items-center gap-2.5 truncate mr-2">
+                <span class="w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-black shrink-0 ${
+                  isActive ? 'bg-[#197A54] text-white' : 'bg-slate-100 text-slate-500'
+                }">${idx + 1}</span>
+                <div class="truncate">
+                  <p class="text-xs font-bold truncate ${isActive ? 'text-[#0B3B5B]' : 'text-slate-800'}">${t.title}</p>
+                  <p class="text-[10px] text-slate-500 truncate">${t.subtitle}</p>
+                </div>
+              </div>
+              <span class="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                isActive ? 'bg-emerald-200/80 text-emerald-900' : 'bg-slate-100 text-slate-500'
+              }">${t.mood}</span>
+            </button>
+          `;
+        }).join('');
+
+        this.trackListEl.querySelectorAll('.track-select-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.idx, 10);
+            this.playTrack(idx);
+          });
+        });
+      }
+
+      bindEvents() {
+        // Play / Pause toggles
+        document.getElementById('pillPlayPauseBtn')?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.togglePlay();
+        });
+        document.getElementById('drawerPlayPauseBtn')?.addEventListener('click', () => this.togglePlay());
+        document.getElementById('quickMusicToggleBtn')?.addEventListener('click', () => this.togglePlay());
+        document.getElementById('mobileMusicToggleBtn')?.addEventListener('click', () => this.togglePlay());
+
+        // Drawer toggles
+        document.getElementById('pillTrackInfoBtn')?.addEventListener('click', () => this.toggleDrawer());
+        document.getElementById('pillToggleDrawerBtn')?.addEventListener('click', () => this.toggleDrawer());
+        document.getElementById('closeMusicDrawerBtn')?.addEventListener('click', () => this.closeDrawer());
+
+        // Prev / Next
+        document.getElementById('drawerPrevBtn')?.addEventListener('click', () => this.prevTrack());
+        document.getElementById('drawerNextBtn')?.addEventListener('click', () => this.nextTrack());
+
+        // Loop Toggle
+        this.loopBtn?.addEventListener('click', () => {
+          this.isLoopOne = !this.isLoopOne;
+          this.loopBtn.classList.toggle('bg-emerald-100', this.isLoopOne);
+          this.loopBtn.classList.toggle('text-[#197A54]', this.isLoopOne);
+          this.loopBtn.title = this.isLoopOne ? 'Ulangi Lagu Saat Ini (Aktif)' : 'Ulangi Lagu Saat Ini (Mati)';
+        });
+
+        // Volume & Mute
+        this.volumeSlider?.addEventListener('input', (e) => {
+          const val = parseFloat(e.target.value);
+          this.setVolume(val);
+        });
+        document.getElementById('musicMuteBtn')?.addEventListener('click', () => this.toggleMute());
+
+        // Seek Bar
+        this.progressBar?.addEventListener('click', (e) => {
+          const rect = this.progressBar.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const pct = Math.max(0, Math.min(1, clickX / rect.width));
+          if (this.audio.duration) {
+            this.audio.currentTime = pct * this.audio.duration;
+          }
+        });
+
+        // Audio Events
+        this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+        this.audio.addEventListener('ended', () => this.onEnded());
+        this.audio.addEventListener('play', () => this.onStateChange(true));
+        this.audio.addEventListener('pause', () => this.onStateChange(false));
+
+        // Close drawer when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!this.isDrawerOpen) return;
+          const container = document.getElementById('musicPlayerContainer');
+          if (container && !container.contains(e.target)) {
+            this.closeDrawer();
+          }
+        });
+      }
+
+      playTrack(index) {
+        if (index < 0 || index >= this.tracks.length) return;
+        this.currentIndex = index;
+        localStorage.setItem('sabumi_music_track', String(index));
+        this.audio.src = this.tracks[this.currentIndex].src;
+        this.audio.currentTime = 0;
+        this.audio.play().catch(e => console.warn('Audio play hindered:', e));
+        this.renderPlaylist();
+        this.updateUI();
+      }
+
+      togglePlay() {
+        if (this.audio.paused) {
+          if (this.isMuted) {
+            this.toggleMute();
+          }
+          this.audio.play().catch(e => console.warn('Audio play rejected:', e));
+        } else {
+          this.audio.pause();
+        }
+      }
+
+      startAutoplay() {
+        if (localStorage.getItem('sabumi_music_user_paused') === 'true') {
+          return;
+        }
+        const targetVol = this.isMuted ? 0 : this.volume;
+        this.audio.volume = 0;
+        const playPromise = this.audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            // Smooth fade-in over 1.2 seconds
+            let current = 0;
+            const step = targetVol / 20;
+            const timer = setInterval(() => {
+              current = Math.min(targetVol, current + step);
+              this.audio.volume = current;
+              if (current >= targetVol) clearInterval(timer);
+            }, 60);
+          }).catch(err => {
+            console.log('Autoplay deferred until user gesture:', err);
+          });
+        }
+      }
+
+      prevTrack() {
+        const nextIdx = (this.currentIndex - 1 + this.tracks.length) % this.tracks.length;
+        this.playTrack(nextIdx);
+      }
+
+      nextTrack() {
+        const nextIdx = (this.currentIndex + 1) % this.tracks.length;
+        this.playTrack(nextIdx);
+      }
+
+      setVolume(val) {
+        this.volume = val;
+        this.isMuted = val === 0;
+        this.audio.volume = this.volume;
+        localStorage.setItem('sabumi_music_vol', String(this.volume));
+        localStorage.setItem('sabumi_music_muted', String(this.isMuted));
+        this.updateVolumeUI();
+      }
+
+      toggleMute() {
+        this.isMuted = !this.isMuted;
+        this.audio.volume = this.isMuted ? 0 : this.volume;
+        localStorage.setItem('sabumi_music_muted', String(this.isMuted));
+        this.updateVolumeUI();
+      }
+
+      toggleDrawer() {
+        this.isDrawerOpen = !this.isDrawerOpen;
+        if (this.isDrawerOpen) {
+          this.drawer.classList.remove('music-panel-closed');
+          this.drawer.classList.add('music-panel-open');
+          this.chevronIcon.classList.add('rotate-180');
+        } else {
+          this.closeDrawer();
+        }
+      }
+
+      closeDrawer() {
+        this.isDrawerOpen = false;
+        this.drawer?.classList.add('music-panel-closed');
+        this.drawer?.classList.remove('music-panel-open');
+        this.chevronIcon?.classList.remove('rotate-180');
+      }
+
+      onTimeUpdate() {
+        if (!this.audio.duration) return;
+        const cur = this.audio.currentTime;
+        const dur = this.audio.duration;
+        const pct = (cur / dur) * 100;
+        if (this.progressFill) this.progressFill.style.width = pct + '%';
+        if (this.currentTimeEl) this.currentTimeEl.textContent = this.formatTime(cur);
+        if (this.durationEl) this.durationEl.textContent = this.formatTime(dur);
+      }
+
+      onEnded() {
+        if (this.isLoopOne) {
+          this.audio.currentTime = 0;
+          this.audio.play();
+        } else {
+          this.nextTrack();
+        }
+      }
+
+      onStateChange(isPlaying) {
+        if (!isPlaying) {
+          localStorage.setItem('sabumi_music_user_paused', 'true');
+        } else {
+          localStorage.removeItem('sabumi_music_user_paused');
+        }
+        this.updateUI();
+      }
+
+      formatTime(sec) {
+        if (isNaN(sec) || !isFinite(sec)) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+
+      updateVolumeUI() {
+        const pct = Math.round((this.isMuted ? 0 : this.volume) * 100);
+        if (this.volumeSlider) this.volumeSlider.value = this.isMuted ? 0 : this.volume;
+        if (this.volumeLabel) this.volumeLabel.textContent = pct + '%';
+        if (this.mobileLabel) {
+          this.mobileLabel.textContent = !this.audio.paused ? `Aktif (${pct}%)` : `Jeda (${pct}%)`;
+        }
+
+        if (this.volumeIcon) {
+          if (this.isMuted || pct === 0) {
+            this.volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l4-4m0 0l-4-4m4 4H13"/>`;
+          } else {
+            this.volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>`;
+          }
+        }
+      }
+
+      updateUI() {
+        const playing = !this.audio.paused;
+        const curTrack = this.tracks[this.currentIndex];
+
+        // Track title
+        if (this.pillTitle) this.pillTitle.textContent = curTrack.shortTitle;
+        if (this.pillStatus) this.pillStatus.textContent = playing ? 'Memutar • Pilihan Musik' : 'Dijeda • Klik Putar';
+
+        // Icons
+        if (this.pillPlayIcon) this.pillPlayIcon.classList.toggle('hidden', playing);
+        if (this.pillPauseIcon) this.pillPauseIcon.classList.toggle('hidden', !playing);
+        if (this.drawerPlayIcon) this.drawerPlayIcon.classList.toggle('hidden', playing);
+        if (this.drawerPauseIcon) this.drawerPauseIcon.classList.toggle('hidden', !playing);
+
+        // Equalizer Bars animation
+        if (this.pillBars) this.pillBars.classList.toggle('playing', playing);
+        if (this.navBars) this.navBars.classList.toggle('playing', playing);
+
+        // Nav label
+        if (this.navLabel) this.navLabel.textContent = playing ? 'Musik: On' : 'Musik: Off';
+
+        this.updateVolumeUI();
+      }
+    }
+
+    // Initialize Global Sabumi Audio Engine
+    window.sabumiMusic = new SabumiAudioEngine();
   </script>
 </body>
 </html>
