@@ -213,8 +213,32 @@
       pointer-events: auto;
     }
 
+    /* Pohon Komitmen Botanical Motions */
+    @keyframes leafFloatGlow {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+    @keyframes leafEntrance {
+      0% { opacity: 0; transform: scale(0.3) translateY(-25px); }
+      70% { transform: scale(1.12) translateY(3px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .leaf-node {
+      animation: leafFloatGlow 4.8s ease-in-out infinite;
+      transform-origin: center bottom;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .leaf-node:hover {
+      animation-play-state: paused;
+      transform: translateY(-5px) scale(1.05);
+      z-index: 25;
+    }
+    .leaf-new-entrance {
+      animation: leafEntrance 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .earth-float, .orbit-spin, .orbit-reverse, .leaf-sway, .halo-pulse, .gold-shimmer { animation: none !important; }
+      .earth-float, .orbit-spin, .orbit-reverse, .leaf-sway, .halo-pulse, .gold-shimmer, .leaf-node, .leaf-new-entrance { animation: none !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
@@ -772,34 +796,34 @@
         </div>
       </div>
 
-      <!-- Papan Suara Terbuka (Murid, Guru, Juri & Masyarakat) -->
+      <!-- Papan Suara Terbuka & Pohon Komitmen (Murid, Guru, Juri & Masyarakat) -->
       <div id="suaraPengunjung" class="mt-14 reveal pt-8 border-t border-emerald-900/10">
         <div class="text-center max-w-2xl mx-auto mb-10">
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 text-[#B46906] text-xs font-black uppercase tracking-wider">
-            Papan Partisipasi Terbuka
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-[#197A54] text-xs font-black uppercase tracking-wider">
+            🌿 Pohon Komitmen &amp; Apresiasi Terbuka
           </span>
-          <h3 class="mt-2 text-2xl sm:text-3xl font-black text-[#0B3B5B]">Suara &amp; Apresiasi Pengunjung Stand</h3>
+          <h3 class="mt-2 text-2xl sm:text-3xl font-black text-[#0B3B5B]">Pohon Komitmen &amp; Suara Lestari</h3>
           <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Setiap kali Anda membuka website ini, berikan suara Anda! Terbuka langsung bagi <strong>murid, guru, dewan juri expo, orang tua, maupun masyarakat</strong> untuk menuliskan apresiasi, kesan, atau refleksinya.
+            Tanamkan komitmen nyata Anda untuk kelestarian bumi dan berikan apresiasi bagi karya inovasi siswa SMPN 3 Tutuyan. Setiap suara dan janji Anda akan bersemi menjadi helai daun di <strong>Pohon Komitmen SABUMI</strong>.
           </p>
         </div>
 
-        <!-- Form Pengisian Suara (Baris tersendiri, terpusat dan rapi) -->
+        <!-- Form Pengisian Suara & Janji Komitmen Bumi -->
         <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-emerald-900/10 mb-12">
           <div class="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
             <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#197A54] to-[#29B36E] text-white flex items-center justify-center text-lg shadow-sm">
-              ✍️
+              🌱
             </div>
             <div>
-              <h4 class="text-base font-black text-[#0B3B5B]">Beri Suara &amp; Kesan Anda</h4>
-              <p class="text-xs text-slate-500">Tuliskan apresiasi, saran, atau kesan Anda untuk karya dan stand kami</p>
+              <h4 class="text-base font-black text-[#0B3B5B]">Tanamkan Komitmen &amp; Beri Suara</h4>
+              <p class="text-xs text-slate-500">Pilih aksi nyata peduli bumi Anda dan tuliskan apresiasi untuk stand kami</p>
             </div>
           </div>
 
           <!-- Feedback Alert -->
           <div id="voiceAlert" class="hidden mb-4 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
             <span class="text-base">🎉</span>
-            <span id="voiceAlertText">Terima kasih! Suara Anda telah berhasil dikirimkan ke papan apresiasi.</span>
+            <span id="voiceAlertText">Terima kasih! Helai daun komitmen Anda telah berhasil bersemi di pohon.</span>
           </div>
 
           <form id="voiceForm" class="space-y-4">
@@ -826,55 +850,162 @@
               </div>
             </div>
 
-            <div>
-              <label for="voiceStamp" class="block text-xs font-bold text-slate-700 mb-1">Kesan Apresiasi *</label>
-              <select id="voiceStamp" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
-                <option value="⭐ Sangat Menginspirasi">⭐ Sangat Menginspirasi</option>
-                <option value="🌿 Green Stand Peduli Bumi">🌿 Green Stand Peduli Bumi</option>
-                <option value="💡 Inovasi Karya Kreatif">💡 Inovasi Karya Kreatif</option>
-                <option value="👏 Bangga & Luar Biasa">👏 Bangga &amp; Luar Biasa</option>
-                <option value="🏆 Stand Juara Boltim">🏆 Stand Juara Boltim</option>
-              </select>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="voiceCommitment" class="block text-xs font-bold text-slate-700 mb-1">Komitmen Aksi untuk Bumi *</label>
+                <select id="voiceCommitment" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
+                  <option value="🌱 Pilah Sampah Organik &amp; Anorganik">🌱 Pilah Sampah Organik &amp; Anorganik</option>
+                  <option value="🥤 Bawa Botol Minum / Tumbler Sendiri">🥤 Bawa Botol Minum / Tumbler Sendiri</option>
+                  <option value="♻️ Daur Ulang Kreatif Barang Bekas">♻️ Daur Ulang Kreatif Barang Bekas</option>
+                  <option value="🛍️ Bawa Tas Belanja Ramah Lingkungan">🛍️ Bawa Tas Belanja Ramah Lingkungan</option>
+                  <option value="💡 Hemat Energi &amp; Kurangi Emisi">💡 Hemat Energi &amp; Kurangi Emisi</option>
+                  <option value="🌳 Jaga Kelestarian Alam Sekolah &amp; Pantai">🌳 Jaga Kelestarian Alam Sekolah &amp; Pantai</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="voiceStamp" class="block text-xs font-bold text-slate-700 mb-1">Kesan Apresiasi *</label>
+                <select id="voiceStamp" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
+                  <option value="⭐ Sangat Menginspirasi">⭐ Sangat Menginspirasi</option>
+                  <option value="🌿 Green Stand Peduli Bumi">🌿 Green Stand Peduli Bumi</option>
+                  <option value="💡 Inovasi Karya Kreatif">💡 Inovasi Karya Kreatif</option>
+                  <option value="👏 Bangga &amp; Luar Biasa">👏 Bangga &amp; Luar Biasa</option>
+                  <option value="🏆 Stand Juara Boltim">🏆 Stand Juara Boltim</option>
+                </select>
+              </div>
             </div>
 
             <div>
               <label for="voiceMessage" class="block text-xs font-bold text-slate-700 mb-1">Pesan / Suara Refleksi *</label>
-              <textarea id="voiceMessage" rows="3" required placeholder="Tuliskan kesan Anda tentang karya daur ulang siswa, pesan semangat, atau penilaian stand kami..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition resize-none"></textarea>
+              <textarea id="voiceMessage" rows="3" required placeholder="Tuliskan komitmen Anda, kesan tentang karya daur ulang siswa, atau penilaian stand kami..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition resize-none"></textarea>
             </div>
 
-            <button id="voiceSubmitBtn" type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#0B3B5B] via-[#0E4F6E] to-[#197A54] hover:brightness-110 text-white font-black text-xs sm:text-sm shadow-md transition hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
-              <span>Kirimkan Suara Saya</span>
-              <span>✨</span>
+            <button id="voiceSubmitBtn" type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#0B3B5B] via-[#0E4F6E] to-[#197A54] hover:brightness-110 text-white font-black text-xs sm:text-sm shadow-md transition hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
+              <span>Tanamkan Komitmen &amp; Kirim Suara</span>
+              <span>🌱</span>
             </button>
           </form>
         </div>
 
-        <!-- Riwayat Komentar & Kesan (Terpisah rapi di baris tersendiri di bawah formulir) -->
-        <div class="max-w-3xl mx-auto space-y-4">
-          <div class="flex items-center justify-between gap-3 mb-2">
-            <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#0B3B5B] flex items-center gap-2">
-              <span>💬 Riwayat Suara &amp; Kesan</span>
-            </h4>
-            <span class="text-xs font-medium text-slate-500">Pembaruan Langsung</span>
+        <!-- Pohon Komitmen Showcase -->
+        <div class="max-w-4xl mx-auto space-y-4">
+          <!-- Status & Kontrol Pohon -->
+          <div class="bg-white rounded-3xl p-4 sm:p-5 border border-emerald-900/10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center text-2xl shadow-sm shrink-0">
+                🌳
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h4 class="text-base font-black text-[#0B3B5B]">Pohon Komitmen SABUMI</h4>
+                  <span id="treeLevelBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider">Pohon Rindang Lestari</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-0.5">
+                  <span id="treeLeafCount" class="font-extrabold text-[#197A54]">0</span> helai daun komitmen tertanam mekar di dahan
+                </p>
+              </div>
+            </div>
+
+            <!-- Toggle View Mode: Pohon vs Kartu -->
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <div class="inline-flex items-center rounded-2xl bg-slate-100 p-1 border border-slate-200" role="group">
+                <button id="viewTreeBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-[#0B3B5B] text-white shadow-xs flex items-center gap-1.5">
+                  <span>🌳</span>
+                  <span>Mode Pohon</span>
+                </button>
+                <button id="viewListBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition text-slate-600 hover:text-[#0B3B5B] flex items-center gap-1.5">
+                  <span>📋</span>
+                  <span>Mode Kartu Daun</span>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <!-- Filter Kategori Feed -->
+          <!-- Filter Kategori Peran Daun -->
           <div class="bg-white rounded-2xl p-2.5 border border-emerald-900/10 shadow-xs flex items-center justify-between gap-2 flex-wrap">
             <div id="voiceFilterGroup" class="flex flex-wrap gap-1.5">
-              <button type="button" data-vrole="all" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-[#0B3B5B] text-white">Semua (<span id="countAll">0</span>)</button>
-              <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Siswa (<span id="countSiswa">0</span>)</button>
-              <button type="button" data-vrole="guru" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Guru (<span id="countGuru">0</span>)</button>
-              <button type="button" data-vrole="juri" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Juri (<span id="countJuri">0</span>)</button>
-              <button type="button" data-vrole="masyarakat" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Masyarakat (<span id="countMasyarakat">0</span>)</button>
+              <button type="button" data-vrole="all" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-[#0B3B5B] text-white shadow-xs">Semua Daun (<span id="countAll">0</span>)</button>
+              <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🍃 Siswa (<span id="countSiswa">0</span>)</button>
+              <button type="button" data-vrole="guru" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🌿 Guru (<span id="countGuru">0</span>)</button>
+              <button type="button" data-vrole="juri" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🍎 Juri Expo (<span id="countJuri">0</span>)</button>
+              <button type="button" data-vrole="masyarakat" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🌸 Masyarakat (<span id="countMasyarakat">0</span>)</button>
             </div>
-            <span class="text-[11px] font-semibold text-emerald-700 flex items-center gap-1">
+            <span class="text-[11px] font-semibold text-emerald-700 hidden sm:flex items-center gap-1">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-              Papan Terbuka
+              Sentuh Daun untuk Baca &amp; Beri ❤️
             </span>
           </div>
 
-          <!-- List of Voices Container -->
-          <div id="voiceFeedContainer" class="space-y-3.5"></div>
+          <!-- STAGE 1: TAMPILAN POHON RIMBUN INTERAKTIF -->
+          <div id="treeStage" class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#072236] via-[#0D3850] to-[#08281E] text-white p-4 sm:p-6 min-h-[460px] border border-emerald-500/20 shadow-xl">
+            <!-- Ambient Botanical Glows -->
+            <div class="absolute inset-0 pointer-events-none opacity-25 bg-[radial-gradient(circle_at_50%_25%,#4ADE80_0%,transparent_60%)]"></div>
+            <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-emerald-400/15 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-teal-400/15 blur-3xl pointer-events-none"></div>
+
+            <!-- Background Tree Illustration (Trunk & Primary Branches) -->
+            <div class="absolute inset-0 flex items-end justify-center pointer-events-none">
+              <svg class="w-full max-w-2xl h-[420px] opacity-80" viewBox="0 0 600 450" fill="none" preserveAspectRatio="xMidYBottom meet">
+                <defs>
+                  <linearGradient id="trunkGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4B6354"/>
+                    <stop offset="60%" stop-color="#2D4638"/>
+                    <stop offset="100%" stop-color="#182A20"/>
+                  </linearGradient>
+                  <radialGradient id="canopyGlow" cx="50%" cy="40%" r="55%">
+                    <stop offset="0%" stop-color="#29B36E" stop-opacity="0.32"/>
+                    <stop offset="70%" stop-color="#197A54" stop-opacity="0.1"/>
+                    <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <!-- Canopy ambient glow -->
+                <circle cx="300" cy="180" r="190" fill="url(#canopyGlow)" />
+                <!-- Ground mound -->
+                <path d="M120 440 Q300 395 480 440 L490 450 L110 450 Z" fill="#14261C" />
+                <!-- Main Trunk -->
+                <path d="M285 430 Q288 330 280 270 Q270 200 240 160 Q260 170 285 210 Q290 140 280 80 Q295 100 300 160 Q320 110 340 70 Q335 120 315 190 Q340 150 375 140 Q350 180 320 230 Q330 310 325 430 Z" fill="url(#trunkGrad)" />
+                <!-- Left Sub-Branches -->
+                <path d="M280 270 Q230 240 170 235 Q140 230 110 210 Q145 220 180 225 Q240 235 282 255 Z" fill="url(#trunkGrad)" opacity="0.9" />
+                <path d="M220 235 Q195 180 150 160 Q180 175 205 215 Z" fill="url(#trunkGrad)" opacity="0.85" />
+                <path d="M255 190 Q220 140 180 120 Q210 135 240 170 Z" fill="url(#trunkGrad)" opacity="0.85" />
+                <!-- Right Sub-Branches -->
+                <path d="M320 270 Q370 240 430 235 Q460 230 490 210 Q455 220 420 225 Q360 235 318 255 Z" fill="url(#trunkGrad)" opacity="0.9" />
+                <path d="M380 235 Q405 180 450 160 Q420 175 395 215 Z" fill="url(#trunkGrad)" opacity="0.85" />
+                <path d="M345 190 Q380 140 420 120 Q390 135 360 170 Z" fill="url(#trunkGrad)" opacity="0.85" />
+                <!-- Decorative Branch Buds -->
+                <circle cx="110" cy="210" r="7" fill="#4ADE80" opacity="0.55" />
+                <circle cx="150" cy="160" r="8" fill="#29B36E" opacity="0.55" />
+                <circle cx="180" cy="120" r="7" fill="#86EFAC" opacity="0.55" />
+                <circle cx="280" cy="80" r="9" fill="#FDB913" opacity="0.65" />
+                <circle cx="340" cy="70" r="8" fill="#38BDF8" opacity="0.55" />
+                <circle cx="375" cy="140" r="7" fill="#4ADE80" opacity="0.55" />
+                <circle cx="420" cy="120" r="8" fill="#F472B6" opacity="0.55" />
+                <circle cx="450" cy="160" r="7" fill="#29B36E" opacity="0.55" />
+                <circle cx="490" cy="210" r="8" fill="#4ADE80" opacity="0.55" />
+              </svg>
+            </div>
+
+            <!-- Tree Canopy Foreground Header -->
+            <div class="relative z-10 flex items-center justify-between pb-3 border-b border-white/10 text-xs text-emerald-200">
+              <span class="inline-flex items-center gap-1.5 font-bold">
+                <span>🍃</span>
+                <span>Dahan Daun &amp; Janji Lestari Pengunjung</span>
+              </span>
+              <span class="text-[11px] text-emerald-300/80">Sentuh daun untuk membaca pesan &amp; kirim ❤️</span>
+            </div>
+
+            <!-- Dynamic Leaf Canopy Container -->
+            <div id="treeLeavesWrap" class="relative z-10 py-6 min-h-[360px] flex flex-wrap items-center justify-center gap-3 sm:gap-4 content-center"></div>
+
+            <!-- Bottom Soil Caption -->
+            <div class="relative z-10 text-center pt-3 border-t border-white/10 text-[11px] text-emerald-200/80 flex items-center justify-center gap-2">
+              <span>🌱</span>
+              <span>Akar komitmen kokoh tertanam dalam kepedulian bersama SMP Negeri 3 Tutuyan</span>
+            </div>
+          </div>
+
+          <!-- STAGE 2: TAMPILAN FEED KARTU DAUN (TOGGLEABLE) -->
+          <div id="voiceFeedContainer" class="hidden space-y-3.5"></div>
         </div>
       </div>
     </div>
@@ -1353,6 +1484,69 @@
         <span class="text-xs text-slate-500 font-medium">Tip: Latih siswa bergantian menjelaskan menit 1, 2, dan 3.</span>
         <button id="pitchModalCloseBtn2" type="button" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs transition">
           Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detail Daun Komitmen Pohon SABUMI -->
+  <div id="leafModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="modalLeafAuthor">
+    <div class="modal-panel bg-white rounded-3xl max-w-lg w-full flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15">
+      <!-- Modal Header -->
+      <div class="p-5 sm:p-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-b border-emerald-900/10 flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div id="modalLeafAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0">
+            DA
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 id="modalLeafAuthor" class="text-base font-black text-[#0B3B5B]">Nama Pengisi</h4>
+              <span id="modalLeafRoleBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border bg-emerald-50 text-emerald-800 border-emerald-200">👨‍🎓 Siswa</span>
+            </div>
+            <p id="modalLeafOrigin" class="text-xs text-slate-500 mt-0.5">Asal Sekolah / Desa</p>
+          </div>
+        </div>
+        <button id="closeLeafModalBtn" type="button" class="w-9 h-9 rounded-full bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center text-base font-bold shadow-xs transition" aria-label="Tutup jendela komitmen">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 sm:p-6 space-y-4 max-h-[65vh] overflow-y-auto">
+        <!-- Badge Komitmen Aksi Bumi -->
+        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/90 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#197A54] text-white flex items-center justify-center text-lg shrink-0 shadow-xs">
+            🌱
+          </div>
+          <div>
+            <span class="block text-[10px] font-extrabold uppercase tracking-wider text-[#197A54]">Komitmen Nyata untuk Bumi:</span>
+            <span id="modalLeafCommitment" class="block text-xs sm:text-sm font-black text-[#0B3B5B]">Pilah Sampah Organik &amp; Anorganik</span>
+          </div>
+        </div>
+
+        <!-- Pesan Refleksi & Kesan -->
+        <div>
+          <span class="block text-xs font-bold text-slate-600 mb-1.5">Pesan Suara &amp; Refleksi:</span>
+          <p id="modalLeafMessage" class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-[#F7FAF8] p-4 rounded-2xl border border-emerald-900/10">
+            “Pesan refleksi pengunjung...”
+          </p>
+        </div>
+
+        <!-- Stampel Apresiasi -->
+        <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
+          <span class="text-slate-500 text-[11px]">Kesan Apresiasi:</span>
+          <span id="modalLeafStamp" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-[#B46906] text-xs font-bold">
+            ⭐ Sangat Menginspirasi
+          </span>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
+        <span id="modalLeafTime" class="text-[11px] text-slate-400 font-medium">Expo Boltim 2026</span>
+        <button id="modalLeafLikeBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-xs transition border border-rose-200 shadow-sm active:scale-95">
+          <span>❤️ Beri Apresiasi Daun</span>
+          <span id="modalLeafLikeCount" class="font-black bg-white px-2 py-0.5 rounded-full text-rose-700 shadow-xs">0</span>
         </button>
       </div>
     </div>
@@ -2163,6 +2357,7 @@
       if (e.key === 'Escape') {
         if (inovasiModal && !inovasiModal.classList.contains('modal-closed')) closeInovasiModal();
         if (pitchModal && !pitchModal.classList.contains('modal-closed')) closePitchModal();
+        if (leafModal && !leafModal.classList.contains('modal-closed')) closeLeafModal();
       }
     });
 
@@ -2268,22 +2463,70 @@
     if (pitchResetBtn) pitchResetBtn.addEventListener('click', resetPitchTimer);
 
     // ==========================================
-    // INTERACTIVE GUEST & COMMUNITY VOICES
+    // POHON KOMITMEN & APRESIASI PENGUNJUNG SABUMI
     // ==========================================
-    const DEFAULT_GUEST_VOICES = [];
+    const DEFAULT_GUEST_VOICES = [
+      {
+        id: 'v_init_1',
+        author: 'Fadlan Mokodompit',
+        role: 'siswa',
+        roleLabel: '👨‍🎓 Siswa',
+        origin: 'Ketua OSIS SMPN 3 Tutuyan',
+        commitment: '🥤 Bawa Botol Minum / Tumbler Sendiri',
+        stamp: '⭐ Sangat Menginspirasi',
+        message: 'Keren sekali karya daur ulang sekolah kita! Saya berkomitmen membawa tumbler sendiri setiap hari ke sekolah dan aktif mengumpulkan botol bekas untuk bank sampah.',
+        time: 'Pagi Hari',
+        likes: 12
+      },
+      {
+        id: 'v_init_2',
+        author: 'Ibu Rahmawati, S.Pd.',
+        role: 'guru',
+        roleLabel: '👩‍🏫 Guru / Pendidik',
+        origin: 'Guru Pembina Lingkungan Hidup',
+        commitment: '♻️ Daur Ulang Kreatif Barang Bekas',
+        stamp: '🌿 Green Stand Peduli Bumi',
+        message: 'Bangga tak terhingga melihat kreativitas murid mengolah limbah kaleng, kardus, dan botol menjadi 19 karya bernilai tinggi. Terus berkarya untuk bumi!',
+        time: 'Pagi Hari',
+        likes: 18
+      },
+      {
+        id: 'v_init_3',
+        author: 'Tim Juri Pendidikan Expo',
+        role: 'juri',
+        roleLabel: '⚖️ Dewan Juri Expo',
+        origin: 'Dinas Pendidikan & Kebudayaan Boltim',
+        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
+        stamp: '🏆 Stand Juara Boltim',
+        message: 'Integrasi kokurikuler yang sangat utuh! Stand SABUMI SMPN 3 Tutuyan membuktikan tema Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi secara nyata dan berbasis digital.',
+        time: 'Siang Hari',
+        likes: 24
+      },
+      {
+        id: 'v_init_4',
+        author: 'Bapak Rusdi Mamonto',
+        role: 'masyarakat',
+        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
+        origin: 'Komite Sekolah & Warga Tutuyan',
+        commitment: '🌱 Pilah Sampah Organik & Anorganik',
+        stamp: '💡 Inovasi Karya Kreatif',
+        message: 'Pendidikan peduli sampah ini harus dicontoh seluruh sekolah di Boltim. Kami orang tua siap mendukung pemilahan sampah dari rumah.',
+        time: 'Siang Hari',
+        likes: 15
+      }
+    ];
 
     function loadGuestVoices() {
       try {
         const stored = localStorage.getItem('sabumi_guest_voices');
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) {
-            // Keep genuine user entries, strip old hardcoded templates
-            return parsed.filter(v => !v.id || !v.id.startsWith('v_init_'));
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
           }
         }
       } catch (e) {}
-      return [];
+      return [...DEFAULT_GUEST_VOICES];
     }
 
     function saveGuestVoices(list) {
@@ -2294,6 +2537,15 @@
 
     let guestVoices = loadGuestVoices();
     let currentVoiceFilter = 'all';
+    let currentTreeMode = 'tree';
+
+    // DOM Elements
+    const treeStage = document.getElementById('treeStage');
+    const treeLeavesWrap = document.getElementById('treeLeavesWrap');
+    const treeLeafCountEl = document.getElementById('treeLeafCount');
+    const treeLevelBadgeEl = document.getElementById('treeLevelBadge');
+    const viewTreeBtn = document.getElementById('viewTreeBtn');
+    const viewListBtn = document.getElementById('viewListBtn');
 
     const voiceFeedContainer = document.getElementById('voiceFeedContainer');
     const voiceForm = document.getElementById('voiceForm');
@@ -2306,6 +2558,22 @@
     const countGuruEl = document.getElementById('countGuru');
     const countJuriEl = document.getElementById('countJuri');
     const countMasyEl = document.getElementById('countMasyarakat');
+
+    // Leaf Modal DOM Elements
+    const leafModal = document.getElementById('leafModal');
+    const closeLeafModalBtn = document.getElementById('closeLeafModalBtn');
+    const modalLeafAvatar = document.getElementById('modalLeafAvatar');
+    const modalLeafAuthor = document.getElementById('modalLeafAuthor');
+    const modalLeafRoleBadge = document.getElementById('modalLeafRoleBadge');
+    const modalLeafOrigin = document.getElementById('modalLeafOrigin');
+    const modalLeafCommitment = document.getElementById('modalLeafCommitment');
+    const modalLeafMessage = document.getElementById('modalLeafMessage');
+    const modalLeafStamp = document.getElementById('modalLeafStamp');
+    const modalLeafTime = document.getElementById('modalLeafTime');
+    const modalLeafLikeBtn = document.getElementById('modalLeafLikeBtn');
+    const modalLeafLikeCount = document.getElementById('modalLeafLikeCount');
+
+    let activeModalVoice = null;
 
     function getInitials(name) {
       if (!name) return 'S';
@@ -2320,32 +2588,64 @@
           return {
             gradient: 'from-emerald-500 to-teal-700',
             badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-            label: '👨‍🎓 Siswa'
+            label: '👨‍🎓 Siswa',
+            leafBg: 'bg-emerald-950/75 hover:bg-emerald-900/95 border-emerald-400/50 text-emerald-100 shadow-emerald-950/40',
+            leafIcon: '🍃',
+            accent: '#4ADE80'
           };
         case 'guru':
           return {
             gradient: 'from-sky-500 to-blue-700',
             badgeBg: 'bg-sky-50 text-sky-800 border-sky-200',
-            label: '👩‍🏫 Guru / Pendidik'
+            label: '👩‍🏫 Guru / Pendidik',
+            leafBg: 'bg-sky-950/75 hover:bg-sky-900/95 border-sky-400/50 text-sky-100 shadow-sky-950/40',
+            leafIcon: '🌿',
+            accent: '#38BDF8'
           };
         case 'juri':
           return {
             gradient: 'from-amber-500 to-yellow-600',
             badgeBg: 'bg-amber-50 text-[#B46906] border-amber-300',
-            label: '⚖️ Dewan Juri Expo'
+            label: '⚖️ Dewan Juri Expo',
+            leafBg: 'bg-amber-950/80 hover:bg-amber-900/95 border-amber-300/70 text-amber-100 shadow-amber-950/50 ring-1 ring-amber-400/30',
+            leafIcon: '🍎',
+            accent: '#FDB913'
           };
         case 'masyarakat':
           return {
             gradient: 'from-purple-500 to-indigo-700',
             badgeBg: 'bg-purple-50 text-purple-800 border-purple-200',
-            label: '👨‍👩‍👧 Masyarakat / Ortu'
+            label: '👨‍👩‍👧 Masyarakat / Ortu',
+            leafBg: 'bg-purple-950/75 hover:bg-purple-900/95 border-purple-400/50 text-purple-100 shadow-purple-950/40',
+            leafIcon: '🌸',
+            accent: '#E879F9'
           };
         default:
           return {
             gradient: 'from-slate-600 to-slate-800',
             badgeBg: 'bg-slate-50 text-slate-700 border-slate-200',
-            label: '🌟 Pengunjung'
+            label: '🌟 Pengunjung',
+            leafBg: 'bg-teal-950/75 hover:bg-teal-900/95 border-teal-400/50 text-teal-100 shadow-teal-950/40',
+            leafIcon: '🌱',
+            accent: '#2DD4BF'
           };
+      }
+    }
+
+    function updateTreeVitality() {
+      const total = guestVoices.length;
+      if (treeLeafCountEl) treeLeafCountEl.textContent = total;
+      if (treeLevelBadgeEl) {
+        if (total < 5) {
+          treeLevelBadgeEl.textContent = '🌱 Tunas Muda Bersemi';
+          treeLevelBadgeEl.className = 'px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-[10px] font-black uppercase tracking-wider';
+        } else if (total < 10) {
+          treeLevelBadgeEl.textContent = '🌿 Pohon Rindang Lestari';
+          treeLevelBadgeEl.className = 'px-2.5 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider shadow-xs';
+        } else {
+          treeLevelBadgeEl.textContent = '🌳 Kanopi Hutan Berkah';
+          treeLevelBadgeEl.className = 'px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-400 text-[#072236] text-[10px] font-black uppercase tracking-wider shadow-xs animate-pulse';
+        }
       }
     }
 
@@ -2357,9 +2657,86 @@
       if (countMasyEl) countMasyEl.textContent = guestVoices.filter(v => v.role === 'masyarakat' || v.role === 'umum').length;
     }
 
+    function setViewMode(mode) {
+      currentTreeMode = mode;
+      if (mode === 'tree') {
+        if (treeStage) treeStage.classList.remove('hidden');
+        if (voiceFeedContainer) voiceFeedContainer.classList.add('hidden');
+        if (viewTreeBtn) {
+          viewTreeBtn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-[#0B3B5B] text-white shadow-xs flex items-center gap-1.5';
+        }
+        if (viewListBtn) {
+          viewListBtn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold transition text-slate-600 hover:text-[#0B3B5B] flex items-center gap-1.5';
+        }
+      } else {
+        if (treeStage) treeStage.classList.add('hidden');
+        if (voiceFeedContainer) voiceFeedContainer.classList.remove('hidden');
+        if (viewListBtn) {
+          viewListBtn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-[#0B3B5B] text-white shadow-xs flex items-center gap-1.5';
+        }
+        if (viewTreeBtn) {
+          viewTreeBtn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold transition text-slate-600 hover:text-[#0B3B5B] flex items-center gap-1.5';
+        }
+      }
+    }
+
+    if (viewTreeBtn) viewTreeBtn.addEventListener('click', () => setViewMode('tree'));
+    if (viewListBtn) viewListBtn.addEventListener('click', () => setViewMode('list'));
+
+    function openLeafModal(v) {
+      if (!leafModal) return;
+      activeModalVoice = v;
+      const theme = getRoleTheme(v.role);
+
+      if (modalLeafAvatar) {
+        modalLeafAvatar.textContent = getInitials(v.author);
+        modalLeafAvatar.className = `w-12 h-12 rounded-2xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0`;
+      }
+      if (modalLeafAuthor) modalLeafAuthor.textContent = v.author;
+      if (modalLeafRoleBadge) {
+        modalLeafRoleBadge.textContent = v.roleLabel || theme.label;
+        modalLeafRoleBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${theme.badgeBg}`;
+      }
+      if (modalLeafOrigin) modalLeafOrigin.textContent = v.origin || 'Pengunjung Stand';
+      if (modalLeafCommitment) modalLeafCommitment.textContent = v.commitment || '🌱 Pilah Sampah Organik & Anorganik';
+      if (modalLeafMessage) modalLeafMessage.textContent = `“${v.message}”`;
+      if (modalLeafStamp) modalLeafStamp.textContent = v.stamp || '⭐ Sangat Menginspirasi';
+      if (modalLeafTime) modalLeafTime.textContent = v.time || 'Expo Boltim 2026';
+      if (modalLeafLikeCount) modalLeafLikeCount.textContent = v.likes || 0;
+
+      leafModal.classList.remove('modal-closed');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeafModal() {
+      if (!leafModal) return;
+      leafModal.classList.add('modal-closed');
+      document.body.style.overflow = '';
+      activeModalVoice = null;
+    }
+
+    if (closeLeafModalBtn) closeLeafModalBtn.addEventListener('click', closeLeafModal);
+    if (leafModal) {
+      leafModal.addEventListener('click', (e) => {
+        if (e.target === leafModal) closeLeafModal();
+      });
+    }
+
+    if (modalLeafLikeBtn) {
+      modalLeafLikeBtn.addEventListener('click', () => {
+        if (!activeModalVoice) return;
+        activeModalVoice.likes = (activeModalVoice.likes || 0) + 1;
+        modalLeafLikeCount.textContent = activeModalVoice.likes;
+        modalLeafLikeBtn.classList.add('scale-105');
+        setTimeout(() => modalLeafLikeBtn.classList.remove('scale-105'), 200);
+        saveGuestVoices(guestVoices);
+        renderVoiceFeed();
+      });
+    }
+
     function renderVoiceFeed() {
-      if (!voiceFeedContainer) return;
       updateVoiceCounts();
+      updateTreeVitality();
 
       const filtered = guestVoices.filter(v => {
         if (currentVoiceFilter === 'all') return true;
@@ -2367,75 +2744,129 @@
         return v.role === currentVoiceFilter;
       });
 
-      if (filtered.length === 0) {
-        voiceFeedContainer.innerHTML = `
-          <div class="p-8 text-center bg-white rounded-3xl border border-dashed border-emerald-900/15 text-slate-500 shadow-xs">
-            <span class="text-3xl block mb-2">💬</span>
-            <p class="text-sm font-bold text-slate-700">Belum ada riwayat suara atau kesan${currentVoiceFilter !== 'all' ? ' untuk kategori ini' : ''}.</p>
-            <p class="text-xs text-slate-500 mt-1">Formulir di atas siap diisi untuk memberikan suara dan apresiasi pertama Anda!</p>
-          </div>
-        `;
-        return;
-      }
+      // 1. Render Interactive Tree Canopy Leaves
+      if (treeLeavesWrap) {
+        treeLeavesWrap.innerHTML = '';
+        if (filtered.length === 0) {
+          treeLeavesWrap.innerHTML = `
+            <div class="text-center py-10 px-4 bg-white/5 rounded-3xl border border-dashed border-emerald-400/20 max-w-sm">
+              <span class="text-3xl block mb-2">🍃</span>
+              <p class="text-sm font-bold text-emerald-200">Belum ada daun untuk kategori ini.</p>
+              <p class="text-xs text-emerald-300/70 mt-1">Gunakan formulir di atas untuk menanam daun komitmen baru!</p>
+            </div>
+          `;
+        } else {
+          filtered.forEach((v, idx) => {
+            const theme = getRoleTheme(v.role);
+            const leafBtn = document.createElement('button');
+            leafBtn.type = 'button';
+            const swayDelay = ((idx % 5) * -0.95).toFixed(2);
+            leafBtn.className = `leaf-node relative group text-left px-3.5 py-2.5 rounded-2xl border backdrop-blur-md shadow-lg transition-all flex items-center gap-2.5 cursor-pointer max-w-[280px] sm:max-w-[320px] ${theme.leafBg} ${v.isNew ? 'leaf-new-entrance ring-2 ring-emerald-400' : ''}`;
+            leafBtn.style.animationDelay = `${swayDelay}s`;
+            
+            // Clean short commitment text
+            const shortCommitment = (v.commitment || 'Pilah Sampah').replace(/^[^\w\s]+/, '').trim();
 
-      voiceFeedContainer.innerHTML = '';
-      filtered.forEach(v => {
-        const theme = getRoleTheme(v.role);
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-emerald-900/10 natural-card transition-all flex flex-col justify-between';
-        card.innerHTML = `
-          <div>
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center font-black text-xs shadow-xs shrink-0">
-                  ${getInitials(v.author)}
+            leafBtn.innerHTML = `
+              <div class="w-8 h-8 rounded-xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center text-sm shadow-xs shrink-0 group-hover:scale-110 transition-transform">
+                ${theme.leafIcon}
+              </div>
+              <div class="min-w-0 pr-1">
+                <div class="flex items-center gap-1.5 flex-wrap leading-tight">
+                  <span class="text-xs font-black text-white truncate max-w-[120px]">${v.author}</span>
+                  ${v.isNew ? '<span class="px-1.5 py-0.2 rounded-full bg-emerald-400 text-slate-900 text-[8px] font-black uppercase tracking-wider animate-pulse">Baru</span>' : ''}
                 </div>
-                <div>
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <h5 class="text-sm font-black text-[#0B3B5B]">${v.author}</h5>
-                    ${v.isNew ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[9px] font-black uppercase tracking-wider animate-pulse">Baru Saja ✨</span>' : ''}
-                  </div>
-                  <p class="text-[11px] font-medium text-slate-500">${v.origin || 'Pengunjung Stand'}</p>
+                <p class="text-[10px] text-emerald-200/90 truncate mt-0.5">${shortCommitment}</p>
+                <div class="flex items-center gap-2 mt-1 text-[9px] text-emerald-300/75">
+                  <span>${theme.label.split(' ')[1] || 'Tamu'}</span>
+                  <span>•</span>
+                  <span class="text-rose-300 font-bold">❤️ ${v.likes || 0}</span>
                 </div>
               </div>
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold border ${theme.badgeBg} shrink-0">
-                ${v.roleLabel || theme.label}
-              </span>
-            </div>
+            `;
 
-            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-[#F7FAF8] p-3.5 rounded-2xl border border-emerald-900/5 mb-3">
-              “${v.message}”
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100 flex-wrap gap-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-[#B46906] text-[10px] font-bold">
-              ${v.stamp || '⭐ Sangat Menginspirasi'}
-            </span>
-
-            <div class="flex items-center gap-3">
-              <span class="text-[10px] text-slate-400 font-medium">${v.time || 'Expo Boltim 2026'}</span>
-              <button type="button" class="voice-like-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 hover:bg-rose-50 hover:text-rose-600 text-slate-600 text-[11px] font-bold transition border border-slate-200" data-vid="${v.id}">
-                <span>❤️</span>
-                <span class="like-count">${v.likes || 0}</span>
-              </button>
-            </div>
-          </div>
-        `;
-
-        // Handle like button
-        const likeBtn = card.querySelector('.voice-like-btn');
-        if (likeBtn) {
-          likeBtn.addEventListener('click', () => {
-            v.likes = (v.likes || 0) + 1;
-            likeBtn.querySelector('.like-count').textContent = v.likes;
-            likeBtn.classList.add('text-rose-600', 'bg-rose-50', 'border-rose-300');
-            saveGuestVoices(guestVoices);
+            leafBtn.addEventListener('click', () => openLeafModal(v));
+            treeLeavesWrap.appendChild(leafBtn);
           });
         }
+      }
 
-        voiceFeedContainer.appendChild(card);
-      });
+      // 2. Render Card Feed
+      if (voiceFeedContainer) {
+        voiceFeedContainer.innerHTML = '';
+        if (filtered.length === 0) {
+          voiceFeedContainer.innerHTML = `
+            <div class="p-8 text-center bg-white rounded-3xl border border-dashed border-emerald-900/15 text-slate-500 shadow-xs">
+              <span class="text-3xl block mb-2">💬</span>
+              <p class="text-sm font-bold text-slate-700">Belum ada riwayat suara atau kesan${currentVoiceFilter !== 'all' ? ' untuk kategori ini' : ''}.</p>
+              <p class="text-xs text-slate-500 mt-1">Formulir di atas siap diisi untuk memberikan suara dan komitmen pertama Anda!</p>
+            </div>
+          `;
+        } else {
+          filtered.forEach(v => {
+            const theme = getRoleTheme(v.role);
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-emerald-900/10 natural-card transition-all flex flex-col justify-between';
+            card.innerHTML = `
+              <div>
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center font-black text-xs shadow-xs shrink-0">
+                      ${getInitials(v.author)}
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <h5 class="text-sm font-black text-[#0B3B5B]">${v.author}</h5>
+                        ${v.isNew ? '<span class="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[9px] font-black uppercase tracking-wider animate-pulse">Baru Saja ✨</span>' : ''}
+                      </div>
+                      <p class="text-[11px] font-medium text-slate-500">${v.origin || 'Pengunjung Stand'}</p>
+                    </div>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold border ${theme.badgeBg} shrink-0">
+                    ${v.roleLabel || theme.label}
+                  </span>
+                </div>
+
+                <div class="mb-3 px-3 py-1.5 rounded-xl bg-emerald-50/70 border border-emerald-200/60 inline-flex items-center gap-2 text-xs font-bold text-[#197A54]">
+                  <span>🌱 Komitmen:</span>
+                  <span class="text-[#0B3B5B]">${v.commitment || 'Pilah Sampah Organik & Anorganik'}</span>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-[#F7FAF8] p-3.5 rounded-2xl border border-emerald-900/5 mb-3">
+                  “${v.message}”
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100 flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-[#B46906] text-[10px] font-bold">
+                  ${v.stamp || '⭐ Sangat Menginspirasi'}
+                </span>
+
+                <div class="flex items-center gap-3">
+                  <span class="text-[10px] text-slate-400 font-medium">${v.time || 'Expo Boltim 2026'}</span>
+                  <button type="button" class="voice-like-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 hover:bg-rose-50 hover:text-rose-600 text-slate-600 text-[11px] font-bold transition border border-slate-200" data-vid="${v.id}">
+                    <span>❤️</span>
+                    <span class="like-count">${v.likes || 0}</span>
+                  </button>
+                </div>
+              </div>
+            `;
+
+            const likeBtn = card.querySelector('.voice-like-btn');
+            if (likeBtn) {
+              likeBtn.addEventListener('click', () => {
+                v.likes = (v.likes || 0) + 1;
+                likeBtn.querySelector('.like-count').textContent = v.likes;
+                likeBtn.classList.add('text-rose-600', 'bg-rose-50', 'border-rose-300');
+                saveGuestVoices(guestVoices);
+                renderVoiceFeed();
+              });
+            }
+
+            voiceFeedContainer.appendChild(card);
+          });
+        }
+      }
     }
 
     // Filter Buttons Listener
@@ -2459,6 +2890,7 @@
         const author = document.getElementById('voiceAuthor').value.trim();
         const role = document.getElementById('voiceRole').value;
         const origin = document.getElementById('voiceOrigin').value.trim();
+        const commitment = document.getElementById('voiceCommitment')?.value || '🌱 Pilah Sampah Organik & Anorganik';
         const stamp = document.getElementById('voiceStamp').value;
         const message = document.getElementById('voiceMessage').value.trim();
 
@@ -2471,6 +2903,7 @@
           role,
           roleLabel: roleTheme.label,
           origin: origin || 'Pengunjung Stand',
+          commitment,
           stamp,
           message,
           time: 'Baru saja',
@@ -2481,14 +2914,14 @@
         guestVoices.unshift(newEntry);
         saveGuestVoices(guestVoices);
 
-        // Confetti
+        // Confetti celebration
         if (typeof confetti === 'function') {
-          confetti({ particleCount: 45, spread: 65, origin: { y: 0.7 }, colors: ['#29B36E', '#F5A623', '#38BDF8'] });
+          confetti({ particleCount: 55, spread: 75, origin: { y: 0.7 }, colors: ['#29B36E', '#F5A623', '#38BDF8', '#4ADE80'] });
         }
 
         // Show feedback alert
         if (voiceAlert) {
-          if (voiceAlertText) voiceAlertText.textContent = `Terima kasih, ${author}! Suara apresiasi Anda telah berhasil ditambahkan ke papan stand.`;
+          if (voiceAlertText) voiceAlertText.textContent = `Terima kasih, ${author}! Daun komitmen hijau Anda telah berhasil mekar di Pohon SABUMI.`;
           voiceAlert.classList.remove('hidden');
           setTimeout(() => {
             voiceAlert.classList.add('hidden');
@@ -2499,6 +2932,9 @@
         document.getElementById('voiceAuthor').value = '';
         document.getElementById('voiceOrigin').value = '';
         document.getElementById('voiceMessage').value = '';
+
+        // Switch to tree view to celebrate newly planted leaf
+        setViewMode('tree');
 
         // Reset filter to all and render
         currentVoiceFilter = 'all';
