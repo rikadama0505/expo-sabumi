@@ -193,11 +193,11 @@
 
   <!-- Feature Badges Row -->
   <g transform="translate(100, 982)">
-    <!-- Badge 1: 18 Karya -->
+    <!-- Badge 1: 19 Karya -->
     <g transform="translate(0, 0)">
       <rect width="186" height="42" rx="21" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
       <text x="93" y="26" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="800" fill="#FDE047" text-anchor="middle">
-        ✨ 18 Karya Daur Ulang
+        ✨ 19 Karya Daur Ulang
       </text>
     </g>
 
