@@ -206,11 +206,13 @@
       opacity: 0;
       transform: translateY(16px) scale(0.95);
       pointer-events: none;
+      visibility: hidden;
     }
     .music-panel-open {
       opacity: 1;
       transform: translateY(0) scale(1);
       pointer-events: auto;
+      visibility: visible;
     }
 
     /* Pohon Komitmen Botanical Motions */
@@ -227,11 +229,19 @@
       animation: leafFloatGlow 4.8s ease-in-out infinite;
       transform-origin: center bottom;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
-    .leaf-node:hover {
-      animation-play-state: paused;
-      transform: translateY(-5px) scale(1.05);
-      z-index: 25;
+    @media (hover: hover) and (pointer: fine) {
+      .leaf-node:hover {
+        animation-play-state: paused;
+        transform: translateY(-5px) scale(1.05);
+        z-index: 25;
+      }
+    }
+    .leaf-node:active {
+      transform: scale(0.96) translateY(0);
     }
     .leaf-new-entrance {
       animation: leafEntrance 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
@@ -995,7 +1005,7 @@
             </div>
 
             <!-- Dynamic Leaf Canopy Container -->
-            <div id="treeLeavesWrap" class="relative z-10 py-6 min-h-[360px] flex flex-wrap items-center justify-center gap-3 sm:gap-4 content-center"></div>
+            <div id="treeLeavesWrap" class="relative z-10 py-5 sm:py-6 min-h-[360px] max-h-[600px] overflow-y-auto no-scrollbar flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 content-center"></div>
 
             <!-- Bottom Soil Caption -->
             <div class="relative z-10 text-center pt-3 border-t border-white/10 text-[11px] text-emerald-200/80 flex items-center justify-center gap-2">
@@ -1056,7 +1066,7 @@
   <div id="musicBackdrop" class="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
 
   <!-- Floating Background Music Player & Drawer (Bottom Left) -->
-  <div id="musicPlayerContainer" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2.5 select-none font-sans">
+  <div id="musicPlayerContainer" class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2.5 select-none font-sans pointer-events-none">
     <!-- Music Playlist & Control Drawer (Expandable Panel) -->
     <div id="musicDrawer" class="music-panel-closed transition-all duration-300 w-72 sm:w-88 max-w-[calc(100vw-2rem)] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-emerald-900/15 p-3.5 sm:p-4 text-[#072236]">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -1118,7 +1128,7 @@
     </div>
 
     <!-- Floating Pill Button (Always visible on bottom-left) -->
-    <div id="musicFloatingPill" class="inline-flex items-center rounded-full bg-white/95 backdrop-blur-md shadow-xl border border-emerald-900/15 p-1 sm:p-1.5 gap-1.5 sm:gap-2 text-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50">
+    <div id="musicFloatingPill" class="pointer-events-auto inline-flex items-center rounded-full bg-white/95 backdrop-blur-md shadow-xl border border-emerald-900/15 p-1 sm:p-1.5 gap-1.5 sm:gap-2 text-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50">
       <button id="pillPlayPauseBtn" type="button" aria-label="Putar atau jeda musik latar" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition shrink-0">
         <svg id="pillPlayIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <svg id="pillPauseIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -1490,29 +1500,29 @@
   </div>
 
   <!-- Modal Detail Daun Komitmen Pohon SABUMI -->
-  <div id="leafModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-labelledby="modalLeafAuthor">
-    <div class="modal-panel bg-white rounded-3xl max-w-lg w-full flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15">
+  <div id="leafModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4 touch-manipulation" role="dialog" aria-modal="true" aria-labelledby="modalLeafAuthor">
+    <div class="modal-panel bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15 overscroll-contain">
       <!-- Modal Header -->
-      <div class="p-5 sm:p-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-b border-emerald-900/10 flex items-start justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <div id="modalLeafAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0">
+      <div class="p-4 sm:p-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-b border-emerald-900/10 flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div id="modalLeafAvatar" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0">
             DA
           </div>
-          <div>
+          <div class="min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 id="modalLeafAuthor" class="text-base font-black text-[#0B3B5B]">Nama Pengisi</h4>
-              <span id="modalLeafRoleBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border bg-emerald-50 text-emerald-800 border-emerald-200">👨‍🎓 Siswa</span>
+              <h4 id="modalLeafAuthor" class="text-base font-black text-[#0B3B5B] truncate">Nama Pengisi</h4>
+              <span id="modalLeafRoleBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border bg-emerald-50 text-emerald-800 border-emerald-200 shrink-0">👨‍🎓 Siswa</span>
             </div>
-            <p id="modalLeafOrigin" class="text-xs text-slate-500 mt-0.5">Asal Sekolah / Desa</p>
+            <p id="modalLeafOrigin" class="text-xs text-slate-500 mt-0.5 truncate">Asal Sekolah / Desa</p>
           </div>
         </div>
-        <button id="closeLeafModalBtn" type="button" class="w-9 h-9 rounded-full bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center text-base font-bold shadow-xs transition" aria-label="Tutup jendela komitmen">
+        <button id="closeLeafModalBtn" type="button" class="w-10 h-10 rounded-full bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center text-lg font-bold shadow-xs transition active:scale-95 touch-manipulation shrink-0" aria-label="Tutup jendela komitmen">
           ✕
         </button>
       </div>
 
       <!-- Modal Body -->
-      <div class="p-5 sm:p-6 space-y-4 max-h-[65vh] overflow-y-auto">
+      <div class="p-4 sm:p-6 space-y-4 max-h-[62vh] overflow-y-auto">
         <!-- Badge Komitmen Aksi Bumi -->
         <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/90 flex items-center gap-3">
           <div class="w-9 h-9 rounded-xl bg-[#197A54] text-white flex items-center justify-center text-lg shrink-0 shadow-xs">
@@ -1542,9 +1552,9 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
-        <span id="modalLeafTime" class="text-[11px] text-slate-400 font-medium">Expo Boltim 2026</span>
-        <button id="modalLeafLikeBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-xs transition border border-rose-200 shadow-sm active:scale-95">
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0 gap-2">
+        <span id="modalLeafTime" class="text-[11px] text-slate-400 font-medium truncate">Expo Boltim 2026</span>
+        <button id="modalLeafLikeBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-xs transition border border-rose-200 shadow-sm active:scale-95 touch-manipulation shrink-0">
           <span>❤️ Beri Apresiasi Daun</span>
           <span id="modalLeafLikeCount" class="font-black bg-white px-2 py-0.5 rounded-full text-rose-700 shadow-xs">0</span>
         </button>
@@ -2684,18 +2694,18 @@
     if (viewListBtn) viewListBtn.addEventListener('click', () => setViewMode('list'));
 
     function openLeafModal(v) {
-      if (!leafModal) return;
+      if (!leafModal || !v) return;
       activeModalVoice = v;
       const theme = getRoleTheme(v.role);
 
       if (modalLeafAvatar) {
         modalLeafAvatar.textContent = getInitials(v.author);
-        modalLeafAvatar.className = `w-12 h-12 rounded-2xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0`;
+        modalLeafAvatar.className = `w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0`;
       }
       if (modalLeafAuthor) modalLeafAuthor.textContent = v.author;
       if (modalLeafRoleBadge) {
         modalLeafRoleBadge.textContent = v.roleLabel || theme.label;
-        modalLeafRoleBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${theme.badgeBg}`;
+        modalLeafRoleBadge.className = `px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${theme.badgeBg} shrink-0`;
       }
       if (modalLeafOrigin) modalLeafOrigin.textContent = v.origin || 'Pengunjung Stand';
       if (modalLeafCommitment) modalLeafCommitment.textContent = v.commitment || '🌱 Pilah Sampah Organik & Anorganik';
@@ -2715,7 +2725,12 @@
       activeModalVoice = null;
     }
 
-    if (closeLeafModalBtn) closeLeafModalBtn.addEventListener('click', closeLeafModal);
+    if (closeLeafModalBtn) {
+      closeLeafModalBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLeafModal();
+      });
+    }
     if (leafModal) {
       leafModal.addEventListener('click', (e) => {
         if (e.target === leafModal) closeLeafModal();
@@ -2723,7 +2738,8 @@
     }
 
     if (modalLeafLikeBtn) {
-      modalLeafLikeBtn.addEventListener('click', () => {
+      modalLeafLikeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (!activeModalVoice) return;
         activeModalVoice.likes = (activeModalVoice.likes || 0) + 1;
         modalLeafLikeCount.textContent = activeModalVoice.likes;
@@ -2760,8 +2776,10 @@
             const theme = getRoleTheme(v.role);
             const leafBtn = document.createElement('button');
             leafBtn.type = 'button';
+            leafBtn.setAttribute('aria-haspopup', 'dialog');
+            leafBtn.setAttribute('aria-label', `Lihat daun komitmen ${v.author}`);
             const swayDelay = ((idx % 5) * -0.95).toFixed(2);
-            leafBtn.className = `leaf-node relative group text-left px-3.5 py-2.5 rounded-2xl border backdrop-blur-md shadow-lg transition-all flex items-center gap-2.5 cursor-pointer max-w-[280px] sm:max-w-[320px] ${theme.leafBg} ${v.isNew ? 'leaf-new-entrance ring-2 ring-emerald-400' : ''}`;
+            leafBtn.className = `leaf-node relative group text-left px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-2xl border backdrop-blur-md shadow-lg transition-all flex items-center gap-2.5 cursor-pointer max-w-[270px] sm:max-w-[320px] ${theme.leafBg} ${v.isNew ? 'leaf-new-entrance ring-2 ring-emerald-400' : ''}`;
             leafBtn.style.animationDelay = `${swayDelay}s`;
             
             // Clean short commitment text
@@ -2785,7 +2803,10 @@
               </div>
             `;
 
-            leafBtn.addEventListener('click', () => openLeafModal(v));
+            leafBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              openLeafModal(v);
+            });
             treeLeavesWrap.appendChild(leafBtn);
           });
         }
@@ -2806,7 +2827,8 @@
           filtered.forEach(v => {
             const theme = getRoleTheme(v.role);
             const card = document.createElement('div');
-            card.className = 'bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-emerald-900/10 natural-card transition-all flex flex-col justify-between';
+            card.className = 'bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-emerald-900/10 natural-card transition-all flex flex-col justify-between cursor-pointer hover:border-emerald-500/40 hover:shadow-md';
+            card.setAttribute('title', 'Klik untuk melihat detail komitmen');
             card.innerHTML = `
               <div>
                 <div class="flex items-start justify-between gap-3 mb-3">
@@ -2844,7 +2866,7 @@
 
                 <div class="flex items-center gap-3">
                   <span class="text-[10px] text-slate-400 font-medium">${v.time || 'Expo Boltim 2026'}</span>
-                  <button type="button" class="voice-like-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 hover:bg-rose-50 hover:text-rose-600 text-slate-600 text-[11px] font-bold transition border border-slate-200" data-vid="${v.id}">
+                  <button type="button" class="voice-like-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 hover:bg-rose-50 hover:text-rose-600 text-slate-600 text-[11px] font-bold transition border border-slate-200" data-vid="${v.id}" title="Beri tanda suka">
                     <span>❤️</span>
                     <span class="like-count">${v.likes || 0}</span>
                   </button>
@@ -2854,7 +2876,8 @@
 
             const likeBtn = card.querySelector('.voice-like-btn');
             if (likeBtn) {
-              likeBtn.addEventListener('click', () => {
+              likeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 v.likes = (v.likes || 0) + 1;
                 likeBtn.querySelector('.like-count').textContent = v.likes;
                 likeBtn.classList.add('text-rose-600', 'bg-rose-50', 'border-rose-300');
@@ -2862,6 +2885,11 @@
                 renderVoiceFeed();
               });
             }
+
+            card.addEventListener('click', (e) => {
+              if (e.target.closest('.voice-like-btn')) return;
+              openLeafModal(v);
+            });
 
             voiceFeedContainer.appendChild(card);
           });
