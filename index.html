@@ -298,30 +298,20 @@
     </div>
   </div>
 
-  <!-- Official Expo Announcement Top Bar (Juknis Boltim 2026) -->
+  <!-- Official Expo Announcement Top Bar -->
   <aside aria-label="Pengumuman Resmi Expo" class="bg-gradient-to-r from-[#061D30] via-[#0E4F6E] to-[#197A54] text-white text-xs border-b border-emerald-500/30 py-2 px-4 shadow-inner">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+    <div class="max-w-7xl mx-auto flex items-center justify-center text-center">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
         <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400 text-[#072236] font-black text-[10px] uppercase tracking-wider">
-          Juknis Expo 2026
+          Pendidikan Expo 2026
         </span>
         <span class="font-medium text-emerald-100">
-          Pendidikan Expo Kab. Bolaang Mongondow Timur • <strong>24–25 Nov 2026</strong>
+          Kabupaten Bolaang Mongondow Timur • <strong>24–25 Nov 2026</strong>
         </span>
         <span class="hidden md:inline text-emerald-300/60">•</span>
         <span class="hidden md:inline text-amber-200 font-semibold">
           Tema: “Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”
         </span>
-      </div>
-      <div class="flex items-center gap-2 shrink-0">
-        <button id="topInovasiBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-[11px] transition border border-white/20">
-          <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          Lembar Inovasi
-        </button>
-        <button id="topPitchBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/30 hover:bg-emerald-500/50 text-emerald-100 font-bold text-[11px] transition border border-emerald-400/40">
-          <svg class="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-          Panduan 3 Menit
-        </button>
       </div>
     </div>
   </aside>
@@ -353,6 +343,7 @@
           <a href="#dokumentasi" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Dokumentasi</a>
           <a href="#suaraPengunjung" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Suara Pengunjung</a>
           <button id="navInovasiBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-[#B46906] border border-amber-300 text-xs font-black transition">Lembar Inovasi</button>
+          <button id="navPitchBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">Panduan 3 Menit</button>
           <button id="replayIntroBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Intro</button>
           <button id="quickMusicToggleBtn" type="button" aria-label="Nyalakan atau jeda musik latar" class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">
             <span class="inline-flex items-end gap-0.5 h-3.5 w-3.5" id="navMusicBars">
@@ -445,15 +436,11 @@
               Jelajahi Galeri Geser
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
-            <button id="heroInovasiBtn" type="button" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition hover:-translate-y-0.5">
-              <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              Lembar Inovasi Juknis
-            </button>
-            <button id="heroPitchBtn" type="button" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-full bg-emerald-600/60 hover:bg-emerald-600/80 text-white font-bold text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md transition hover:-translate-y-0.5">
-              <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
-              Panduan Juri 3 Menit
-            </button>
-            <a href="#suaraPengunjung" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-full bg-white/12 hover:bg-white/22 text-white font-bold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition hover:-translate-y-0.5">
+            <a href="#transformasi" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition hover:-translate-y-0.5">
+              <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              Lihat Transformasi 3R
+            </a>
+            <a href="#suaraPengunjung" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-emerald-600/70 hover:bg-emerald-600/90 text-white font-bold text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md transition hover:-translate-y-0.5">
               <span>✍️</span>
               Beri Suara
             </a>
@@ -605,32 +592,6 @@
         </div>
       </div>
 
-      <!-- Keselarasan Juknis Stand & Pembelajaran Mendalam Banner -->
-      <div class="mt-8 rounded-3xl bg-white border border-emerald-900/10 p-6 sm:p-7 shadow-sm reveal flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-[#FDB913] flex items-center justify-center shrink-0 shadow-md">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-[#197A54] text-xs font-black uppercase tracking-wider">Format Stand Bab 3 &amp; Lampiran 2 Juknis</span>
-              <span class="text-xs font-semibold text-slate-500">Kategori Sekolah Inovatif &amp; Stand Kreatif</span>
-            </div>
-            <h3 class="text-base sm:text-lg font-black text-[#0B3B5B] mt-1">
-              Pembelajaran Mendalam: Memahami – Mengaplikasi – Merefleksi
-            </h3>
-            <p class="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
-              Inovasi SABUMI SMP Negeri 3 Tutuyan dirancang dengan kepemilikan dan keterlibatan murid (<em>student agency</em>) secara penuh. Stand memadukan karya fisik, portofolio digital berbasis QR, refleksi siswa, serta demonstrasi interaktif sesuai ketentuan resmi Petunjuk Teknis Pendidikan Expo Boltim 2026.
-            </p>
-          </div>
-        </div>
-        <div class="shrink-0 flex sm:flex-col gap-2 w-full sm:w-auto">
-          <button id="profilInovasiBtn" type="button" class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0B3B5B] to-[#197A54] hover:brightness-110 text-white text-xs font-black shadow-md transition">
-            <span>Buka Lembar Inovasi Juknis</span>
-            <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
-        </div>
-      </div>
 
       <!-- Interactive Transformasi Sampah -> Berkah Showcase -->
       <div id="transformasi" class="mt-12 reveal rounded-3xl bg-gradient-to-br from-[#072236] via-[#0E4F6E] to-[#197A54] p-6 sm:p-9 text-white shadow-2xl">
@@ -811,11 +772,11 @@
         </div>
       </div>
 
-      <!-- Zona E: Papan Suara Terbuka (Murid, Guru, Juri & Masyarakat) -->
+      <!-- Papan Suara Terbuka (Murid, Guru, Juri & Masyarakat) -->
       <div id="suaraPengunjung" class="mt-14 reveal pt-8 border-t border-emerald-900/10">
         <div class="text-center max-w-2xl mx-auto mb-10">
           <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 text-[#B46906] text-xs font-black uppercase tracking-wider">
-            Zona E • Partisipasi Terbuka (Juknis Bab 3 &amp; Bab 14)
+            Papan Partisipasi Terbuka
           </span>
           <h3 class="mt-2 text-2xl sm:text-3xl font-black text-[#0B3B5B]">Suara &amp; Apresiasi Pengunjung Stand</h3>
           <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -823,92 +784,97 @@
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-8 items-start">
-          <!-- Kolom Formulir Kirim Suara (lg:col-span-5) -->
-          <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 shadow-lg border border-emerald-900/10 sticky top-24">
-            <div class="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
-              <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#197A54] to-[#29B36E] text-white flex items-center justify-center text-lg shadow-sm">
-                ✍️
-              </div>
-              <div>
-                <h4 class="text-base font-black text-[#0B3B5B]">Beri Suara &amp; Kesan Anda</h4>
-                <p class="text-xs text-slate-500">Kirimkan apresiasi Anda untuk stand kami</p>
-              </div>
+        <!-- Form Pengisian Suara (Baris tersendiri, terpusat dan rapi) -->
+        <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-emerald-900/10 mb-12">
+          <div class="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#197A54] to-[#29B36E] text-white flex items-center justify-center text-lg shadow-sm">
+              ✍️
+            </div>
+            <div>
+              <h4 class="text-base font-black text-[#0B3B5B]">Beri Suara &amp; Kesan Anda</h4>
+              <p class="text-xs text-slate-500">Tuliskan apresiasi, saran, atau kesan Anda untuk karya dan stand kami</p>
+            </div>
+          </div>
+
+          <!-- Feedback Alert -->
+          <div id="voiceAlert" class="hidden mb-4 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
+            <span class="text-base">🎉</span>
+            <span id="voiceAlertText">Terima kasih! Suara Anda telah berhasil dikirimkan ke papan apresiasi.</span>
+          </div>
+
+          <form id="voiceForm" class="space-y-4">
+            <div>
+              <label for="voiceAuthor" class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap / Panggilan *</label>
+              <input id="voiceAuthor" type="text" required placeholder="Contoh: Rian, Ibu Rahma, Bpk. Juri..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition" />
             </div>
 
-            <!-- Feedback Alert -->
-            <div id="voiceAlert" class="hidden mb-4 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
-              <span class="text-base">🎉</span>
-              <span id="voiceAlertText">Terima kasih! Suara Anda telah berhasil dikirimkan ke papan apresiasi.</span>
-            </div>
-
-            <form id="voiceForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label for="voiceAuthor" class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap / Panggilan *</label>
-                <input id="voiceAuthor" type="text" required placeholder="Contoh: Rian, Ibu Rahma, Bpk. Juri..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition" />
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label for="voiceRole" class="block text-xs font-bold text-slate-700 mb-1">Peran Anda *</label>
-                  <select id="voiceRole" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
-                    <option value="siswa">👨‍🎓 Siswa / Murid</option>
-                    <option value="guru">👩‍🏫 Guru / Pendidik</option>
-                    <option value="juri">⚖️ Dewan Juri Expo</option>
-                    <option value="masyarakat">👨‍👩‍👧 Masyarakat / Ortu</option>
-                    <option value="umum">🌟 Pengunjung Umum</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label for="voiceOrigin" class="block text-xs font-bold text-slate-700 mb-1">Asal Sekolah / Desa</label>
-                  <input id="voiceOrigin" type="text" placeholder="Contoh: SMPN 3 Tutuyan, Warga Tombolikat..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition" />
-                </div>
-              </div>
-
-              <div>
-                <label for="voiceStamp" class="block text-xs font-bold text-slate-700 mb-1">Kesan Apresiasi *</label>
-                <select id="voiceStamp" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
-                  <option value="⭐ Sangat Menginspirasi">⭐ Sangat Menginspirasi</option>
-                  <option value="🌿 Green Stand Peduli Bumi">🌿 Green Stand Peduli Bumi</option>
-                  <option value="💡 Inovasi Karya Kreatif">💡 Inovasi Karya Kreatif</option>
-                  <option value="👏 Bangga & Luar Biasa">👏 Bangga &amp; Luar Biasa</option>
-                  <option value="🏆 Stand Juara Boltim">🏆 Stand Juara Boltim</option>
+                <label for="voiceRole" class="block text-xs font-bold text-slate-700 mb-1">Peran Anda *</label>
+                <select id="voiceRole" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
+                  <option value="siswa">👨‍🎓 Siswa / Murid</option>
+                  <option value="guru">👩‍🏫 Guru / Pendidik</option>
+                  <option value="juri">⚖️ Dewan Juri Expo</option>
+                  <option value="masyarakat">👨‍👩‍👧 Masyarakat / Ortu</option>
+                  <option value="umum">🌟 Pengunjung Umum</option>
                 </select>
               </div>
 
               <div>
-                <label for="voiceMessage" class="block text-xs font-bold text-slate-700 mb-1">Pesan / Suara Refleksi *</label>
-                <textarea id="voiceMessage" rows="3" required placeholder="Tuliskan kesan Anda tentang karya daur ulang siswa, pesan semangat, atau penilaian stand kami..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition resize-none"></textarea>
+                <label for="voiceOrigin" class="block text-xs font-bold text-slate-700 mb-1">Asal Sekolah / Instansi / Desa</label>
+                <input id="voiceOrigin" type="text" placeholder="Contoh: SMPN 3 Tutuyan, Warga Tombolikat..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition" />
               </div>
-
-              <button id="voiceSubmitBtn" type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#0B3B5B] via-[#0E4F6E] to-[#197A54] hover:brightness-110 text-white font-black text-xs sm:text-sm shadow-md transition hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
-                <span>Kirimkan Suara Saya</span>
-                <span>✨</span>
-              </button>
-            </form>
-          </div>
-
-          <!-- Kolom Papan Suara Live Feed (lg:col-span-7) -->
-          <div class="lg:col-span-7 space-y-4">
-            <!-- Filter Kategori Feed -->
-            <div class="bg-white rounded-2xl p-2.5 border border-emerald-900/10 shadow-xs flex items-center justify-between gap-2 flex-wrap">
-              <div id="voiceFilterGroup" class="flex flex-wrap gap-1.5">
-                <button type="button" data-vrole="all" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-[#0B3B5B] text-white">Semua (<span id="countAll">0</span>)</button>
-                <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Siswa (<span id="countSiswa">0</span>)</button>
-                <button type="button" data-vrole="guru" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Guru (<span id="countGuru">0</span>)</button>
-                <button type="button" data-vrole="juri" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Juri (<span id="countJuri">0</span>)</button>
-                <button type="button" data-vrole="masyarakat" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Masyarakat (<span id="countMasyarakat">0</span>)</button>
-              </div>
-              <span class="text-[11px] font-semibold text-emerald-700 flex items-center gap-1">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                Papan Terbuka
-              </span>
             </div>
 
-            <!-- List of Voices Container -->
-            <div id="voiceFeedContainer" class="space-y-3.5 max-h-[750px] overflow-y-auto pr-1"></div>
+            <div>
+              <label for="voiceStamp" class="block text-xs font-bold text-slate-700 mb-1">Kesan Apresiasi *</label>
+              <select id="voiceStamp" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
+                <option value="⭐ Sangat Menginspirasi">⭐ Sangat Menginspirasi</option>
+                <option value="🌿 Green Stand Peduli Bumi">🌿 Green Stand Peduli Bumi</option>
+                <option value="💡 Inovasi Karya Kreatif">💡 Inovasi Karya Kreatif</option>
+                <option value="👏 Bangga & Luar Biasa">👏 Bangga &amp; Luar Biasa</option>
+                <option value="🏆 Stand Juara Boltim">🏆 Stand Juara Boltim</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="voiceMessage" class="block text-xs font-bold text-slate-700 mb-1">Pesan / Suara Refleksi *</label>
+              <textarea id="voiceMessage" rows="3" required placeholder="Tuliskan kesan Anda tentang karya daur ulang siswa, pesan semangat, atau penilaian stand kami..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition resize-none"></textarea>
+            </div>
+
+            <button id="voiceSubmitBtn" type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#0B3B5B] via-[#0E4F6E] to-[#197A54] hover:brightness-110 text-white font-black text-xs sm:text-sm shadow-md transition hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
+              <span>Kirimkan Suara Saya</span>
+              <span>✨</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Riwayat Komentar & Kesan (Terpisah rapi di baris tersendiri di bawah formulir) -->
+        <div class="max-w-3xl mx-auto space-y-4">
+          <div class="flex items-center justify-between gap-3 mb-2">
+            <h4 class="text-sm font-extrabold uppercase tracking-wider text-[#0B3B5B] flex items-center gap-2">
+              <span>💬 Riwayat Suara &amp; Kesan</span>
+            </h4>
+            <span class="text-xs font-medium text-slate-500">Pembaruan Langsung</span>
           </div>
+
+          <!-- Filter Kategori Feed -->
+          <div class="bg-white rounded-2xl p-2.5 border border-emerald-900/10 shadow-xs flex items-center justify-between gap-2 flex-wrap">
+            <div id="voiceFilterGroup" class="flex flex-wrap gap-1.5">
+              <button type="button" data-vrole="all" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-[#0B3B5B] text-white">Semua (<span id="countAll">0</span>)</button>
+              <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Siswa (<span id="countSiswa">0</span>)</button>
+              <button type="button" data-vrole="guru" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Guru (<span id="countGuru">0</span>)</button>
+              <button type="button" data-vrole="juri" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Juri (<span id="countJuri">0</span>)</button>
+              <button type="button" data-vrole="masyarakat" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">Masyarakat (<span id="countMasyarakat">0</span>)</button>
+            </div>
+            <span class="text-[11px] font-semibold text-emerald-700 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              Papan Terbuka
+            </span>
+          </div>
+
+          <!-- List of Voices Container -->
+          <div id="voiceFeedContainer" class="space-y-3.5"></div>
         </div>
       </div>
     </div>
@@ -2161,11 +2127,11 @@
     }
 
     // Attach open buttons
-    ['topInovasiBtn', 'navInovasiBtn', 'mobileInovasiBtn', 'heroInovasiBtn', 'profilInovasiBtn'].forEach(id => {
+    ['navInovasiBtn', 'mobileInovasiBtn', 'topInovasiBtn', 'heroInovasiBtn', 'profilInovasiBtn'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('click', openInovasiModal);
     });
-    ['topPitchBtn', 'mobilePitchBtn', 'heroPitchBtn'].forEach(id => {
+    ['navPitchBtn', 'mobilePitchBtn', 'topPitchBtn', 'heroPitchBtn'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('click', openPitchModal);
     });
@@ -2303,62 +2269,20 @@
     // ==========================================
     // INTERACTIVE GUEST & COMMUNITY VOICES
     // ==========================================
-    const DEFAULT_GUEST_VOICES = [
-      {
-        id: 'v_init_1',
-        author: 'Nazwa',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Tim Jam Dinding SABUMI 3R',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Awalnya kami kira kardus biskuit dan tutup botol cuma sampah yang dibakar. Pas kami rangkai bareng jadi Jam Dinding SABUMI dan jarumnya muter, kami bangga sekali! Kami belajar sabar membagi tugas dan mengukur pola lingkaran.',
-        time: '21 Nov 2026',
-        likes: 14
-      },
-      {
-        id: 'v_init_2',
-        author: 'Ibu Rahmawati, S.Pd.',
-        role: 'guru',
-        roleLabel: '👩‍🏫 Guru / Pendidik',
-        origin: 'SMP Negeri 3 Tutuyan',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Peran guru bergeser dari sekadar pengajar menjadi fasilitator. Saat murid diberi ruang memilih dan mendesain karyanya sendiri, mereka bertransformasi menjadi pribadi yang percaya diri, bertanggung jawab, dan peduli pada alam sekitar.',
-        time: '21 Nov 2026',
-        likes: 21
-      },
-      {
-        id: 'v_init_3',
-        author: 'Farel',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Tim Toples Kaleng & Rak Kardus',
-        stamp: '💡 Inovasi Karya Kreatif',
-        message: 'Paling seru pas mengecat kaleng susu bekas jadi toples kopi minimalis dan memotong kardus tebal untuk rak sepatu 3 tingkat. Dari sampah berserakan di kantin, sekarang bisa jadi perabot kelas yang kuat dan rapi.',
-        time: '22 Nov 2026',
-        likes: 11
-      },
-      {
-        id: 'v_init_4',
-        author: 'Bpk. Hendrik Mamonto',
-        role: 'masyarakat',
-        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
-        origin: 'Keluarga Siswa Tutuyan',
-        stamp: '👏 Bangga & Luar Biasa',
-        message: 'Sangat bangga melihat kreativitas anak-anak sekolah kita. Barang yang tadinya limbah disulap jadi dekorasi bernilai guna tinggi. Semoga gerakan peduli sampah ini menular ke lingkungan rumah dan desa!',
-        time: '22 Nov 2026',
-        likes: 16
-      }
-    ];
+    const DEFAULT_GUEST_VOICES = [];
 
     function loadGuestVoices() {
       try {
         const stored = localStorage.getItem('sabumi_guest_voices');
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed)) {
+            // Keep genuine user entries, strip old hardcoded templates
+            return parsed.filter(v => !v.id || !v.id.startsWith('v_init_'));
+          }
         }
       } catch (e) {}
-      return [...DEFAULT_GUEST_VOICES];
+      return [];
     }
 
     function saveGuestVoices(list) {
@@ -2444,10 +2368,10 @@
 
       if (filtered.length === 0) {
         voiceFeedContainer.innerHTML = `
-          <div class="p-8 text-center bg-white rounded-3xl border border-slate-200 text-slate-500">
+          <div class="p-8 text-center bg-white rounded-3xl border border-dashed border-emerald-900/15 text-slate-500 shadow-xs">
             <span class="text-3xl block mb-2">💬</span>
-            <p class="text-sm font-bold text-slate-700">Belum ada suara untuk kategori ini.</p>
-            <p class="text-xs text-slate-500 mt-1">Jadilah yang pertama menuliskan apresiasi Anda pada formulir di samping!</p>
+            <p class="text-sm font-bold text-slate-700">Belum ada riwayat suara atau kesan${currentVoiceFilter !== 'all' ? ' untuk kategori ini' : ''}.</p>
+            <p class="text-xs text-slate-500 mt-1">Formulir di atas siap diisi untuk memberikan suara dan apresiasi pertama Anda!</p>
           </div>
         `;
         return;
