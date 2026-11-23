@@ -846,7 +846,7 @@
               <div>
                 <label for="voiceRole" class="block text-xs font-bold text-slate-700 mb-1">Peran Anda *</label>
                 <select id="voiceRole" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs font-semibold text-slate-700 transition">
-                  <option value="siswa">👨‍🎓 Siswa / Murid</option>
+                  <option value="siswa">👨‍🎓 Siswa / Santri / Murid</option>
                   <option value="guru">👩‍🏫 Guru / Pendidik</option>
                   <option value="juri">⚖️ Dewan Juri Expo</option>
                   <option value="masyarakat">👨‍👩‍👧 Masyarakat / Ortu</option>
@@ -935,7 +935,7 @@
           <div class="bg-white rounded-2xl p-2.5 border border-emerald-900/10 shadow-xs flex items-center justify-between gap-2 flex-wrap">
             <div id="voiceFilterGroup" class="flex flex-wrap gap-1.5">
               <button type="button" data-vrole="all" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-[#0B3B5B] text-white shadow-xs">Semua Daun (<span id="countAll">0</span>)</button>
-              <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🍃 Siswa (<span id="countSiswa">0</span>)</button>
+              <button type="button" data-vrole="siswa" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🍃 Siswa / Santri (<span id="countSiswa">0</span>)</button>
               <button type="button" data-vrole="guru" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🌿 Guru (<span id="countGuru">0</span>)</button>
               <button type="button" data-vrole="juri" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🍎 Juri Expo (<span id="countJuri">0</span>)</button>
               <button type="button" data-vrole="masyarakat" class="voice-filter-btn px-3 py-1.5 rounded-full text-xs font-bold transition bg-slate-100 hover:bg-slate-200 text-slate-700">🌸 Masyarakat (<span id="countMasyarakat">0</span>)</button>
@@ -2480,159 +2480,26 @@
       anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3Z2cXhqeXpudGRyY2NudXl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5MDk0NjUsImV4cCI6MjEwMzQ4NTQ2NX0.U2j-3xpXHIUctKaXETg7e8VqmU2ZMCiA96kXahwQyM4'
     };
 
-    const DEFAULT_GUEST_VOICES = [
-      {
-        id: 'v_init_1',
-        author: 'Fadlan Mokodompit',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas IX-A • Ketua Tim Jam SABUMI 3R',
-        commitment: '🥤 Bawa Botol Minum / Tumbler Sendiri',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Waktu aksi tanggal 10 November, kami berenam memungut 12 tutup botol NutriSari dan kardus bekas di halaman sekolah. Sempat ragu apa bisa jadi jam beneran, tapi setelah dipandu Bu Rahma dan Bu Kepsek Amelia, Jam Dinding SABUMI 3R sekarang benar-benar berdetak di kelas! Saya berjanji tidak akan pernah buang botol plastik sembarangan lagi di pantai Tutuyan dan selalu bawa tumbler sendiri ke sekolah.',
-        time: 'Hari ke-1 Expo • 08:45 WITA',
-        likes: 28
-      },
-      {
-        id: 'v_init_2',
-        author: 'Meisya Putri Damopolii',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VIII-B • Tim Keranjang Tutup Botol Lukis',
-        commitment: '🛍️ Bawa Tas Belanja Ramah Lingkungan',
-        stamp: '💡 Inovasi Karya Kreatif',
-        message: 'Melukis 60 tutup botol putih satu per satu dengan motif bunga matahari pakai cat akrilik dan kuas kecil butuh kesabaran luar biasa. Pas dirangkai dengan lem tembak jadi tas etnik, rasanya puas sekali melihat pengunjung stand memuji karya kami. Komitmen nyata saya: setiap ikut mama belanja ke pasar Tutuyan, saya selalu bawa tas kain sendiri.',
-        time: 'Hari ke-1 Expo • 09:30 WITA',
-        likes: 34
-      },
-      {
-        id: 'v_init_3',
-        author: 'Moh. Al-Fath Paputungan',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VIII-A • Tim Rak Buku Kardus SIDU',
-        commitment: '♻️ Daur Ulang Kreatif Barang Bekas',
-        stamp: '👏 Bangga & Luar Biasa',
-        message: 'Dulu boks kardus kertas SIDU F4 di ruang guru cuma ditumpuk dan biasanya dibakar. Kami ukur presisi, lapis pembatas tiga tingkat, dan rekatkan dengan lem tembak sampai kokoh menampung puluhan buku bacaan di selasar. Ternyata sampah di sekitar kita bisa bernilai guna tinggi kalau kita mau berkolaborasi!',
-        time: 'Hari ke-1 Expo • 10:15 WITA',
-        likes: 22
-      },
-      {
-        id: 'v_init_4',
-        author: 'Novita Mamonto',
-        role: 'siswa',
-        roleLabel: '👨‍🎓 Siswa',
-        origin: 'Siswa Kelas VII-A • Tim Bunga Gelas & Sendok Nanas',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Sebagai murid baru kelas 7, saya senang sekali diajak gotong royong mencuci ratusan gelas minuman bekas di ember dan mengguntingnya jadi kelopak bunga dekorasi. Aksi ini bikin sekolah kami bersih dan kami jadi kompak satu sama lain. Komitmen saya: mulai pilah sampah plastik dan daun kering di halaman rumah.',
-        time: 'Hari ke-1 Expo • 11:20 WITA',
-        likes: 19
-      },
-      {
-        id: 'v_init_5',
-        author: 'Ibu Rahmawati, S.Pd.',
-        role: 'guru',
-        roleLabel: '👩‍🏫 Guru / Pendidik',
-        origin: 'Guru Pembina Lingkungan Hidup & Kokurikuler SMPN 3 Tutuyan',
-        commitment: '♻️ Daur Ulang Kreatif Barang Bekas',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Melihat antusiasme anak-anak mencuci gelas bekas, menjemur di terik matahari, hingga dengan telaten menyemprot kaleng susu Morigro menjadi toples dapur berlabel Coffee & Sugar adalah bukti nyata student agency. Anak-anak tidak sekadar menghafal teori daur ulang, tapi mengalami langsung perubahan pola pikir peduli bumi.',
-        time: 'Hari ke-1 Expo • 08:30 WITA',
-        likes: 42
-      },
-      {
-        id: 'v_init_6',
-        author: 'Bpk. Hendra Mokoginta, S.Pd.',
-        role: 'guru',
-        roleLabel: '👩‍🏫 Guru / Pendidik',
-        origin: 'Guru Pembina Prakarya & Seni Budaya SMPN 3 Tutuyan',
-        commitment: '💡 Hemat Energi & Kurangi Emisi',
-        stamp: '💡 Inovasi Karya Kreatif',
-        message: 'Kombinasi limbah botol plastik dengan sistem penerangan LED hemat energi pada Lampu Hias Meja dan Lentera Gantung membuktikan anak-anak pesisir Tutuyan mampu menciptakan produk bernilai kriya tinggi. Komitmen dewan guru: menjadikan SABUMI sebagai kurikulum kokurikuler tahunan yang berkelanjutan.',
-        time: 'Hari ke-1 Expo • 10:40 WITA',
-        likes: 27
-      },
-      {
-        id: 'v_init_7',
-        author: 'Dra. Hj. Farida Mokodongan, M.Pd.',
-        role: 'juri',
-        roleLabel: '⚖️ Dewan Juri Expo',
-        origin: 'Koordinator Tim Penilai Juri Expo • Pengawas Dikbud Boltim',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '🏆 Stand Juara Boltim',
-        message: 'Stand SABUMI SMPN 3 Tutuyan ini tampil sangat memukau dan melampaui ekspektasi dewan juri. Integrasi 3 tahap Memahami-Mengaplikasi-Merefleksi berjalan konsisten, 19 karya kriya memiliki fungsi guna riil, dan portofolio digital berbasis web QR mandiri ini memenuhi seluruh poin Juknis Bab 5 & 13. Ini contoh sekolah pedesaan yang sukses bertransformasi.',
-        time: 'Hari ke-1 Expo • 11:45 WITA',
-        likes: 56
-      },
-      {
-        id: 'v_init_8',
-        author: 'Drs. Subhan Mamonto',
-        role: 'juri',
-        roleLabel: '⚖️ Dewan Juri Expo',
-        origin: 'Penilai Juri Standar Inovasi Lingkungan Hidup Boltim',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Presentasi 3 menit siswa pemandu stand berlangsung lancar, artikulatif, dan percaya diri saat menjelaskan proses kaleng Morigro dan jam tutup botol. Tidak ada unsur kepura-puraan—semua didukung 47 foto kronologis nyata. Sangat layak menjadi tolok ukur bagi sekolah lain di Bolaang Mongondow Timur.',
-        time: 'Hari ke-1 Expo • 13:10 WITA',
-        likes: 38
-      },
-      {
-        id: 'v_init_9',
-        author: 'Ibu Sitti Nurjana Potabuga',
-        role: 'masyarakat',
-        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
-        origin: 'Orang Tua Murid Kelas VIII • Warga Tombolikat Tutuyan',
-        commitment: '🌱 Pilah Sampah Organik & Anorganik',
-        stamp: '👏 Bangga & Luar Biasa',
-        message: 'Awalnya saya sempat heran melihat anak saya pulang sekolah rajin mengumpulkan botol dan sendok plastik bekas tetangga. Begitu saya datang ke stand pameran ini dan melihat vas sendok putih nanas serta lentera hiasnya menyala terang, dada saya bergetar bangga. Sekarang seluruh keluarga kami di Tombolikat sepakat memilah sampah plastik dari dapur.',
-        time: 'Hari ke-1 Expo • 14:05 WITA',
-        likes: 31
-      },
-      {
-        id: 'v_init_10',
-        author: 'Bapak Rusdi Mamonto',
-        role: 'masyarakat',
-        roleLabel: '👨‍👩‍👧 Masyarakat / Ortu',
-        origin: 'Ketua Komite Sekolah & Tokoh Masyarakat Tutuyan',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '🌿 Green Stand Peduli Bumi',
-        message: 'Sebagai tokoh masyarakat Tutuyan dan komite sekolah, saya menyaksikan langsung bagaimana program SABUMI ini merubah perilaku anak-anak kami. Halaman sekolah kini bersih, bibir pantai Tutuyan ikut terpelihara, dan anak-anak belajar kemandirian vokasional. Komite sekolah siap mendukung penuh keberlanjutan program ini ke depan.',
-        time: 'Hari ke-1 Expo • 14:50 WITA',
-        likes: 36
-      },
-      {
-        id: 'v_init_11',
-        author: 'Ardiansyah Manoppo, S.T.',
-        role: 'umum',
-        roleLabel: '🌟 Pengunjung Umum',
-        origin: 'Alumni SMPN 3 Tutuyan • Pegiat Komunitas Peduli Laut Boltim',
-        commitment: '🌳 Jaga Kelestarian Alam Sekolah & Pantai',
-        stamp: '⭐ Sangat Menginspirasi',
-        message: 'Bangga luar biasa sebagai alumni melihat kemajuan almamater tercinta SMPN 3 Tutuyan. Dari zaman saya dulu sampah belum terkelola, kini adik-adik mampu mengubahnya jadi 19 produk bernilai ekonomi dan dipamerkan lewat platform web interaktif sekelas ini. Komitmen saya: ikut mengajak pemuda Tutuyan rutin aksi bersih pantai setiap akhir pekan.',
-        time: 'Hari ke-1 Expo • 15:30 WITA',
-        likes: 29
-      }
-    ];
-
-    const GUEST_VOICE_STORAGE_KEY = 'sabumi_guest_voices_v5';
+    const GUEST_VOICE_STORAGE_KEY = 'sabumi_guest_voices_v6';
 
     function loadGuestVoices() {
       try {
+        localStorage.removeItem('sabumi_guest_voices_v5');
         const stored = localStorage.getItem(GUEST_VOICE_STORAGE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
+          if (Array.isArray(parsed)) {
+            return parsed.filter(item => item && item.id && !item.id.startsWith('v_init_'));
           }
         }
       } catch (e) {}
-      return [...DEFAULT_GUEST_VOICES];
+      return [];
     }
 
     function saveGuestVoices(list) {
       try {
-        localStorage.setItem(GUEST_VOICE_STORAGE_KEY, JSON.stringify(list));
+        const cleanList = Array.isArray(list) ? list.filter(item => item && item.id && !item.id.startsWith('v_init_')) : [];
+        localStorage.setItem(GUEST_VOICE_STORAGE_KEY, JSON.stringify(cleanList));
       } catch (e) {}
     }
 
@@ -2689,7 +2556,7 @@
           return {
             gradient: 'from-emerald-500 to-teal-700',
             badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-            label: '👨‍🎓 Siswa',
+            label: '👨‍🎓 Siswa / Santri',
             leafBg: 'bg-emerald-950/75 hover:bg-emerald-900/95 border-emerald-400/50 text-emerald-100 shadow-emerald-950/40',
             leafIcon: '🍃',
             accent: '#4ADE80'
@@ -2866,6 +2733,42 @@
       });
     }
 
+    let isPushingPending = false;
+    async function pushPendingVoices(pendingList) {
+      if (isPushingPending || !pendingList || pendingList.length === 0) return;
+      isPushingPending = true;
+      try {
+        for (const item of pendingList) {
+          const payload = {
+            id: item.id,
+            author: item.author,
+            role: item.role,
+            role_label: item.roleLabel || getRoleTheme(item.role).label,
+            origin: item.origin || 'Pengunjung Stand',
+            commitment: item.commitment,
+            stamp: item.stamp,
+            message: item.message,
+            time: item.time,
+            likes: item.likes || 1
+          };
+          await fetch(`${SUPABASE_CONFIG.url}/rest/v1/sabumi_guest_voices`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_CONFIG.anonKey,
+              'Authorization': 'Bearer ' + SUPABASE_CONFIG.anonKey,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+          });
+        }
+      } catch (err) {
+        console.warn('Gagal sinkronisasi komitmen pending ke Supabase:', err);
+      } finally {
+        isPushingPending = false;
+      }
+    }
+
     async function syncRemoteVoices() {
       try {
         const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/sabumi_guest_voices?select=*&order=created_at.desc`, {
@@ -2876,7 +2779,7 @@
         });
         if (!res.ok) return;
         const remote = await res.json();
-        if (Array.isArray(remote) && remote.length > 0) {
+        if (Array.isArray(remote)) {
           const remoteList = remote.map(r => ({
             id: r.id,
             author: r.author,
@@ -2894,6 +2797,10 @@
           const remoteIds = new Set(remoteList.map(r => r.id));
           const localPending = guestVoices.filter(v => !remoteIds.has(v.id) && v.id.startsWith('v_user_'));
           
+          if (localPending.length > 0) {
+            pushPendingVoices(localPending);
+          }
+
           guestVoices = [...localPending, ...remoteList];
           saveGuestVoices(guestVoices);
           renderVoiceFeed();
@@ -3111,6 +3018,14 @@
 
         if (!author || !message) return;
 
+        const submitBtn = document.getElementById('voiceSubmitBtn');
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+          submitBtn.innerHTML = '<span>Menanamkan Daun Komitmen...</span><span>🌱</span>';
+        }
+
         const roleTheme = getRoleTheme(role);
         const newId = 'v_user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
         const now = new Date();
@@ -3184,7 +3099,7 @@
             likes: newEntry.likes
           };
 
-          await fetch(`${SUPABASE_CONFIG.url}/rest/v1/sabumi_guest_voices`, {
+          const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/sabumi_guest_voices`, {
             method: 'POST',
             headers: {
               'apikey': SUPABASE_CONFIG.anonKey,
@@ -3194,8 +3109,17 @@
             },
             body: JSON.stringify(payload)
           });
+          if (!res.ok) {
+            console.warn('Respon non-OK saat simpan ke Supabase:', res.status);
+          }
         } catch (postErr) {
           console.warn('Gagal menyimpan suara ke database cloud:', postErr);
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            submitBtn.innerHTML = originalBtnHtml;
+          }
         }
       });
     }
@@ -3203,7 +3127,10 @@
     // Initialize voice feed on load, sync with Supabase, & start background polling
     renderVoiceFeed();
     syncRemoteVoices();
-    setInterval(syncRemoteVoices, 12000);
+    setInterval(syncRemoteVoices, 10000);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) syncRemoteVoices();
+    });
 
     // Mobile Touch Swipe Gesture for Lightbox Modal
     let modalTouchStartX = 0;
