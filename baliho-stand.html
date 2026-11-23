@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desain Baliho Stand SMP Negeri 3 Tutuyan (SMP-05) — DISPEN EXPO 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-montserrat {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .font-poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Print specific settings */
+    @media print {
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-container {
+        width: 100vw !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .print-svg {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-white">
+
+  <!-- Header & Control Bar -->
+  <header class="no-print max-w-7xl mx-auto mb-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-black uppercase tracking-wider">
+            Nomor Stand: SMP-05
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs font-black uppercase tracking-wider">
+            DISPEN EXPO 2026
+          </span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          Desain Spanduk / Baliho Stand: <span class="text-amber-400">SMP Negeri 3 Tutuyan</span>
+        </h1>
+        <p class="text-sm text-slate-400 mt-1">
+          Disesuaikan dengan format resmi fasia booth pameran Dinas Pendidikan Bolaang Mongondow Timur (Rasio 5:1 • Standar 300 cm × 60 cm).
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <button id="downloadSvgBtn" type="button" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm border border-slate-700 shadow-sm transition flex items-center gap-2">
+          <span>📦</span>
+          <span>Unduh File SVG Vektor</span>
+        </button>
+
+        <button id="downloadPngBtn" type="button" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+          <span>🖼️</span>
+          <span>Unduh PNG HD (3000×600 px)</span>
+        </button>
+
+        <button onclick="window.print()" type="button" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+          <span>🖨️</span>
+          <span>Cetak / Simpan PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Banner Showcase Container -->
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- Interactive Banner Preview -->
+    <section class="print-container bg-white rounded-3xl p-4 sm:p-6 shadow-2xl border border-slate-700/60 overflow-hidden">
+      <div class="no-print flex items-center justify-between mb-4 pb-3 border-b border-slate-100 text-slate-700 text-xs font-bold">
+        <span class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+          Pratinjau Hasil Desain Fasia Stand (Format Cetak Asli 3000 × 600 px)
+        </span>
+        <span class="text-slate-400 hidden sm:inline">Rasio Dimensi 5:1 (300 cm × 60 cm)</span>
+      </div>
+
+      <!-- Live Vector SVG Banner Frame -->
+      <div class="relative w-full rounded-xl overflow-hidden border border-slate-200 shadow-inner bg-slate-50">
+        <img id="bannerImage" src="assets/baliho_stand_smpn3tutuyan.svg" alt="Baliho Stand SMP Negeri 3 Tutuyan" class="print-svg w-full h-auto block object-contain" />
+      </div>
+    </section>
+
+    <!-- Technical Specification & Printing Guide -->
+    <section class="no-print grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Box 1: Spesifikasi Ukuran & Bahan -->
+      <div class="bg-slate-800/80 rounded-2xl p-5 border border-slate-700">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center text-lg font-bold">
+            📐
+          </div>
+          <h2 class="text-base font-bold text-white">Ukuran &amp; Proporsi</h2>
+        </div>
+        <ul class="text-xs text-slate-300 space-y-2">
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Dimensi Standar Fasia:</span>
+            <strong class="text-amber-300">300 cm × 60 cm</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Ukuran Alternatif:</span>
+            <strong class="text-slate-200">250 cm × 50 cm</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Rasio Aspek:</span>
+            <strong class="text-slate-200">5 : 1 (Horizontal)</strong>
+          </li>
+          <li class="flex justify-between pb-1">
+            <span class="text-slate-400">Resolusi Vektor Asli:</span>
+            <strong class="text-emerald-400">3000 × 600 px (Scalable)</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Box 2: Rekomendasi Percetakan -->
+      <div class="bg-slate-800/80 rounded-2xl p-5 border border-slate-700">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+            🖨️
+          </div>
+          <h2 class="text-base font-bold text-white">Instruksi Percetakan</h2>
+        </div>
+        <ul class="text-xs text-slate-300 space-y-2">
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Bahan Terbaik:</span>
+            <strong class="text-emerald-300">Flexi Korcin 440 gsm</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Bahan Alternatif:</span>
+            <strong class="text-slate-200">Flexi Frontlite 380 gsm</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Finishing Cetak:</span>
+            <strong class="text-slate-200">Mata Ayam 4 Sudut + Lem</strong>
+          </li>
+          <li class="flex justify-between pb-1">
+            <span class="text-slate-400">Rekomendasi Warna:</span>
+            <strong class="text-amber-300">CMYK High-Resolution</strong>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Box 3: Data Resmi Stand -->
+      <div class="bg-slate-800/80 rounded-2xl p-5 border border-slate-700">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg font-bold">
+            🏷️
+          </div>
+          <h2 class="text-base font-bold text-white">Identitas Stand Resmi</h2>
+        </div>
+        <ul class="text-xs text-slate-300 space-y-2">
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Nama Sekolah:</span>
+            <strong class="text-white">SMP Negeri 3 Tutuyan</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Nomor Stand:</span>
+            <strong class="text-amber-400 font-black">SMP-05</strong>
+          </li>
+          <li class="flex justify-between border-b border-slate-700/50 pb-1.5">
+            <span class="text-slate-400">Program Utama:</span>
+            <strong class="text-emerald-400">Inovasi SABUMI 3R</strong>
+          </li>
+          <li class="flex justify-between pb-1">
+            <span class="text-slate-400">Instansi Penyelenggara:</span>
+            <strong class="text-slate-200">Disdikbud Kab. Boltim</strong>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Visual Comparison & Elements Breakdown -->
+    <section class="no-print bg-slate-800/50 rounded-2xl p-6 border border-slate-700 text-xs text-slate-400 space-y-3">
+      <h3 class="text-sm font-bold text-white flex items-center gap-2">
+        <span>💡</span> Elemen Desain yang Diadaptasi dari Foto Acuan:
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <strong class="block text-slate-200 text-xs mb-1">1. Pola Geometris Kiri &amp; Kanan</strong>
+          Pola ubin Bauhaus modern dengan kombinasi warna Deep Navy, Mustard Yellow, Cyan, dan Cream persis sesuai template DISPEN.
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <strong class="block text-slate-200 text-xs mb-1">2. Logo Resmi &amp; Penyelenggara</strong>
+          Lambang resmi Kabupaten Bolaang Mongondow Timur dan teks <em>DISPEN EXPO TAHUN 2026</em> serta logo sekolah SMPN 3 Tutuyan.
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <strong class="block text-slate-200 text-xs mb-1">3. Tipografi Lengkung &amp; Judul</strong>
+          Teks lengkung <em>SELAMAT DATANG DI STAND</em> warna cyan bergaris tepi tegas, diikuti <em>SMP NEGERI 3 TUTUYAN</em> ekstra tebal.
+        </div>
+        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+          <strong class="block text-slate-200 text-xs mb-1">4. Lencana Nomor Stand</strong>
+          Polygon miring di sudut kanan bawah dengan lingkaran putih berisikan kode stand <strong>SMP-05</strong> dan aksen garis gelombang cyan.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Hidden Canvas for PNG Generation -->
+  <canvas id="exportCanvas" class="hidden"></canvas>
+
+  <!-- Download & Export Handler Script -->
+  <script>
+    // 1. Download SVG directly
+    document.getElementById('downloadSvgBtn').addEventListener('click', () => {
+      const a = document.createElement('a');
+      a.href = 'assets/baliho_stand_smpn3tutuyan.svg';
+      a.download = 'Baliho_Stand_SMPN3_Tutuyan_SMP-05.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    // 2. Download High-Res PNG (3000 x 600 px) using Canvas
+    document.getElementById('downloadPngBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('downloadPngBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>⏳</span><span>Memproses PNG HD...</span>';
+      btn.disabled = true;
+
+      try {
+        const svgRes = await fetch('assets/baliho_stand_smpn3tutuyan.svg');
+        const svgText = await svgRes.text();
+        const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+        const URL = window.URL || window.webkitURL || window;
+        const blobURL = URL.createObjectURL(svgBlob);
+
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.getElementById('exportCanvas');
+          canvas.width = 3000;
+          canvas.height = 600;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, 3000, 600);
+          ctx.drawImage(img, 0, 0, 3000, 600);
+          URL.revokeObjectURL(blobURL);
+
+          const pngData = canvas.toDataURL('image/png', 1.0);
+          const a = document.createElement('a');
+          a.href = pngData;
+          a.download = 'Baliho_Stand_SMPN3_Tutuyan_SMP-05.png';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        };
+        img.src = blobURL;
+      } catch (err) {
+        console.error('Error generating PNG:', err);
+        alert('Gagal membuat file PNG otomatis. Anda dapat mengunduh format SVG langsung.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
