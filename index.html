@@ -291,39 +291,68 @@
 
     /* Pohon Komitmen Botanical Motions */
     @keyframes leafFloatGlow {
-      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
-      50% { transform: translateY(-7px) rotate(2deg); }
+      0%, 100% { transform: translateY(0px) rotate(var(--leaf-rot, -2deg)); }
+      50% { transform: translateY(-6px) rotate(calc(var(--leaf-rot, -2deg) + 3.5deg)); }
     }
     @keyframes leafEntrance {
-      0% { opacity: 0; transform: scale(0.3) translateY(-25px); }
-      70% { transform: scale(1.12) translateY(3px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
+      0% { opacity: 0; transform: scale(0.3) translateY(-25px) rotate(var(--leaf-rot, 0deg)); }
+      70% { transform: scale(1.12) translateY(3px) rotate(var(--leaf-rot, 0deg)); }
+      100% { opacity: 1; transform: scale(1) translateY(0) rotate(var(--leaf-rot, 0deg)); }
     }
     .leaf-node {
       animation: leafFloatGlow 4.8s ease-in-out infinite;
-      transform-origin: center bottom;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      transform-origin: center 88%;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), filter 0.28s ease, opacity 0.22s ease;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      filter: drop-shadow(0 8px 14px rgba(2, 20, 14, 0.45));
     }
     @media (hover: hover) and (pointer: fine) {
       .leaf-node:hover {
         animation-play-state: paused;
-        transform: translateY(-5px) scale(1.05);
+        transform: translateY(-7px) scale(1.08) rotate(0deg);
+        filter: drop-shadow(0 14px 22px rgba(41, 179, 110, 0.42));
         z-index: 25;
       }
     }
     .leaf-node:active {
-      transform: scale(0.96) translateY(0);
+      transform: scale(0.95) translateY(0) rotate(var(--leaf-rot, 0deg));
+    }
+    .leaf-node.leaf-lifting {
+      animation-play-state: paused;
+      opacity: 0.28;
+      transform: translateY(-14px) scale(0.92);
     }
     .leaf-new-entrance {
       animation: leafEntrance 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
     }
 
+    /* Two-Stage Leaf Lift -> Unfold Modal Transition */
+    .leaf-flying-clone {
+      position: fixed;
+      z-index: 60;
+      pointer-events: none;
+      transform-origin: center center;
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease 0.12s, filter 0.34s ease;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.45));
+    }
+    #leafModal {
+      perspective: 1200px;
+    }
+    #leafModal .modal-panel {
+      transform-origin: center center;
+      transition: transform 0.46s cubic-bezier(0.2, 0.9, 0.25, 1.05), opacity 0.32s ease;
+    }
+    #leafModal.modal-closed .modal-panel {
+      transform: perspective(1200px) translateY(28px) scale(0.42) rotateX(-26deg) rotateY(14deg);
+      opacity: 0;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .earth-float, .orbit-spin, .orbit-reverse, .leaf-sway, .halo-pulse, .gold-shimmer, .leaf-node, .leaf-new-entrance { animation: none !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
+      #leafModal .modal-panel, .leaf-flying-clone { transition: none !important; }
     }
   </style>
 </head>
@@ -1012,45 +1041,44 @@
             <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-emerald-400/15 blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-teal-400/15 blur-3xl pointer-events-none"></div>
 
-            <!-- Background Tree Illustration (Trunk & Primary Branches) -->
-            <div class="absolute inset-0 flex items-end justify-center pointer-events-none">
-              <svg class="w-full max-w-2xl h-[420px] opacity-80" viewBox="0 0 600 450" fill="none" preserveAspectRatio="xMidYBottom meet">
+            <!-- Background Tree Illustration (Canopy, Trunk & Primary Branches) -->
+            <div class="absolute inset-0 flex items-end justify-center pointer-events-none pt-10 pb-6">
+              <svg class="w-full max-w-4xl h-full opacity-90" viewBox="0 0 600 520" fill="none" preserveAspectRatio="xMidYMax meet">
                 <defs>
                   <linearGradient id="trunkGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#4B6354"/>
-                    <stop offset="60%" stop-color="#2D4638"/>
-                    <stop offset="100%" stop-color="#182A20"/>
+                    <stop offset="0%" stop-color="#6B4F3A"/>
+                    <stop offset="55%" stop-color="#4A3525"/>
+                    <stop offset="100%" stop-color="#281C13"/>
                   </linearGradient>
                   <radialGradient id="canopyGlow" cx="50%" cy="40%" r="55%">
-                    <stop offset="0%" stop-color="#29B36E" stop-opacity="0.32"/>
-                    <stop offset="70%" stop-color="#197A54" stop-opacity="0.1"/>
+                    <stop offset="0%" stop-color="#29B36E" stop-opacity="0.34"/>
+                    <stop offset="70%" stop-color="#197A54" stop-opacity="0.12"/>
                     <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
                   </radialGradient>
                 </defs>
                 <!-- Canopy ambient glow -->
-                <circle cx="300" cy="180" r="190" fill="url(#canopyGlow)" />
+                <circle cx="300" cy="210" r="230" fill="url(#canopyGlow)" />
+                <!-- Lush Canopy Foliage Silhouette behind leaves -->
+                <g opacity="0.52">
+                  <ellipse cx="300" cy="185" rx="245" ry="155" fill="#0D3E2B" />
+                  <circle cx="155" cy="195" r="105" fill="#124E37" />
+                  <circle cx="445" cy="195" r="105" fill="#124E37" />
+                  <circle cx="220" cy="115" r="95" fill="#155D42" />
+                  <circle cx="380" cy="115" r="95" fill="#155D42" />
+                  <circle cx="300" cy="95" r="105" fill="#186B4C" />
+                </g>
                 <!-- Ground mound -->
-                <path d="M120 440 Q300 395 480 440 L490 450 L110 450 Z" fill="#14261C" />
-                <!-- Main Trunk -->
-                <path d="M285 430 Q288 330 280 270 Q270 200 240 160 Q260 170 285 210 Q290 140 280 80 Q295 100 300 160 Q320 110 340 70 Q335 120 315 190 Q340 150 375 140 Q350 180 320 230 Q330 310 325 430 Z" fill="url(#trunkGrad)" />
+                <path d="M110 510 Q300 460 490 510 L500 520 L100 520 Z" fill="#14261C" />
+                <!-- Main Trunk & Spreading Crown Branches -->
+                <path d="M278 505 Q284 415 276 355 Q265 280 225 220 Q248 232 280 282 Q286 200 274 130 Q294 155 300 225 Q324 165 348 115 Q340 175 318 255 Q346 208 388 195 Q358 242 324 300 Q334 390 332 505 Z" fill="url(#trunkGrad)" />
                 <!-- Left Sub-Branches -->
-                <path d="M280 270 Q230 240 170 235 Q140 230 110 210 Q145 220 180 225 Q240 235 282 255 Z" fill="url(#trunkGrad)" opacity="0.9" />
-                <path d="M220 235 Q195 180 150 160 Q180 175 205 215 Z" fill="url(#trunkGrad)" opacity="0.85" />
-                <path d="M255 190 Q220 140 180 120 Q210 135 240 170 Z" fill="url(#trunkGrad)" opacity="0.85" />
+                <path d="M276 345 Q218 310 150 300 Q112 292 78 265 Q118 278 160 286 Q226 298 278 326 Z" fill="url(#trunkGrad)" opacity="0.92" />
+                <path d="M208 300 Q178 235 125 208 Q162 226 192 276 Z" fill="url(#trunkGrad)" opacity="0.88" />
+                <path d="M248 250 Q206 188 158 158 Q195 178 232 226 Z" fill="url(#trunkGrad)" opacity="0.88" />
                 <!-- Right Sub-Branches -->
-                <path d="M320 270 Q370 240 430 235 Q460 230 490 210 Q455 220 420 225 Q360 235 318 255 Z" fill="url(#trunkGrad)" opacity="0.9" />
-                <path d="M380 235 Q405 180 450 160 Q420 175 395 215 Z" fill="url(#trunkGrad)" opacity="0.85" />
-                <path d="M345 190 Q380 140 420 120 Q390 135 360 170 Z" fill="url(#trunkGrad)" opacity="0.85" />
-                <!-- Decorative Branch Buds -->
-                <circle cx="110" cy="210" r="7" fill="#4ADE80" opacity="0.55" />
-                <circle cx="150" cy="160" r="8" fill="#29B36E" opacity="0.55" />
-                <circle cx="180" cy="120" r="7" fill="#86EFAC" opacity="0.55" />
-                <circle cx="280" cy="80" r="9" fill="#FDB913" opacity="0.65" />
-                <circle cx="340" cy="70" r="8" fill="#38BDF8" opacity="0.55" />
-                <circle cx="375" cy="140" r="7" fill="#4ADE80" opacity="0.55" />
-                <circle cx="420" cy="120" r="8" fill="#F472B6" opacity="0.55" />
-                <circle cx="450" cy="160" r="7" fill="#29B36E" opacity="0.55" />
-                <circle cx="490" cy="210" r="8" fill="#4ADE80" opacity="0.55" />
+                <path d="M324 345 Q382 310 450 300 Q488 292 522 265 Q482 278 440 286 Q374 298 322 326 Z" fill="url(#trunkGrad)" opacity="0.92" />
+                <path d="M392 300 Q422 235 475 208 Q438 226 408 276 Z" fill="url(#trunkGrad)" opacity="0.88" />
+                <path d="M352 250 Q394 188 442 158 Q405 178 368 226 Z" fill="url(#trunkGrad)" opacity="0.88" />
               </svg>
             </div>
 
@@ -1064,7 +1092,7 @@
             </div>
 
             <!-- Dynamic Leaf Canopy Container -->
-            <div id="treeLeavesWrap" class="relative z-10 py-5 sm:py-6 min-h-[380px] max-h-[720px] overflow-y-auto no-scrollbar flex flex-wrap items-start justify-center gap-3 sm:gap-4 content-start"></div>
+            <div id="treeLeavesWrap" class="relative z-10 py-6 sm:py-8 px-2 sm:px-6 min-h-[380px] max-h-[680px] overflow-y-auto no-scrollbar flex flex-wrap items-start justify-center gap-2.5 sm:gap-3.5 content-start"></div>
 
             <!-- Bottom Soil Caption -->
             <div class="relative z-10 text-center pt-3 border-t border-white/10 text-[11px] text-emerald-200/80 flex items-center justify-center gap-2">
@@ -1560,9 +1588,14 @@
 
   <!-- Modal Detail Daun Komitmen Pohon SABUMI -->
   <div id="leafModal" class="modal-closed fixed inset-0 z-50 bg-slate-950/85 modal-backdrop flex items-center justify-center p-3 sm:p-4 touch-manipulation" role="dialog" aria-modal="true" aria-labelledby="modalLeafAuthor">
-    <div class="modal-panel bg-white rounded-3xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border border-emerald-900/15 overscroll-contain">
+    <div class="modal-panel relative bg-white rounded-[2rem] max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border-2 border-emerald-500/30 overscroll-contain">
+      <!-- Botanical Leaf Vein Watermark inside Opened Leaf -->
+      <svg class="pointer-events-none absolute -right-10 -bottom-10 w-56 h-56 text-emerald-500/[0.06] z-0" viewBox="0 0 140 175" fill="none" aria-hidden="true">
+        <path d="M70 10 C108 32, 132 76, 124 116 C116 146, 92 160, 70 162 C48 160, 24 146, 16 116 C8 76, 32 32, 70 10 Z" fill="currentColor" />
+        <path d="M70 18 L70 172 M70 55 L98 42 M70 82 L106 66 M70 110 L102 96 M70 55 L42 42 M70 82 L34 66 M70 110 L38 96" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+      </svg>
       <!-- Modal Header -->
-      <div class="p-4 sm:p-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-b border-emerald-900/10 flex items-start justify-between gap-3">
+      <div class="relative z-10 p-4 sm:p-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-b border-emerald-900/10 flex items-start justify-between gap-3">
         <div class="flex items-center gap-3 min-w-0">
           <div id="modalLeafAvatar" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-sm shadow-sm shrink-0">
             DA
@@ -1581,7 +1614,7 @@
       </div>
 
       <!-- Modal Body -->
-      <div class="p-4 sm:p-6 space-y-4 max-h-[62vh] overflow-y-auto">
+      <div class="relative z-10 p-4 sm:p-6 space-y-4 max-h-[62vh] overflow-y-auto">
         <!-- Badge Komitmen Aksi Bumi -->
         <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200/90 flex items-center gap-3">
           <div class="w-9 h-9 rounded-xl bg-[#197A54] text-white flex items-center justify-center text-lg shrink-0 shadow-xs">
@@ -1611,7 +1644,7 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0 gap-2">
+      <div class="relative z-10 p-4 bg-slate-50/90 border-t border-slate-200 flex items-center justify-between shrink-0 gap-2">
         <span id="modalLeafTime" class="text-[11px] text-slate-400 font-medium truncate">Expo Boltim 2026</span>
         <button id="modalLeafLikeBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-xs transition border border-rose-200 shadow-sm active:scale-95 touch-manipulation shrink-0">
           <span>❤️ Beri Apresiasi Daun</span>
@@ -2623,7 +2656,11 @@
             label: '👨‍🎓 Siswa / Santri',
             leafBg: 'bg-emerald-950/75 hover:bg-emerald-900/95 border-emerald-400/50 text-emerald-100 shadow-emerald-950/40',
             leafIcon: '🍃',
-            accent: '#4ADE80'
+            accent: '#4ADE80',
+            leafFillStart: '#34D399',
+            leafFillEnd: '#0F766E',
+            leafStroke: '#A7F3D0',
+            leafVein: 'rgba(236, 253, 245, 0.36)'
           };
         case 'guru':
           return {
@@ -2632,7 +2669,11 @@
             label: '👩‍🏫 Guru / Pendidik',
             leafBg: 'bg-sky-950/75 hover:bg-sky-900/95 border-sky-400/50 text-sky-100 shadow-sky-950/40',
             leafIcon: '🌿',
-            accent: '#38BDF8'
+            accent: '#38BDF8',
+            leafFillStart: '#38BDF8',
+            leafFillEnd: '#1D4ED8',
+            leafStroke: '#BAE6FD',
+            leafVein: 'rgba(240, 249, 255, 0.36)'
           };
         case 'juri':
           return {
@@ -2641,7 +2682,11 @@
             label: '⚖️ Dewan Juri Expo',
             leafBg: 'bg-amber-950/80 hover:bg-amber-900/95 border-amber-300/70 text-amber-100 shadow-amber-950/50 ring-1 ring-amber-400/30',
             leafIcon: '🍎',
-            accent: '#FDB913'
+            accent: '#FDB913',
+            leafFillStart: '#FBBF24',
+            leafFillEnd: '#B45309',
+            leafStroke: '#FDE68A',
+            leafVein: 'rgba(255, 251, 235, 0.4)'
           };
         case 'masyarakat':
           return {
@@ -2650,7 +2695,11 @@
             label: '👨‍👩‍👧 Masyarakat / Ortu',
             leafBg: 'bg-purple-950/75 hover:bg-purple-900/95 border-purple-400/50 text-purple-100 shadow-purple-950/40',
             leafIcon: '🌸',
-            accent: '#E879F9'
+            accent: '#E879F9',
+            leafFillStart: '#E879F9',
+            leafFillEnd: '#6D28D9',
+            leafStroke: '#F5D0FE',
+            leafVein: 'rgba(253, 244, 255, 0.36)'
           };
         default:
           return {
@@ -2659,7 +2708,11 @@
             label: '🌟 Pengunjung',
             leafBg: 'bg-teal-950/75 hover:bg-teal-900/95 border-teal-400/50 text-teal-100 shadow-teal-950/40',
             leafIcon: '🌱',
-            accent: '#2DD4BF'
+            accent: '#2DD4BF',
+            leafFillStart: '#2DD4BF',
+            leafFillEnd: '#0F766E',
+            leafStroke: '#99F6E4',
+            leafVein: 'rgba(240, 253, 250, 0.36)'
           };
       }
     }
@@ -2718,9 +2771,12 @@
     if (viewTreeBtn) viewTreeBtn.addEventListener('click', () => setViewMode('tree'));
     if (viewListBtn) viewListBtn.addEventListener('click', () => setViewMode('list'));
 
-    function openLeafModal(v) {
+    let activeLeafSourceEl = null;
+
+    function openLeafModal(v, sourceEl = null) {
       if (!leafModal || !v) return;
       activeModalVoice = v;
+      activeLeafSourceEl = sourceEl;
       const theme = getRoleTheme(v.role);
 
       if (modalLeafAvatar) {
@@ -2739,14 +2795,51 @@
       if (modalLeafTime) modalLeafTime.textContent = v.time || 'Expo Boltim 2026';
       if (modalLeafLikeCount) modalLeafLikeCount.textContent = v.likes || 0;
 
-      leafModal.classList.remove('modal-closed');
-      document.body.style.overflow = 'hidden';
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (sourceEl && !prefersReduced) {
+        const rect = sourceEl.getBoundingClientRect();
+        sourceEl.classList.add('leaf-lifting');
+
+        const clone = sourceEl.cloneNode(true);
+        clone.classList.remove('leaf-node', 'leaf-lifting', 'leaf-new-entrance');
+        clone.classList.add('leaf-flying-clone');
+        clone.style.left = `${rect.left}px`;
+        clone.style.top = `${rect.top}px`;
+        clone.style.width = `${rect.width}px`;
+        clone.style.height = `${rect.height}px`;
+        clone.style.margin = '0';
+        document.body.appendChild(clone);
+
+        const targetX = (window.innerWidth / 2) - (rect.left + rect.width / 2);
+        const targetY = (window.innerHeight / 2) - (rect.top + rect.height / 2) - 18;
+
+        requestAnimationFrame(() => {
+          clone.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) scale(1.45) rotate(0deg)`;
+          clone.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+          leafModal.classList.remove('modal-closed');
+          document.body.style.overflow = 'hidden';
+        }, 160);
+
+        setTimeout(() => {
+          clone.remove();
+        }, 440);
+      } else {
+        leafModal.classList.remove('modal-closed');
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     function closeLeafModal() {
       if (!leafModal) return;
       leafModal.classList.add('modal-closed');
       document.body.style.overflow = '';
+      if (activeLeafSourceEl) {
+        activeLeafSourceEl.classList.remove('leaf-lifting');
+        activeLeafSourceEl = null;
+      }
       activeModalVoice = null;
     }
 
@@ -2902,49 +2995,57 @@
             const leafCard = document.createElement('div');
             leafCard.setAttribute('role', 'button');
             leafCard.setAttribute('tabindex', '0');
-            leafCard.setAttribute('aria-label', `Lihat daun komitmen ${v.author}`);
+            leafCard.setAttribute('aria-label', `Buka daun komitmen ${v.author}`);
             const swayDelay = ((idx % 6) * -0.85).toFixed(2);
-            leafCard.className = `leaf-node relative group text-left p-3.5 sm:p-4 rounded-2xl sm:rounded-3xl border backdrop-blur-md shadow-lg transition-all flex flex-col justify-between cursor-pointer w-full max-w-[320px] sm:max-w-[340px] md:max-w-[360px] ${theme.leafBg} ${v.isNew ? 'leaf-new-entrance ring-2 ring-emerald-400' : ''}`;
+            const angles = [-16, 11, -7, 17, -12, 8, -4, 14];
+            const rotDeg = angles[idx % angles.length];
+            const staggerY = [6, 0, 14, 4, 18, 2, 12, 6][idx % 8];
+            const gradId = `leafGrad_${idx}_${String(v.id || idx).replace(/[^a-zA-Z0-9_-]/g, '')}`;
+
+            leafCard.className = `leaf-node relative group cursor-pointer w-[114px] h-[142px] sm:w-[130px] sm:h-[160px] flex items-center justify-center ${v.isNew ? 'leaf-new-entrance' : ''}`;
+            leafCard.style.setProperty('--leaf-rot', `${rotDeg}deg`);
+            leafCard.style.marginTop = `${staggerY}px`;
             leafCard.style.animationDelay = `${swayDelay}s`;
 
             leafCard.innerHTML = `
-              <div>
-                <div class="flex items-start justify-between gap-2 mb-2">
-                  <div class="flex items-center gap-2.5 min-w-0">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-br ${theme.gradient} text-white flex items-center justify-center text-sm shadow-xs shrink-0 group-hover:scale-110 transition-transform">
-                      ${theme.leafIcon}
-                    </div>
-                    <div class="min-w-0">
-                      <div class="flex items-center gap-1.5 flex-wrap">
-                        <span class="text-xs sm:text-sm font-black text-white truncate max-w-[140px]">${v.author}</span>
-                        ${v.isNew ? '<span class="px-1.5 py-0.2 rounded-full bg-emerald-400 text-slate-900 text-[8px] font-black uppercase tracking-wider animate-pulse">Baru</span>' : ''}
-                      </div>
-                      <p class="text-[10px] text-emerald-200/80 truncate">${v.origin || 'Pengunjung Stand'}</p>
-                    </div>
-                  </div>
-                  <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold border ${theme.badgeBg} shrink-0">
-                    ${theme.label}
-                  </span>
-                </div>
+              <svg class="absolute inset-0 w-full h-full overflow-visible pointer-events-none" viewBox="0 0 140 175" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="${gradId}" x1="15%" y1="5%" x2="85%" y2="95%">
+                    <stop offset="0%" stop-color="${theme.leafFillStart}"/>
+                    <stop offset="100%" stop-color="${theme.leafFillEnd}"/>
+                  </linearGradient>
+                </defs>
+                <!-- Petiole / Tangkai Daun menempel ke dahan -->
+                <path d="M70 154 Q69 166 64 174" stroke="${theme.leafStroke}" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- Siluet Helai Daun Botani -->
+                <path d="M70 10 C106 30, 130 74, 122 114 C114 143, 91 156, 70 158 C49 156, 26 143, 18 114 C10 74, 34 30, 70 10 Z"
+                      fill="url(#${gradId})"
+                      stroke="${theme.leafStroke}"
+                      stroke-width="${v.isNew ? '3' : '2'}"
+                      stroke-opacity="0.9"/>
+                <!-- Kilau Helai Kiri -->
+                <path d="M70 12 C36 32, 13 74, 20 113 C26 139, 48 153, 70 156 Z" fill="white" fill-opacity="0.09"/>
+                <!-- Tulang Daun Tengah & Urat Daun -->
+                <path d="M70 18 L70 156 M70 54 L96 42 M70 80 L105 66 M70 108 L100 95 M70 54 L44 42 M70 80 L35 66 M70 108 L40 95"
+                      stroke="${theme.leafVein}"
+                      stroke-width="1.6"
+                      stroke-linecap="round"/>
+              </svg>
 
-                <div class="mb-2 px-2.5 py-1 rounded-xl bg-white/10 border border-white/15 inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-emerald-100 max-w-full">
-                  <span class="truncate">${v.commitment || '🌱 Pilah Sampah Organik & Anorganik'}</span>
-                </div>
+              ${v.isNew ? '<span class="absolute top-1.5 right-3 px-1.5 py-0.5 rounded-full bg-amber-300 text-slate-950 text-[8px] font-black uppercase tracking-wider shadow-sm z-10 animate-pulse">Baru</span>' : ''}
 
-                <div class="p-2.5 rounded-xl bg-black/30 border border-white/10 text-white text-[11px] sm:text-xs leading-relaxed italic break-words">
-                  “${v.message}”
-                </div>
-              </div>
-
-              <div class="flex items-center justify-between text-[10px] sm:text-[11px] pt-2.5 mt-2.5 border-t border-white/10 flex-wrap gap-1.5">
-                <span class="text-amber-200/90 font-medium truncate max-w-[160px]">${v.stamp || '⭐ Sangat Menginspirasi'}</span>
-                <div class="flex items-center gap-2 ml-auto">
-                  <span class="text-emerald-300/70 text-[9px]">${v.time || 'Expo Boltim'}</span>
-                  <button type="button" class="leaf-like-btn inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/15 hover:bg-rose-500/40 hover:text-rose-100 text-white text-[10px] font-bold transition border border-white/20 active:scale-95" data-vid="${v.id}" title="Beri tanda suka">
-                    <span>❤️</span>
-                    <span class="like-count">${v.likes || 0}</span>
-                  </button>
-                </div>
+              <div class="relative z-10 flex flex-col items-center justify-center text-center px-3 pt-2 pb-4 w-full">
+                <span class="text-base sm:text-lg leading-none mb-1 drop-shadow-sm">${theme.leafIcon}</span>
+                <span class="text-[11px] sm:text-xs font-black text-white leading-tight line-clamp-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.65)] max-w-[84px]">
+                  ${v.author}
+                </span>
+                <span class="mt-0.5 text-[9px] text-white/85 font-semibold truncate max-w-[80px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
+                  ${v.origin || 'Pengunjung'}
+                </span>
+                <button type="button" class="leaf-like-btn mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/25 hover:bg-rose-500/80 text-white text-[9px] font-bold transition border border-white/25 active:scale-95" data-vid="${v.id}" title="Beri tanda suka">
+                  <span>❤️</span>
+                  <span class="like-count">${v.likes || 0}</span>
+                </button>
               </div>
             `;
 
@@ -2958,14 +3059,14 @@
 
             leafCard.addEventListener('click', (e) => {
               if (e.target.closest('.leaf-like-btn')) return;
-              openLeafModal(v);
+              openLeafModal(v, leafCard);
             });
 
             leafCard.addEventListener('keydown', (e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 if (e.target.closest('.leaf-like-btn')) return;
                 e.preventDefault();
-                openLeafModal(v);
+                openLeafModal(v, leafCard);
               }
             });
 
