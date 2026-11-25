@@ -7,7 +7,7 @@
   <meta name="description" content="Portofolio Digital Resmi Stand SMP Negeri 3 Tutuyan pada Pendidikan Expo Kabupaten Bolaang Mongondow Timur Tahun 2026. Inovasi SABUMI (Sampah Berkah Untuk Bumi): Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <style>
@@ -17,6 +17,7 @@
       --earth-forest: #197A54;
       --earth-leaf: #29B36E;
       --earth-sun: #F5A623;
+      --earth-sun-bright: #FDB913;
       --earth-sand: #F7F4EC;
       --earth-mist: #F2FAF5;
     }
@@ -25,6 +26,79 @@
       color: #0E2738;
       background-color: var(--earth-mist);
       overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Unified 3-Tier SABUMI Button System */
+    .btn-sabumi {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-sabumi:active {
+      transform: scale(0.97);
+    }
+    .btn-sabumi:focus-visible {
+      outline: 2px solid #29B36E;
+      outline-offset: 2px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #F5A623 0%, #FDB913 100%);
+      color: #061D30;
+      box-shadow: 0 10px 24px -8px rgba(245, 166, 35, 0.55);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+      box-shadow: 0 14px 28px -8px rgba(245, 166, 35, 0.65);
+    }
+    .btn-secondary {
+      background: linear-gradient(135deg, #0B3B5B 0%, #197A54 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 22px -8px rgba(11, 59, 91, 0.42);
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+      box-shadow: 0 14px 26px -8px rgba(11, 59, 91, 0.5);
+    }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      backdrop-filter: blur(10px);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-2px);
+    }
+    .btn-tonal {
+      background-color: #ECFDF5;
+      color: #197A54;
+      border: 1px solid rgba(25, 122, 84, 0.2);
+    }
+    .btn-tonal:hover {
+      background-color: #D1FAE5;
+      border-color: rgba(25, 122, 84, 0.35);
+    }
+    .btn-outline {
+      background-color: #ffffff;
+      color: #0B3B5B;
+      border: 1px solid rgba(11, 59, 91, 0.14);
+    }
+    .btn-outline:hover {
+      background-color: #F2FAF5;
+      border-color: rgba(25, 122, 84, 0.38);
     }
 
     /* Cinematic Splash Entrance */
@@ -66,12 +140,12 @@
       transform: translateY(0);
     }
     .natural-card {
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
     }
     .natural-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 42px -14px rgba(7, 34, 54, 0.24);
-      border-color: #29B36E;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 34px -14px rgba(7, 34, 54, 0.16);
+      border-color: rgba(41, 179, 110, 0.55);
     }
     .filter-btn.active {
       background: linear-gradient(135deg, #0B3B5B 0%, #197A54 100%);
@@ -307,79 +381,80 @@
         Menampilkan 19 karya kreatif daur ulang dan 47 dokumentasi proses kolaborasi siswa untuk bumi yang lebih lestari.
       </p>
 
-      <button id="enterExpoBtn" type="button" class="mt-8 group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-black text-sm sm:text-base shadow-2xl shadow-amber-500/30 transition hover:scale-105 active:scale-95">
+      <button id="enterExpoBtn" type="button" class="mt-8 group btn-sabumi btn-primary px-8 py-4 text-sm sm:text-base font-extrabold">
         Masuk ke Pameran Expo
-        <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- Official 4-Logo Header Bar -->
-  <div class="bg-white border-b border-emerald-900/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-4">
-      <div class="flex items-center gap-2 sm:gap-4 min-w-0">
-        <img src="assets/img_01.png" alt="Lambang Kabupaten Bolaang Mongondow Timur" class="h-8 sm:h-12 w-auto object-contain shrink-0" />
-        <img src="assets/img_02.jpg" alt="Logo SMP Negeri 3 Tutuyan" class="h-8 sm:h-12 w-auto object-contain rounded shrink-0" />
-        <div class="pl-2 sm:pl-3 border-l border-emerald-900/15 min-w-0">
-          <p class="text-[11px] sm:text-xs font-extrabold tracking-wide text-[#0B3B5B] uppercase truncate">SMP Negeri 3 Tutuyan</p>
-          <p class="text-[10px] sm:text-[11px] text-slate-500 truncate">Kab. Bolaang Mongondow Timur</p>
+  <!-- Official Expo Top Strip (Logos + Announcement Unified) -->
+  <aside aria-label="Pengumuman Resmi Expo" class="bg-[#061D30] text-white text-xs border-b border-emerald-500/25">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="inline-flex items-center gap-1.5 bg-white rounded-full px-2.5 py-1 shadow-xs shrink-0">
+          <img src="assets/img_01.png" alt="Lambang Kabupaten Bolaang Mongondow Timur" class="h-5 sm:h-6 w-auto object-contain" />
+          <img src="assets/img_02.jpg" alt="Logo SMP Negeri 3 Tutuyan" class="h-5 sm:h-6 w-auto object-contain rounded-full" />
+          <span class="h-3.5 w-px bg-slate-200 hidden sm:inline-block"></span>
+          <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-4 sm:h-5 w-auto object-contain hidden sm:inline-block" />
+          <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-4 sm:h-5 w-auto object-contain hidden sm:inline-block" />
         </div>
-      </div>
-      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-        <img src="assets/img_03.png" alt="Kemendikdasmen RAMAH" class="h-6 sm:h-9 w-auto object-contain" />
-        <img src="assets/img_04.png" alt="Pendidikan Bermutu untuk Semua" class="h-6 sm:h-9 w-auto object-contain" />
-      </div>
-    </div>
-  </div>
-
-  <!-- Official Expo Announcement Top Bar -->
-  <aside aria-label="Pengumuman Resmi Expo" class="bg-gradient-to-r from-[#061D30] via-[#0E4F6E] to-[#197A54] text-white text-xs border-b border-emerald-500/30 py-2 px-4 shadow-inner">
-    <div class="max-w-7xl mx-auto flex items-center justify-center text-center">
-      <div class="flex items-center gap-2 flex-wrap justify-center">
-        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-400 text-[#072236] font-black text-[10px] uppercase tracking-wider">
-          Pendidikan Expo 2026
+        <span class="text-[11px] sm:text-xs font-semibold text-emerald-200 truncate">
+          SMP Negeri 3 Tutuyan • Kab. Bolaang Mongondow Timur
         </span>
-        <span class="font-medium text-emerald-100">
-          Kabupaten Bolaang Mongondow Timur • <strong>24–25 Nov 2026</strong>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#F5A623] text-[#061D30] font-extrabold text-[10px] uppercase tracking-wider">
+          Expo Boltim • 24–25 Nov 2026
         </span>
-        <span class="hidden md:inline text-emerald-300/60">•</span>
-        <span class="hidden md:inline text-amber-200 font-semibold">
-          Tema: “Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”
+        <span class="hidden lg:inline text-emerald-100/85 font-medium">
+          “Guru Berinovasi, Murid Berkarya, Sekolah Bertransformasi”
         </span>
       </div>
     </div>
   </aside>
 
   <!-- Sticky Navigation -->
-  <header class="sticky top-0 z-40 bg-white/92 backdrop-blur-md border-b border-emerald-900/10 shadow-sm">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-emerald-900/10 shadow-xs">
     <div class="h-1 w-full bg-emerald-50 overflow-hidden">
       <div id="scrollProgress" class="h-full w-0 scroll-progress-bar"></div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="#beranda" class="flex items-center gap-2.5 group">
-          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white shadow-sm group-hover:scale-105 transition">
+      <div class="flex items-center justify-between h-16 gap-3">
+        <a href="#beranda" class="flex items-center gap-2.5 group shrink-0">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white shadow-xs group-hover:scale-105 transition-transform">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="9"/>
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
             </svg>
           </span>
           <div class="leading-tight">
-            <span class="block text-base font-extrabold tracking-tight text-[#0B3B5B]">EXPO <span class="text-[#197A54]">SABUMI</span></span>
-            <span class="block text-[11px] font-medium text-slate-500">Stand Jenjang SMP/MTs • SMPN 3 Tutuyan</span>
+            <span class="block font-display text-base font-extrabold tracking-tight text-[#0B3B5B]">EXPO <span class="text-[#197A54]">SABUMI</span></span>
+            <span class="block text-[11px] font-medium text-slate-500">Stand SMPN 3 Tutuyan</span>
           </div>
         </a>
 
-        <nav class="hidden md:flex items-center gap-1" aria-label="Navigasi Utama">
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Navigasi Utama">
           <a href="#beranda" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition active-nav">Beranda</a>
-          <a href="#profil" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Profil &amp; Inovasi</a>
+          <a href="#profil" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Profil</a>
           <a href="#karya" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Galeri Karya</a>
           <a href="#dokumentasi" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Dokumentasi</a>
-          <a href="#suaraPengunjung" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Suara Pengunjung</a>
-          <button id="navInovasiBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-[#B46906] border border-amber-300 text-xs font-black transition">Lembar Inovasi</button>
-          <button id="navPitchBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">Panduan 3 Menit</button>
-          <button id="replayIntroBtn" type="button" class="ml-1 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition">Intro</button>
-          <button id="quickMusicToggleBtn" type="button" aria-label="Nyalakan atau jeda musik latar" class="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-bold transition">
+          <a href="#suaraPengunjung" class="nav-link px-3 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-[#0B3B5B] hover:bg-emerald-50 transition">Pohon Komitmen</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-1.5 shrink-0">
+          <button id="navInovasiBtn" type="button" class="btn-sabumi h-9 px-3.5 text-xs bg-amber-50 hover:bg-amber-100 text-[#9A5804] border border-amber-300/80">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Inovasi
+          </button>
+          <button id="navPitchBtn" type="button" class="btn-sabumi btn-outline h-9 px-3.5 text-xs">
+            <svg class="w-3.5 h-3.5 text-[#197A54]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Juri 3 Menit
+          </button>
+          <button id="replayIntroBtn" type="button" class="btn-sabumi btn-outline h-9 px-3 text-xs" title="Putar Ulang Intro Expo">
+            Intro
+          </button>
+          <button id="quickMusicToggleBtn" type="button" aria-label="Nyalakan atau jeda musik latar" class="btn-sabumi btn-tonal h-9 px-3.5 text-xs">
             <span class="inline-flex items-end gap-0.5 h-3.5 w-3.5" id="navMusicBars">
               <span class="eq-bar-1 w-0.5 h-2 bg-[#197A54] rounded-full transition-all"></span>
               <span class="eq-bar-2 w-0.5 h-3.5 bg-[#197A54] rounded-full transition-all"></span>
@@ -387,49 +462,37 @@
             </span>
             <span id="navMusicLabel">Musik</span>
           </button>
-        </nav>
+        </div>
 
-        <button id="mobileMenuBtn" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-xl text-[#0B3B5B] hover:bg-emerald-50 focus:outline-none" aria-label="Buka menu navigasi" aria-expanded="false">
+        <button id="mobileMenuBtn" type="button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full text-[#0B3B5B] hover:bg-emerald-50 border border-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#29B36E]" aria-label="Buka menu navigasi" aria-expanded="false">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1 shadow-lg">
-      <a href="#beranda" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Beranda</a>
-      <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil &amp; Inovasi</a>
-      <a href="#karya" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
-      <a href="#dokumentasi" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
-      <a href="#suaraPengunjung" class="mobile-nav-link block px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Suara Pengunjung</a>
-      <div class="pt-2 border-t border-slate-100 flex flex-col gap-1.5">
-        <button id="mobileInovasiBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#B46906] bg-amber-50 hover:bg-amber-100 transition">
-          <span class="flex items-center gap-2">
-            <span>📋</span>
-            <span>Lembar Inovasi (Lampiran 2)</span>
-          </span>
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-emerald-900/10 bg-white px-4 py-3 space-y-1.5 shadow-lg">
+      <a href="#beranda" class="mobile-nav-link flex items-center min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Beranda</a>
+      <a href="#profil" class="mobile-nav-link flex items-center min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Profil &amp; Inovasi</a>
+      <a href="#karya" class="mobile-nav-link flex items-center min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Galeri Karya</a>
+      <a href="#dokumentasi" class="mobile-nav-link flex items-center min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Dokumentasi</a>
+      <a href="#suaraPengunjung" class="mobile-nav-link flex items-center min-h-[44px] px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50">Pohon Komitmen &amp; Suara</a>
+      <div class="pt-2.5 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <button id="mobileInovasiBtn" type="button" class="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2 rounded-xl text-sm font-bold text-[#9A5804] bg-amber-50 hover:bg-amber-100 border border-amber-200 transition">
+          <span>Lembar Inovasi</span>
           <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-amber-800 border border-amber-300">Juknis</span>
         </button>
-        <button id="mobilePitchBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/90 hover:bg-emerald-100 transition">
-          <span class="flex items-center gap-2">
-            <span>⏱️</span>
-            <span>Panduan Juri 3 Menit</span>
-          </span>
+        <button id="mobilePitchBtn" type="button" class="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition">
+          <span>Panduan Juri 3 Menit</span>
           <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-300">Bab 5</span>
         </button>
-        <button id="mobileReplayIntroBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-[#197A54] bg-emerald-50/70 hover:bg-emerald-100 transition">
-          <span class="flex items-center gap-2">
-            <span>🌍</span>
-            <span>Putar Ulang Intro Expo</span>
-          </span>
+        <button id="mobileReplayIntroBtn" type="button" class="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2 rounded-xl text-sm font-bold text-[#0B3B5B] bg-slate-50 hover:bg-emerald-50 border border-slate-200 transition">
+          <span>Putar Ulang Intro</span>
           <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-200">Intro</span>
         </button>
-        <button id="mobileMusicToggleBtn" type="button" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80 hover:bg-emerald-100 transition">
-          <span class="flex items-center gap-2">
-            <span>🎵</span>
-            <span>Musik Latar</span>
-          </span>
-          <span id="mobileMusicLabel" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-white text-emerald-700 border border-emerald-200">Musik: Siap (35%)</span>
+        <button id="mobileMusicToggleBtn" type="button" class="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80 hover:bg-emerald-100 border border-emerald-200 transition">
+          <span>Musik Latar</span>
+          <span id="mobileMusicLabel" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-white text-emerald-700 border border-emerald-200">Siap (35%)</span>
         </button>
       </div>
     </div>
@@ -450,10 +513,10 @@
           </div>
 
           <div>
-            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none">
               SA<span class="gold-shimmer">BUMI</span>
-            </h2>
-            <p class="mt-2.5 text-xl sm:text-2xl font-bold text-emerald-200 tracking-wide">
+            </h1>
+            <p class="mt-3 text-xl sm:text-2xl font-bold text-emerald-200 tracking-wide">
               Sampah Berkah Untuk Bumi
             </p>
             <p class="mt-1 text-xs sm:text-sm font-semibold text-amber-300/90 tracking-wide">
@@ -466,32 +529,28 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-3 pt-1">
-            <a href="#karya" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#F5A623] to-[#FDB913] hover:brightness-105 text-[#061D30] font-extrabold text-sm sm:text-base shadow-xl shadow-amber-900/25 transition hover:-translate-y-0.5">
-              Jelajahi Galeri Geser
+            <a href="#karya" class="btn-sabumi btn-primary px-6 py-3.5 text-sm sm:text-base font-extrabold min-h-[46px]">
+              Jelajahi Galeri Karya
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
-            <a href="#transformasi" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs sm:text-sm border border-white/25 backdrop-blur-md transition hover:-translate-y-0.5">
+            <a href="#transformasi" class="btn-sabumi btn-glass px-5 py-3.5 text-xs sm:text-sm min-h-[46px]">
               <svg class="w-4 h-4 text-[#FDB913]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
               Lihat Transformasi 3R
             </a>
-            <a href="#suaraPengunjung" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-emerald-600/70 hover:bg-emerald-600/90 text-white font-bold text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md transition hover:-translate-y-0.5">
-              <span>✍️</span>
-              Beri Suara
-            </a>
           </div>
 
-          <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-3 max-w-lg">
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
-              <p class="text-xl sm:text-3xl font-black text-[#FDB913]" data-count="19" id="statWorks">19</p>
-              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Karya Daur Ulang</p>
+          <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-4 max-w-lg border-t border-white/15">
+            <div class="bg-white/8 border border-white/15 rounded-2xl p-3 sm:p-4 text-center backdrop-blur-xs">
+              <p class="font-display text-2xl sm:text-3xl font-extrabold text-[#FDB913]" data-count="19" id="statWorks">19</p>
+              <p class="text-[11px] sm:text-xs font-medium text-emerald-100/90 mt-0.5">Karya Daur Ulang</p>
             </div>
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
-              <p class="text-xl sm:text-3xl font-black text-emerald-300" data-count="47" id="statDocs">47</p>
-              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Dokumentasi Nyata</p>
+            <div class="bg-white/8 border border-white/15 rounded-2xl p-3 sm:p-4 text-center backdrop-blur-xs">
+              <p class="font-display text-2xl sm:text-3xl font-extrabold text-emerald-300" data-count="47" id="statDocs">47</p>
+              <p class="text-[11px] sm:text-xs font-medium text-emerald-100/90 mt-0.5">Dokumentasi Nyata</p>
             </div>
-            <div class="bg-white/10 border border-white/15 rounded-2xl p-2.5 sm:p-3.5 text-center backdrop-blur-md">
-              <p class="text-xl sm:text-3xl font-black text-sky-200">3R</p>
-              <p class="text-[10px] sm:text-xs font-semibold text-emerald-100 mt-0.5">Reduce • Reuse • Recycle</p>
+            <div class="bg-white/8 border border-white/15 rounded-2xl p-3 sm:p-4 text-center backdrop-blur-xs">
+              <p class="font-display text-2xl sm:text-3xl font-extrabold text-sky-200">3R</p>
+              <p class="text-[11px] sm:text-xs font-medium text-emerald-100/90 mt-0.5">Reduce • Reuse • Recycle</p>
             </div>
           </div>
         </div>
@@ -636,10 +695,10 @@
             <p class="text-xs sm:text-sm text-emerald-100/85 mt-1">Pilih jenis bahan bekas di bawah ini untuk melihat proses pengolahan dan karya nyata siswa.</p>
           </div>
           <div id="transformTabs" class="flex flex-nowrap sm:flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1">
-            <button type="button" data-mat="botol" class="transform-tab active shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 text-xs font-extrabold transition">Botol Plastik</button>
-            <button type="button" data-mat="sendok" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Sendok Plastik</button>
-            <button type="button" data-mat="tutup" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Tutup Botol &amp; Kardus</button>
-            <button type="button" data-mat="alam" class="transform-tab shrink-0 px-3.5 sm:px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs font-extrabold transition">Batok Kelapa &amp; Kaleng</button>
+            <button type="button" data-mat="botol" class="transform-tab active btn-sabumi h-10 px-4 border border-white/25 text-xs shrink-0">Botol Plastik</button>
+            <button type="button" data-mat="sendok" class="transform-tab btn-sabumi h-10 px-4 border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs shrink-0">Sendok Plastik</button>
+            <button type="button" data-mat="tutup" class="transform-tab btn-sabumi h-10 px-4 border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs shrink-0">Tutup Botol &amp; Kardus</button>
+            <button type="button" data-mat="alam" class="transform-tab btn-sabumi h-10 px-4 border border-white/25 bg-white/10 hover:bg-white/20 text-white text-xs shrink-0">Batok Kelapa &amp; Kaleng</button>
           </div>
         </div>
 
@@ -689,24 +748,24 @@
 
         <!-- Search + Playback & Speed Controls -->
         <div class="flex flex-wrap items-center gap-2">
-          <div class="relative w-full sm:w-52">
+          <div class="relative w-full sm:w-56">
             <label for="searchInput" class="sr-only">Cari karya siswa</label>
-            <input id="searchInput" type="text" placeholder="Cari karya atau bahan..." class="w-full pl-9 pr-4 py-2 rounded-full border border-slate-300 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-sm transition" />
-            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+            <input id="searchInput" type="text" placeholder="Cari karya atau bahan..." class="w-full h-10 pl-9 pr-4 rounded-full border border-emerald-900/15 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-sm transition" />
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
           </div>
 
-          <div id="speedGroup" class="inline-flex items-center rounded-full bg-slate-100 p-1 border border-slate-200" role="group" aria-label="Kecepatan geser otomatis">
-            <button type="button" data-speed="0.5" class="speed-btn px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Santai</button>
-            <button type="button" data-speed="0.95" class="speed-btn active px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Normal</button>
-            <button type="button" data-speed="1.8" class="speed-btn px-2.5 py-1 rounded-full text-[11px] font-extrabold text-slate-600 transition">Cepat</button>
+          <div id="speedGroup" class="inline-flex items-center h-10 rounded-full bg-slate-100 p-1 border border-slate-200" role="group" aria-label="Kecepatan geser otomatis">
+            <button type="button" data-speed="0.5" class="speed-btn h-8 px-3 rounded-full text-xs font-bold text-slate-600 transition">Santai</button>
+            <button type="button" data-speed="0.95" class="speed-btn active h-8 px-3 rounded-full text-xs font-bold text-slate-600 transition">Normal</button>
+            <button type="button" data-speed="1.8" class="speed-btn h-8 px-3 rounded-full text-xs font-bold text-slate-600 transition">Cepat</button>
           </div>
 
-          <button id="toggleAutoBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-50 hover:bg-emerald-100 text-[#197A54] border border-emerald-200 text-xs font-extrabold transition" aria-pressed="true">
+          <button id="toggleAutoBtn" type="button" class="btn-sabumi btn-tonal h-10 px-4 text-xs" aria-pressed="true">
             <span id="autoStatusDot" class="w-2 h-2 rounded-full bg-[#197A54] animate-pulse"></span>
             <span id="autoStatusLabel">Otomatis: Aktif</span>
           </button>
 
-          <button id="toggleViewBtn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-[#0B3B5B] text-xs font-extrabold transition">
+          <button id="toggleViewBtn" type="button" class="btn-sabumi btn-outline h-10 px-4 text-xs">
             <span id="viewModeLabel">Mode Grid</span>
           </button>
         </div>
@@ -715,17 +774,17 @@
       <!-- Category Filter Tabs + Quick Horizontal Arrows -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div id="filterBar" class="flex flex-nowrap sm:flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button type="button" data-cat="all" class="filter-btn active shrink-0 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Semua (19)</button>
-          <button type="button" data-cat="dekorasi" class="filter-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Dekorasi &amp; Dinding (5)</button>
-          <button type="button" data-cat="lampu_vas" class="filter-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Lampu &amp; Vas (8)</button>
-          <button type="button" data-cat="fungsional" class="filter-btn shrink-0 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm font-bold transition">Perlengkapan &amp; Fungsional (6)</button>
+          <button type="button" data-cat="all" class="filter-btn active btn-sabumi h-10 px-4 border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm shrink-0">Semua (19)</button>
+          <button type="button" data-cat="dekorasi" class="filter-btn btn-sabumi h-10 px-4 border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm shrink-0">Dekorasi &amp; Dinding (5)</button>
+          <button type="button" data-cat="lampu_vas" class="filter-btn btn-sabumi h-10 px-4 border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm shrink-0">Lampu &amp; Vas (8)</button>
+          <button type="button" data-cat="fungsional" class="filter-btn btn-sabumi h-10 px-4 border border-slate-200 bg-white text-slate-700 text-xs sm:text-sm shrink-0">Perlengkapan &amp; Fungsional (6)</button>
         </div>
 
         <div id="productArrows" class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-          <button id="prodPrevBtn" type="button" class="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser karya ke kiri">
+          <button id="prodPrevBtn" type="button" class="btn-sabumi btn-outline w-10 h-10 p-0 shadow-xs" aria-label="Geser karya ke kiri">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
           </button>
-          <button id="prodNextBtn" type="button" class="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser karya ke kanan">
+          <button id="prodNextBtn" type="button" class="btn-sabumi btn-outline w-10 h-10 p-0 shadow-xs" aria-label="Geser karya ke kanan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -757,21 +816,21 @@
             Rangkaian proses pembuatan karya siswa dari tahap aksi bersih lingkungan hingga jadi—termasuk <strong>10 tahap kronologis Jam Dinding SABUMI</strong> dan aksi gotong royong kelas. Geser manual atau klik foto untuk melihat detail.
           </p>
           <div id="docFilterBar" class="flex flex-nowrap sm:flex-wrap gap-2 mt-4 overflow-x-auto no-scrollbar pb-1.5">
-            <button type="button" data-dcat="all" class="doc-filter-btn filter-btn active shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Semua Dokumentasi (47)</button>
-            <button type="button" data-dcat="jam_sabumi" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Jam SABUMI (10)</button>
-            <button type="button" data-dcat="gelas" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Aksi Bersih &amp; Gelas Plastik (8)</button>
-            <button type="button" data-dcat="kaleng" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Toples Kaleng Morigro (5)</button>
-            <button type="button" data-dcat="kardus" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Rak Kardus Tiga Susun (7)</button>
-            <button type="button" data-dcat="tutup" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Tutup Botol &amp; Kalender (11)</button>
-            <button type="button" data-dcat="sendok" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Vas Sendok Plastik (4)</button>
-            <button type="button" data-dcat="lainnya" class="doc-filter-btn filter-btn shrink-0 px-3.5 py-1.5 rounded-full border border-amber-900/15 bg-white text-slate-700 text-xs font-bold transition">Karya Lainnya (2)</button>
+            <button type="button" data-dcat="all" class="doc-filter-btn filter-btn active btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Semua Dokumentasi (47)</button>
+            <button type="button" data-dcat="jam_sabumi" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Jam SABUMI (10)</button>
+            <button type="button" data-dcat="gelas" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Aksi Bersih &amp; Gelas Plastik (8)</button>
+            <button type="button" data-dcat="kaleng" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Toples Kaleng Morigro (5)</button>
+            <button type="button" data-dcat="kardus" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Rak Kardus Tiga Susun (7)</button>
+            <button type="button" data-dcat="tutup" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Tutup Botol &amp; Kalender (11)</button>
+            <button type="button" data-dcat="sendok" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Vas Sendok Plastik (4)</button>
+            <button type="button" data-dcat="lainnya" class="doc-filter-btn filter-btn btn-sabumi h-9 px-3.5 border border-amber-900/15 bg-white text-slate-700 text-xs shrink-0">Karya Lainnya (2)</button>
           </div>
         </div>
-        <div class="flex items-center gap-2 self-start sm:self-auto">
-          <button id="docPrevBtn" type="button" class="w-9 h-9 rounded-full border border-amber-900/15 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser dokumentasi ke kiri">
+        <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+          <button id="docPrevBtn" type="button" class="btn-sabumi btn-outline w-10 h-10 p-0 shadow-xs" aria-label="Geser dokumentasi ke kiri">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
           </button>
-          <button id="docNextBtn" type="button" class="w-9 h-9 rounded-full border border-amber-900/15 bg-white hover:bg-emerald-50 hover:border-[#197A54] text-[#0B3B5B] flex items-center justify-center shadow-sm transition" aria-label="Geser dokumentasi ke kanan">
+          <button id="docNextBtn" type="button" class="btn-sabumi btn-outline w-10 h-10 p-0 shadow-xs" aria-label="Geser dokumentasi ke kanan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -890,9 +949,9 @@
               <textarea id="voiceMessage" rows="3" required placeholder="Tuliskan komitmen aksi nyata Anda untuk bumi atau apresiasi tulus bagi karya siswa SMPN 3 Tutuyan..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-[#F4FAF6] focus:bg-white focus:border-[#197A54] focus:ring-2 focus:ring-emerald-200 outline-none text-xs sm:text-sm transition resize-none"></textarea>
             </div>
 
-            <button id="voiceSubmitBtn" type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#0B3B5B] via-[#0E4F6E] to-[#197A54] hover:brightness-110 text-white font-black text-xs sm:text-sm shadow-md transition hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2">
+            <button id="voiceSubmitBtn" type="submit" class="btn-sabumi btn-secondary w-full py-3.5 text-xs sm:text-sm min-h-[46px]">
               <span>Tanamkan Komitmen &amp; Kirim Suara</span>
-              <span>🌱</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
             </button>
           </form>
         </div>
@@ -1045,8 +1104,8 @@
           </span>
           <span>Butuh cetak QR Code untuk meja pameran / standee akrilik?</span>
         </div>
-        <a href="qr-standee.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold tracking-wide shadow-md hover:shadow-emerald-500/20 transition-all hover:scale-105">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <a href="qr-standee.html" class="btn-sabumi btn-primary px-5 py-2.5 text-xs font-extrabold">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
           Lihat &amp; Cetak QR Standee Meja
         </a>
       </div>
@@ -1128,7 +1187,7 @@
     </div>
 
     <!-- Floating Pill Button (Always visible on bottom-left) -->
-    <div id="musicFloatingPill" class="pointer-events-auto inline-flex items-center rounded-full bg-white/95 backdrop-blur-md shadow-xl border border-emerald-900/15 p-1 sm:p-1.5 gap-1.5 sm:gap-2 text-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50">
+    <div id="musicFloatingPill" class="pointer-events-auto inline-flex items-center max-w-[calc(100vw-5.5rem)] rounded-full bg-white/95 backdrop-blur-md shadow-xl border border-emerald-900/15 p-1 sm:p-1.5 gap-1.5 sm:gap-2 text-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50">
       <button id="pillPlayPauseBtn" type="button" aria-label="Putar atau jeda musik latar" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#0B3B5B] to-[#197A54] text-white flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition shrink-0">
         <svg id="pillPlayIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <svg id="pillPauseIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -2031,23 +2090,28 @@
       const card = document.createElement('button');
       card.type = 'button';
       const likes = applauseMap[item.id] || 0;
+      const countBadge = item.process && item.process.length
+        ? `${item.process.length} Foto Proses`
+        : (item.gallery && item.gallery.length > 1 ? `${item.gallery.length} Dokumentasi` : '');
       card.className = (isRibbon ? 'shrink-0 w-[272px] sm:w-[300px] ' : 'w-full ') +
-        'text-left group bg-white rounded-3xl border border-emerald-900/10 overflow-hidden shadow-sm natural-card flex flex-col focus:outline-none focus:ring-2 focus:ring-[#29B36E]';
+        'text-left group bg-white rounded-2xl border border-emerald-900/12 overflow-hidden shadow-xs natural-card flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#29B36E]';
       card.innerHTML = `
         <div class="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
-          <img src="${item.img}" alt="${item.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
-          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#072236]/90 text-white text-[11px] font-bold border border-[#F5A623]/80">${item.catLabel}</span>
-          ${item.process && item.process.length ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#197A54]/95 text-white text-[10px] font-extrabold shadow">${item.process.length} Foto Proses</span>` : (item.gallery && item.gallery.length > 1 ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#0E4F6E]/95 text-white text-[10px] font-extrabold shadow">${item.gallery.length} Dokumentasi</span>` : '')}
-          ${likes > 0 ? `<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#F5A623] text-[#061D30] text-[11px] font-black">★ ${likes}</span>` : ''}
+          <img src="${item.img}" alt="${item.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
+          <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#072236]/88 backdrop-blur-xs text-white text-[11px] font-bold border border-white/15">${item.catLabel}</span>
+          ${countBadge ? `<span class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#197A54]/95 text-white text-[10px] font-bold shadow-xs">${countBadge}</span>` : ''}
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between">
           <div>
-            <h3 class="text-base font-extrabold text-[#0B3B5B] group-hover:text-[#197A54] transition">${item.title}</h3>
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-display text-base font-extrabold text-[#0B3B5B] group-hover:text-[#197A54] transition">${item.title}</h3>
+              ${likes > 0 ? `<span class="shrink-0 px-2 py-0.5 rounded-full bg-amber-100 text-[#9A5804] text-[11px] font-extrabold">★ ${likes}</span>` : ''}
+            </div>
             <p class="mt-1 text-xs font-semibold text-[#197A54]">Bahan: ${item.material}</p>
             <p class="mt-2 text-xs text-slate-600 line-clamp-2 leading-relaxed">${item.desc}</p>
           </div>
-          <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-[#197A54] group-hover:text-[#0B3B5B] transition">
-            <span>Lihat Detail & Foto</span>
+          <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-[#0B3B5B] group-hover:text-[#197A54] transition">
+            <span>Lihat Detail &amp; Foto</span>
             <span class="inline-block group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </div>
@@ -2110,14 +2174,14 @@
         list.forEach((doc, idx) => {
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'shrink-0 w-[256px] sm:w-[284px] text-left group bg-white rounded-3xl border border-amber-900/10 overflow-hidden shadow-sm natural-card flex flex-col focus:outline-none focus:ring-2 focus:ring-[#29B36E]';
+          btn.className = 'shrink-0 w-[256px] sm:w-[284px] text-left group bg-white rounded-2xl border border-amber-900/12 overflow-hidden shadow-xs natural-card flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#29B36E]';
           btn.innerHTML = `
             <div class="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
-              <img src="${doc.img}" alt="${doc.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
-              <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#072236]/85 text-white text-[10px] font-bold border border-[#F5A623]/70">${doc.tag}</span>
+              <img src="${doc.img}" alt="${doc.title}" draggable="false" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
+              <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#072236]/88 backdrop-blur-xs text-white text-[10px] font-bold border border-white/15">${doc.tag}</span>
             </div>
             <div class="p-4">
-              <h3 class="text-sm font-extrabold text-[#0B3B5B] leading-snug group-hover:text-[#197A54] transition">${doc.title}</h3>
+              <h3 class="font-display text-sm font-extrabold text-[#0B3B5B] leading-snug group-hover:text-[#197A54] transition">${doc.title}</h3>
               <p class="mt-1 text-xs text-slate-500 line-clamp-2 leading-relaxed">${doc.desc}</p>
             </div>
           `;
